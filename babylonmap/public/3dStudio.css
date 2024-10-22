@@ -1,0 +1,248 @@
+ @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+ html,
+ body {
+     overflow: hidden;
+     margin: 0;
+     padding: 0;
+     font-family: "Noto Sans";
+     font-size: 1rem;
+     font-style: normal;
+     font-weight: 700;
+     line-height: normal;
+     position: relative;
+ }
+
+ #studio {
+     z-index: 200;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: #424242;
+     color: #fff;
+     display: none;
+     flex-direction: column;
+ }
+
+ #top {
+     position: relative;
+     z-index: 1;
+     width: 100%;
+     height: 2.5rem;
+     background-color: #232323;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-weight: 500;
+ }
+
+ #top-tool {
+     height: 3.125rem;
+     background: #2E2E2E;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     position: relative;
+ }
+
+ #top-tool-category {
+     display: flex;
+     flex-direction: row;
+ }
+
+ #top-tool-category div {
+     display: inline-flex;
+     padding: 0.9375rem 1.375rem;
+     justify-content: center;
+     align-items: center;
+     font-size: 0.9375rem;
+     font-weight: 500;
+ }
+
+ #top-tool-category-editor {
+     background-color: #424242;
+
+ }
+
+ #top-tool-category-data {
+     background: #2E2E2E;
+ }
+
+ #top-tool-icon input[type="checkbox"] {
+     padding: 0;
+     background-color: var(--defualt-);
+     -webkit-appearance: none;
+     outline: none !important;
+     width: 2.25rem;
+     height: 2.25rem;
+     border-radius: 0.19rem;
+     background-repeat: no-repeat;
+     background-size: contain;
+
+     margin: 0;
+ }
+
+ #top-tool-icon input[type="checkbox"]:checked {
+     background-color: #3988E5;
+ }
+
+ #top-tool-icon {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+     width: 12.57rem;
+     display: none;
+     flex-direction: row;
+     justify-content: space-around;
+ }
+
+ #colLine {
+     width: 0.06rem;
+     background-color: rgba(199, 199, 199, 0.15);
+     height: 1.75rem;
+
+ }
+
+ #lastTime {
+     display: inline-flex;
+     background-color: rgba(0, 0, 0, 0.30);
+     border-radius: 0.1875rem;
+     height: 1.125rem;
+     padding: 0.5625rem 1.25rem;
+     justify-content: center;
+     align-items: center;
+ }
+
+ #lastTimeText {
+     color: #BBB;
+
+     text-align: center;
+     font-size: 0.8125rem;
+     font-weight: 400;
+ }
+
+ #lastTimeValue {
+     font-size: 0.8125rem;
+     font-weight: 400;
+ }
+
+ #top-tool-right-save {
+     width: 5rem;
+     height: 2.25rem;
+     border-radius: 0.1875rem;
+     font-size: 0.875rem;
+     font-weight: 500;
+     background: #3988E5;
+     margin-right: 0.94rem;
+     margin-left: 1.56rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+ }
+
+ #top-tool-right {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     margin-right: 3.56rem;
+ }
+
+ #mainTool {
+     width: 100%;
+     height: 61.87rem;
+     display: flex;
+     flex-direction: row-reverse;
+ }
+
+ #grid {
+     top: 50%;
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+ }
+
+ #modeChanged {
+     top: 1.37rem;
+     left: 1.25rem;
+     border-radius: 3.125rem;
+     background: #373737;
+     display: flex;
+     width: 8.8125rem;
+     height: 2.3875rem;
+     padding: 0.5rem 0.875rem 0.5625rem 0.875rem;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ #modeChanged div {
+     border-radius: 3.125rem;
+     display: flex;
+     width: 4.125rem;
+     height: 1.5625rem;
+     padding: 0.3125rem 0;
+     justify-content: center;
+     align-items: center;
+     font-size: 0.875rem;
+     font-weight: 500;
+ }
+
+ #modeChanged-view {
+     background-color: #3988E5;
+ }
+
+ #rightTools {
+     margin: 2.81rem 2.84rem;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ #rightTools .icons-btn {
+     z-index: 2;
+     position: relative;
+     width: 2.5rem;
+     height: auto;
+     display: flex;
+     flex-direction: column;
+     background-color: #373737;
+     border-radius: 0.21rem;
+     margin-bottom: 0.69rem;
+ }
+
+ #rightTools .icons-btn div img {
+     width: 2.5rem;
+     height: 2.5rem;
+ }
+
+ #rightTools .icons-btn div {
+     width: 2.5rem;
+     height: 2.5rem;
+     border-radius: 0.21rem;
+ }
+
+ #objCreate {
+     display: flex;
+     top: 6rem;
+     left: 1.1875rem;
+
+ }
+
+ .obj-studio-view {
+     display: flex;
+     width: 4.63rem;
+     height: 2.25rem;
+     padding: 0.3125rem 0.4375rem;
+     justify-content: center;
+     align-items: center;
+     border-radius: 3.125rem;
+     background: #303030;
+ }
+
+ .obj-studio-view img {
+     width: 2.25rem;
+     height: 2.25rem;
+ }

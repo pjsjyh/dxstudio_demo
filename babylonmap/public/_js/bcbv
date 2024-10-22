@@ -1,0 +1,154 @@
+function loadAsset_json(_obj, getnum) {
+  BABYLON.SceneLoader.ImportMeshAsync(
+    "",
+    " https://dt.gractor.com/demoModeling/",
+    _obj.id + ".glb",
+    this.scene
+  ).then((c) => {
+    let gltfMesh_obj = c.meshes[0];
+    gltfMesh_obj.position.y = 0;
+    gltfMesh_obj.rotation.y = 0;
+    gltfMesh_obj.rotation.z = 0;
+    let boundingBox_obj =
+      BABYLON.BoundingBoxGizmo.MakeNotPickableAndWrapInBoundingBox(
+        gltfMesh_obj
+      );
+    gltfMesh_obj.position.y = 0;
+    //container = boundingBox;
+    boundingBox_obj.isPickable = true;
+    c.meshes.forEach((mesh) => {
+      // 메시가 클릭되었을 때 이벤트 핸들러 등록
+      mesh.isPickable = true;
+      mesh.actionManager = new BABYLON.ActionManager(this.scene);
+      mesh.actionManager.registerAction(
+        new BABYLON.ExecuteCodeAction(
+          BABYLON.ActionManager.OnPickTrigger,
+          function () {
+            // 클릭된 메시를 선택하고 색상 변경 또는 다른 동작 수행
+            //mesh.name = rootMesh.name;
+            selectMesh(gltfMesh_obj, obj);
+          }
+        )
+      );
+    });
+    //console.log(_obj._set)
+    //_set을 통해 반복문으로 clone하여 객체 위치 지정 및, 회전, 스케일 지정
+    _obj._set.forEach((obj_info) => {
+      let objClone = gltfMesh_obj.clone();
+      objClone._rotation._x = obj_info.worldMatrix.x;
+      objClone._rotation._y = obj_info.worldMatrix.y;
+      objClone._rotation._z = obj_info.worldMatrix.z;
+
+      const currentRotation = new BABYLON.Vector3(
+        objClone._rotation._x,
+        objClone._rotation._y,
+        objClone._rotation._z
+      );
+      const additionalRotationAngle = Math.PI; // 180도
+
+      // 추가 회전 각도를 Quaternion으로 변환
+      const additionalRotationQuaternion = new BABYLON.Quaternion.RotationAxis(
+        new BABYLON.Vector3(0, 1, 0),
+        additionalRotationAngle
+      );
+
+      // 현재 회전값을 Quaternion으로 변환
+      const currentRotationQuaternion = new BABYLON.Quaternion.FromEulerAngles(
+        currentRotation.x,
+        currentRotation.y,
+        currentRotation.z
+      );
+
+      // 현재 회전값에 추가 회전을 곱하여 새로운 회전을 얻음
+      const newRotationQuaternion = BABYLON.Quaternion.Identity();
+      currentRotationQuaternion.multiplyToRef(
+        additionalRotationQuaternion,
+        newRotationQuaternion
+      );
+
+      // 새로운 회전값을 Euler 각도로 변환
+      const newRotationEulerAngles = new BABYLON.Vector3();
+      newRotationQuaternion.toEulerAnglesToRef(newRotationEulerAngles);
+
+      // bounding box 객체에 적용
+      objClone._rotation._x = newRotationEulerAngles.x;
+      objClone._rotation._y = newRotationEulerAngles.y;
+      objClone._rotation._z = newRotationEulerAngles.z;
+
+      // 메시에도 적용
+      objClone.rotationQuaternion = newRotationQuaternion;
+
+      objClone._position.y = obj_info.pos.y;
+      let babylonPos = ToBabylonPos(
+        GetMercatorPos([obj_info.pos.Gps_lng, obj_info.pos.Gps_lat])
+      );
+      objClone._position.x = babylonPos._x;
+      objClone._position.z = babylonPos._z;
+
+      objClone._scaling._x *= obj_info.originscale.x;
+      objClone._scaling._y *= obj_info.originscale.y;
+      objClone._scaling._z *= obj_info.originscale.z;
+
+      objClone.id = obj_info.name + "obj";
+      objClone.name = obj_info.name;
+      // + objectlist[getnum].num
+      let model_obj = {
+        allmesh_: c,
+        model_: objClone,
+        scalex_: objClone.scaling.x,
+        scaley_: objClone.scaling.y,
+        scalez_: objClone.scaling.z,
+        originx_: objClone.scaling.x,
+        originy_: objClone.scaling.y,
+        originz_: objClone.scaling.z,
+        divId: objClone.name,
+        zoomlevel_: objectlist[getnum].zoom,
+        type: objectlist[getnum].type,
+        explane: "",
+        JSONEditor: "",
+        marker: 0,
+        modelingType: objClone.name,
+        worldMatrix: { _x: 0, _y: 0, _z: 0 },
+        originscale: { _x: 1, _y: 1, _z: 1 },
+        objmode: "general",
+      };
+      objectlist[getnum].num++;
+
+      modelObj.push(model_obj);
+      let isunder = false;
+      if (selectsomething) {
+        for (let key in objectlist) {
+          if (objectlist[key].name == selectedMesh.model_.id) {
+            if (objectlist[key].type == "Sensor") {
+              isunder = true;
+            }
+          }
+        }
+      }
+      customLayer.addobjectlist(objClone.name, isunder);
+      customLayer.deselectMesh();
+
+      gizmoManager.attachToMesh(objClone);
+      // let objlists_obj = document.getElementById(objClone.name);
+      // objlists_obj.addEventListener("click", function () {
+      //   // 하이라키에 생성된 객체 리스트 클릭시 인스펙터에 해당 객체 좌표값 반영
+      //   setInspectorTransform();
+      // });
+      customLayer.allgizmofalse();
+
+      gizmoManager.gizmos.positionGizmo.updateGizmoPositionToMatchAttachedMesh = true;
+      //gizmoManager.positionGizmoEnabled = true;
+
+      arr.push(objClone);
+
+      let zoomLevel_ =
+        (maxZoomuse - map.getZoom() + 1) * (maxZoomuse - map.getZoom() + 1) * 5;
+      gizmoManager.gizmos.scaleGizmo.scaleRatio = zoomLevel_;
+      gizmoManager.gizmos.rotationGizmo.scaleRatio = zoomLevel_;
+      gizmoManager.gizmos.positionGizmo.scaleRatio = zoomLevel_;
+    });
+    boundingBox_obj.dispose();
+
+    //type은 나중.
+  });
+}

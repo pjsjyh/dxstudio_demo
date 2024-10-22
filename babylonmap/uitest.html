@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="uitest.css" />
+
+</head>
+
+<body style="background-color: beige;">
+    <input type="radio" name="category-state">
+    <input type="radio" name="category-state">
+    <input type="radio" name="category-state">
+
+    <input type="file" accept="image/*" onchange="previewImage(event)">
+<img id="preview" src="" alt="Image Preview" style="display: none;">
+<script>
+  function previewImage(event) {
+    const input = event.target;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const preview = document.getElementById('preview');
+        preview.src = e.target.result;
+        preview.style.display = 'block'; // 이미지를 보여주기 위해 display 속성 변경
+      }
+      
+      reader.readAsDataURL(input.files[0]); // 파일을 읽어서 Data URL로 변환
+    }
+  }
+</script>
+
+<input type="file" accept="image/*" onchange="handleFileSelect(event)">
+<p id="fileSizeDisplay" style="display: none;"></p>
+
+<script>
+function handleFileSelect(event) {
+  const input = event.target;
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+
+    const fileSizeDisplay = document.getElementById('fileSizeDisplay');
+    fileSizeDisplay.style.display = 'block';
+    fileSizeDisplay.textContent = `File size: ${formatBytes(file.size)}`;
+  }
+}
+
+// 파일 크기를 바이트 단위에서 보기 좋은 형식으로 변환합니다.
+function formatBytes(bytes, decimals = 2) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+</script>
+</body>
+
+</html>

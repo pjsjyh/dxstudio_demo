@@ -1,0 +1,279 @@
+<div id="main-new-obj-box-category" class="main-new-obj-box-all">
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-all" class="obj-box-categoryBox" src="./img/icons/all.png"
+            style="background-color: rgb(57, 136, 229);">
+    </div>
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-sensor" class="obj-box-categoryBox" src="./img/icons/sensor select.png">
+    </div>
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-bridge" class="obj-box-categoryBox" src="./img/icons/bridge.png">
+    </div>
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-traffic" class="obj-box-categoryBox" src="./img/icons/traffic.png">
+    </div>
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-building" class="obj-box-categoryBox" src="./img/icons/building.png">
+    </div>
+    <div class="main-new-obj-box-categoryBox">
+        <img id="obj-box-categoryBox-plus" class="obj-box-categoryBox" src="./img/icons/plus.png">
+    </div>
+</div>
+<div id="main-new-obj-box-Objlist" class="main-new-obj-box-all">
+    <div id="new-obj-box-Objlist-search" class="box-Objlist">
+        <img src="./img/icons/search.png">
+        <input id="obj-box-Objlist-searching" class="input-box-css inputting" type="text">
+        <div id="obj-box-Objlist-searching-clear" class="clearbtn"> X</div>
+
+    </div>
+    <div id="new-obj-box-div" class="box-Objlist">
+        <label id="new-obj-box-label_category">ALL</label>(<label id="new-obj-box-label_num">7</label>)
+    </div>
+    <div id="new-obj-box-list">
+
+    </div>
+
+</div>
+<div id="main-new-obj-box-import" class="main-new-obj-box-all">
+    <div id="main-new-obj-box-import-disable">
+        <div id="import-completed-animation">
+            <svg id="check-svg" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
+                <circle id="circle-import" cx="36" cy="36" r="23.5" stroke="#38DBFF" stroke-width="3" fill="none" />
+                <path id="check-import"
+                    d="M27 35.5116L35.0433 44.5014C35.266 44.7504 35.6655 44.7151 35.8412 44.431L46 28" stroke="#38DBFF"
+                    stroke-width="3" stroke-linecap="round" fill="none" />
+            </svg>
+            <label>import completed</label>
+            <lottie-player src="./img/icons/checkCircleAnimation.json" background="transparent"
+                style="width: 300px; height: 225px;" speed="1" autoplay>
+            </lottie-player>
+
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: row-reverse;">
+        <div id="new-obj-box-import-importbtn">import</div>
+    </div>
+    <div id="main-editor-side-view-property-property">
+
+        <div id="editor-view-modelProperty-name" class="editor-modelProperty-view">
+            <label>Name</label> <input type="text" id="editor-modelProperty-name" placeholder="smart pole"
+                class="import-Property-toJson inputting">
+        </div>
+        <div id="editor-view-modelProperty-type" class="editor-modelProperty-view">
+            <label>Type</label>
+            <div id="editor-modelProperty-type">sensor</div>
+        </div>
+        <div id="editor-view-modelProperty-transform" class="editor-modelProperty-view">
+            <div id="editor-view-modelProperty-transform-set" class="editor-modelProperty-view arrowupdown">
+                <label>Transform</label>
+                <input type="checkbox" id="editor-modelProperty-transform-img">
+
+            </div>
+            <div id="editor-modelProperty-transform-transform">
+                <!-- <select id="editor-modelProperty-transform-transform-objectSetting">
+                                                    <option value="1">one object</option>
+                                                    <option value="2">multiple objects</option>
+                                                </select> -->
+                <div class="select" tabindex="1">
+                    <input class="selectopt" name="test" type="radio" id="opt1" checked>
+                    <label for="opt1" class="option">one object</label>
+                    <input class="selectopt" name="test" type="radio" id="opt2">
+                    <label for="opt2" class="option">multiple objects</label>
+                    <img src="./img/icons/selcteArrow.png">
+                </div>
+
+
+                <div id="editor-modelProperty-transform-transform-multiple">
+
+                    <div id="transform-multiple-count" class="editor-modelProperty-view-transform-multiple ">
+                        <label style="display: flex; flex-direction: row; align-items: center; ">
+                            <div
+                                style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                            </div>count
+                        </label>
+                        <input type="text" id="editor-transform-multiple-name" class="import-Property-toJson inputting">
+                    </div>
+                    <div id="transform-multiple-locationstart"
+                        class="editor-modelProperty-view-transform-multiple transform-multiple-location">
+                        <label style="display: flex; flex-direction: row; align-items: center; ">
+                            <div
+                                style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                            </div>location - start
+                        </label>
+                        <input type="text" id="editor-transform-multiple-locationstart" placeholder="address"
+                            class="import-Property-toJson inputting">
+
+                        <div class="ObjectInfo_Input">
+                            <label class="inspectorclass multiple-location">
+                                x
+                                <input type="number" id="position_Value_x-multiple-start"
+                                    class="inspectorclass inputting ObjectInfo_import_value"
+                                    style="margin-right: 11.5px; " />
+                            </label>
+                            <label class="inspectorclass multiple-location">
+                                y
+                                <input type="number" id="position_Value_y-multiple-start"
+                                    class="inspectorclass inputting ObjectInfo_import_value"
+                                    style="margin-right: 11.5px;" />
+                            </label>
+                            <label class="inspectorclass multiple-location">
+                                z
+                                <input type="number" id="position_Value_z-multiple-start"
+                                    class="inspectorclass inputting ObjectInfo_import_value" />
+                            </label>
+                        </div>
+                    </div>
+                    <div id="transform-multiple-locationend"
+                        class="editor-modelProperty-view-transform-multiple transform-multiple-location">
+                        <label style="display: flex; flex-direction: row; align-items: center; ">
+                            <div
+                                style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                            </div>location - end
+                        </label>
+                        <input type="text" class="inputting" id="editor-transform-multiple-locationend"
+                            placeholder="address">
+
+                        <div class="ObjectInfo_Input">
+                            <label class="inspectorclass multiple-location">
+                                x
+                                <input type="number" id="position_Value_x-multiple-end"
+                                    class="inspectorclass inputting ObjectInfo_import_value"
+                                    style="margin-right: 11.5px;" />
+                            </label>
+                            <label class="inspectorclass multiple-location">
+                                y
+                                <input type="number" id="position_Value_y-multiple-end"
+                                    class="inspectorclass inputting ObjectInfo_import_value"
+                                    style="margin-right: 11.5px;" />
+                            </label>
+                            <label class="inspectorclass multiple-location">
+                                z
+                                <input type="number" id="position_Value_z-multiple-end"
+                                    class="inspectorclass inputting ObjectInfo_import_value" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="position-import" class="objectInfoContents inspectorclass">
+                    <label class="inspectorclass" style="display: flex; flex-direction: row; align-items: center; ">
+                        <div
+                            style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                        </div>
+                        location
+                    </label>
+
+                    <input type="text" id="transform-import-address" placeholder="address"
+                        onkeypress="return geoGetValueImport(event)" class="import-Property-toJson inputting">
+                    <div class="ObjectInfo_Input " style="margin-bottom: 20px;">
+
+                        <label class="inspectorclass import-transforms">
+                            x
+                            <input type="number" id="transform-import-position_Value_x"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px; " placeholder="0.0" />
+                        </label>
+
+                        <label class="inspectorclass import-transforms">
+                            y
+                            <input type="number" id="transform-import-position_Value_y"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px; " placeholder="0.0" />
+                        </label>
+                        <label class="inspectorclass import-transforms">
+                            z
+                            <input type="number" id="transform-import-position_Value_z"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                placeholder="0.0" />
+                        </label>
+                    </div>
+                </div>
+                <div id="rotation-import" class=" inspectorclass objectInfoContents" style="margin-bottom: 20px;">
+                    <label class="inspectorclass " style="display: flex; flex-direction: row; align-items: center; ">
+                        <div
+                            style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                        </div>
+                        rotation
+                    </label>
+                    <div class="inspectorclass ObjectInfo_Input">
+
+                        <label class="inspectorclass import-transforms">
+                            x
+                            <input type="number" id="transform-import-rotation_Value_x"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px;" />
+                        </label>
+
+                        <label class="inspectorclass import-transforms">
+                            y
+                            <input type="number" id="transform-import-rotation_Value_y"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px;" />
+                        </label>
+                        <label class="inspectorclass import-transforms">
+                            z
+                            <input type="number" id="transform-import-rotation_Value_z"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" />
+                        </label>
+                    </div>
+
+                </div>
+                <div id="scale-import" class="inspectorclass objectInfoContents">
+                    <label class="inspectorclass" style="display: flex; flex-direction: row; align-items: center; ">
+                        <div
+                            style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;">
+                        </div>
+                        scale
+                    </label>
+                    <div class="inspectorclass ObjectInfo_Input">
+                        <label class="inspectorclass import-transforms">
+                            x
+                            <input type="number" id="transform-import-scale_Value_x"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px;" />
+                        </label>
+
+                        <label class="inspectorclass import-transforms">
+                            y
+                            <input type="number" id="transform-import-scale_Value_y"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson"
+                                style="margin-right: 11.5px;" />
+                        </label>
+                        <label class="inspectorclass import-transforms">
+                            z
+                            <input type="number" id="transform-import-scale_Value_z"
+                                class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="import-modelProperty-view">
+            <div id="editor-view-modelProperty-explanation" class="editor-modelProperty-view arrowupdown">
+                <label>Explanation</label>
+                <input type="checkbox" id="editor-modelProperty-explanation-img">
+            </div>
+            <textarea class="import-Property-toJson inputting" id="editor-modelProperty-explanation-input"></textarea>
+        </div>
+
+        <div class="import-modelProperty-view">
+            <div id="editor-view-modelProperty-JsonEditor" class="editor-modelProperty-view arrowupdown">
+                <label>JSON Editor</label>
+                <input type="checkbox" id="editor-modelProperty-JsonEditor-img">
+            </div>
+
+            <textarea class="inputting" id="editor-modelProperty-JsonEditor-input"></textarea>
+        </div>
+        <div class="import-modelProperty-view">
+            <div id="editor-view-modelProperty-marker" class="editor-modelProperty-view arrowupdown">
+                <label>Marker</label>
+                <input type="checkbox" id="editor-modelProperty-marker-img">
+            </div>
+            <textarea id="editor-modelProperty-marker-input" class="import-Property-toJson inputting"></textarea>
+        </div>
+    </div>
+
+</div>
+<div id="main-new-obj-box-exit" class="main-new-obj-box-all">
+    <img src="./img/icons/cancel-1.png">
+</div>

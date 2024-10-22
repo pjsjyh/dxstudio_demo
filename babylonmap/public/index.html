@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <title>Aliot DT_</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="startstyle.css" />
+    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" /> -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl-dev.js"></script> -->
+    <script src="https://unpkg.com/babylonjs@5.42.2/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://unpkg.com/babylonjs-loaders@5.42.2/babylonjs.loaders.min.js"></script>
+    <script src=https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js></script>
+    <link href=https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css rel="stylesheet" />
+    <script src="https://unpkg.com/@esri/arcgis-rest-request@4.0.0/dist/bundled/request.umd.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-geocoding@4.0.0/dist/bundled/geocoding.umd.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-request@4.0.0/dist/bundled/request.umd.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-geocoding@4.0.0/dist/bundled/geocoding.umd.js"></script>
+
+</head>
+
+<body>
+    <script src="_js/startPagebusinessMode.js"></script>
+    <script src="_js/startPageEvent.js"></script>
+    <script src="_js/searchGEOcodeControl.js"></script>
+    <div id="startPage">
+        <div id="mainView">
+            <div id="mainView-top">
+                <div id="mainView-top-name"><img src="./img/main_icon/Logo.png"> </div>
+            </div>
+            <div id="mainView-content">
+                <div id="mainView-side">
+                    <div id="mainView-side-user-info">
+                        <div id="side-user-info-usericon">
+                            <img src="img/startPageIcons/profile.png">
+                        </div>
+                        <label id="side-user-info-username">Gractor</label>
+                        <div id="side-user-info-usersetting">
+                            <img src="img/startPageIcons/hamburger menu.png">
+                        </div>
+                    </div>
+                    <div id="side-user-menu">
+                        <div id="side-user-menu-home" class="click-btn-event"><img
+                                src="img/startPageIcons/home.png">Home</div>
+                        <div id="side-user-menu-learn" class="click-btn-event"><img
+                                src="img/startPageIcons/learn.png">Learn</div>
+                    </div>
+                    <div id="side-user-files-div">
+                        <div id="side-user-files-div-name">
+                            <label id="side-user-files-name">Files</label>
+                            <div class="line-div" id="side-user-files-div-line"></div>
+
+                        </div>
+                        <div id="side-user-files">
+                            <div id="side-user-files-All" class="click-btn-event"><img
+                                    src="img/startPageIcons/star.png">Favorites</div>
+                            <div id="side-user-files-Deleted" class="click-btn-event"><img
+                                    src="img/startPageIcons/deleted files.png">Deleted</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="mainView-content-contents">
+                    <div id="mainView-content-contents-top">
+                        <div id="contents-top">
+                            <label>Hello, Let's start the program!</label>
+                            <div id="contents-top-btn">
+                                <label class="contents-top-btn-import-name import_click-btn-event"
+                                    for="contents-top-btn-import">Import</label>
+                                <input type="file" id="contents-top-btn-import"> </input>
+                                <div id="contents-top-btn-newFile" class="newfile_click-btn-event">New place</div>
+                            </div>
+                        </div>
+                        <div id="contents-bottom">
+                            <div id="contents-bottom-category">
+                                <div id="contents-bottom-category-state">
+                                    <input class="category-state-radio" value="recent" id="Recent" name="category-state"
+                                        type="radio" checked>
+                                    <input class="category-state-radio" value="yourfiles" id="yourFiles"
+                                        name="category-state" type="radio">
+                                    <input class="category-state-radio" value="sharedfiles" id="sharedFiles"
+                                        name="category-state" type="radio">
+                                    <div class="state-tabs" id="homeTab">
+                                        <label class="tab" id="Recent-tab" for="Recent">Recent</label>
+                                        <label class="tab" id="yourFiles-tab" for="yourFiles">Your Projects</label>
+                                        <label class="tab" id="sharedFiles-tab" for="sharedFiles">Shared files</label>
+                                    </div>
+                                    <div class="state-tabs" id="favoriteTab">Favorites Projects</div>
+
+                                </div>
+                                <div id="contents-bottom-category-contents">
+                                    <div class="category-select-panels" id="Recent-panel">
+                                        <Label id="category-select-panels-recent">Recent</Label>
+                                        <div class="colBar-div"></div>
+                                        <div class="select" tabindex="1">
+                                            <div class="select-box__current" tabindex="1">
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input RecentSorting" type="radio"
+                                                        id="opt1" value="reverse" name="Recent-radio" />
+                                                    <p class="select-box__input-text">Descending</p>
+                                                </div>
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input RecentSorting" type="radio"
+                                                        id="opt2" value="sort" name="Recent-radio" checked="checked" />
+                                                    <p class="select-box__input-text">Ascending</p>
+                                                </div><img class="select-box__icon"
+                                                    src="img/startPageIcons/arrowline 30x30.png" />
+                                            </div>
+                                            <ul class="select-box__list">
+                                                <li>
+                                                    <label class="select-box__option" for="opt1">Descending</label>
+                                                </li>
+                                                <li>
+                                                    <label class="select-box__option" for="opt2">Ascending</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="category-select-panels" id="yourFiles-panel">
+                                        <Label id="category-select-panels-yourFiles">Veiw</Label>
+                                        <div class="colBar-div"></div>
+                                        <div class="select" tabindex="2">
+                                            <!-- <input class="selectopt-yourFiles" value="sort" name="yourFiles-radio"
+                                                type="radio" id="opt3" checked>
+                                            <label for="opt3" class="option">A<img
+                                                    src="img/icons/rightArrow.png">Z</label>
+                                            <input class="selectopt-yourFiles" value="reverse" name="yourFiles-radio"
+                                                type="radio" id="opt4">
+                                            <label for="opt4" class="option">Z<img
+                                                    src="img/icons/rightArrow.png">A</label>
+                                            <img class="arrow-select" src="./img/icons/Frame 222.png">
+                                        </div> -->
+
+                                            <div class="select-box__current" tabindex="2">
+
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input fileSorting" type="radio"
+                                                        id="All_seleted1" value="reverse" name="All_seleted-radio" />
+                                                    <p class="select-box__input-text">Descending</p>
+                                                </div>
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input fileSorting" type="radio"
+                                                        id="All_seleted2" value="sort" name="All_seleted-radio"
+                                                        checked="checked" />
+                                                    <p class="select-box__input-text">Ascending</p>
+                                                </div>
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input fileSorting" type="radio"
+                                                        id="All_seleted3" value="nameSort" name="All_seleted-radio" />
+                                                    <p class="select-box__input-text">A <img style="width: 1rem; height: 1rem; margin: 0 0.2rem; text-align: center;" src="img/main_icon/range arrow.png"> Z</p>
+                                                </div>
+                                                <div class="select-box__value">
+                                                    <input class="select-box__input fileSorting" type="radio"
+                                                        id="All_seleted4" value="nameReverse" name="All_seleted-radio"
+                                                        checked="checked" />
+                                                    <p style="" class="select-box__input-text">Z <img style="width: 1rem; height: 1rem; margin: 0  0.2rem;text-align: center; " src="img/main_icon/range arrow.png"> A</p>
+                                                </div><img class="select-box__icon"
+                                                    src="img/startPageIcons/arrowline 30x30.png" />
+                                            </div>
+                                            <ul class="select-box__list">
+                                                <li>
+                                                    <label class="select-box__option"
+                                                        for="All_seleted1">Descending</label>
+                                                </li>
+                                                <li>
+                                                    <label class="select-box__option"
+                                                        for="All_seleted2">Ascending</label>
+                                                </li>
+                                                <li>
+                                                    <label class="select-box__option" for="All_seleted3">A <img style="width: 1rem; height: 1rem; margin: 0.63rem 0.2rem;" src="img/main_icon/range arrow.png"> Z</label>
+                                                </li>
+                                                <li>
+                                                    <label class="select-box__option" for="All_seleted4">Z <img style="width: 1rem; height: 1rem; margin: 0.63rem 0.2rem;" src="img/main_icon/range arrow.png"> A</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="category-select-panels" id="sharedFiles-panel">
+                                        <Label id="category-select-panels-sharedFiles">Shared files</Label>
+                                        <div class="colBar-div"></div>
+                                        <div class="select" tabindex="3">
+                                            <input class="selectopt-sharedFiles" value="sort" name="sharedFiles-radio"
+                                                type="radio" id="opt5" checked>
+                                            <label for="opt5" class="option">A<img
+                                                    src="img/icons/rightArrow.png">Z</label>
+                                            <input class="selectopt-sharedFiles" value="reverse"
+                                                name="sharedFiles-radio" type="radio" id="opt6">
+                                            <label for="opt6" class="option">Z<img
+                                                    src="img/icons/rightArrow.png">A</label>
+                                            <img class="arrow-select" src="./img/icons/Frame 222.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="contents-bottom-listBtn">
+                                <div id="contents-bottom-listBtn-searching">
+                                    <img id="listBtn-searching-icon" src="img/startPageIcons/mini search 30x30.png">
+                                    <input id="listBtn-searching-input" type="text" placeholder="search">
+                                    <img id="listBtn-searching-cancel" src="img/startPageIcons/cancel mini 30x30.png">
+                                </div>
+                                <div id="contents-bottom-listBtn-viewbox" class="click-btn-event"><img id="img01"
+                                        src="img/icons/view.png"></div>
+                                <div id="contents-bottom-listBtn-viewList" class="click-btn-event"><img
+                                        src="img/icons/listview.png"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="contents-Lists" class="gird-list-view emptyActive">
+                        <!-- class="gird-list-view"  list-view-line-->
+                        <div id="contents-list-empty"><img src="./img/icons/folder.png">
+                            <p id="contents-list-empty-doc">
+                                You have no recent documents</p>
+                            <p id="contents-list-empty-expl">
+                                Once you start a task, they will show up here</p>
+                        </div>
+                        <div id="contents-List">
+                            <div id="list-view-index">
+                                <div id="list-view-index-name"><label>Name</label></div>
+                                <div id="list-view-index-adress"> <label>Address / Latitude and Longitude</label></div>
+                                <div id="list-view-index-create"><label>Creation date</label></div>
+                                <div id="list-view-index-lastdate"><label>Last work date</label></div>
+                            </div>
+                        </div>
+                        <div class="contents-List-content" id="cloneContents">
+
+                            <div class="list-contents-img"><img src="img/startPageIcons/image 159.png">
+                                <div class="list-contents-img-checkIconbox dontNextScene"><input type="checkbox"
+                                        class="list-contents-img-checkbox dontNextScene"></div>
+                            </div>
+                            <div class="list-contents-dot-func dontNextScene saveClickedEvent">
+                                <div class="list-contents-dot-func-icon dontNextScene saveClickedEvent">
+                                    <svg class="dontNextScene saveClickedEvent" xmlns="http://www.w3.org/2000/svg" width="3" height="15"
+                                        viewBox="0 0 3 15" fill="none">
+                                        <circle class="dontNextScene" cx="1.5" cy="1.5" r="1.5" fill="#959595" />
+                                        <circle class="dontNextScene" cx="1.5" cy="7.5" r="1.5" fill="#959595" />
+                                        <circle class="dontNextScene" cx="1.5" cy="13.5" r="1.5" fill="#959595" />
+                                    </svg>
+                                </div>
+                                <div class="list-contents-dot-func-div dontNextScene saveClickedEvent">
+                                    <div class="list-contents-dot-func-div-delete dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">delete</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-duplication dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">duplication</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-rename dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">rename</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-changemapimage dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">change to map image</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-changeprojectimage dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">change project image</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-deletion dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">permanent deletion</label>
+                                    </div>
+                                    <div class="list-contents-dot-func-div-restore dontNextScene saveClickedEvent">
+                                        <label class="dontNextScene">restore</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-title">
+                                <label class="list-contents-title list-view-content"
+                                    data-value="0">cloneContes-template-source--</label>
+                                <img src="img/startPageIcons/arrowmini 24x24.png" class="listtagarrow dontNextScene">
+                            </div>
+                            <div class="contents-adrees">
+                                <label class="contents-adrees-latlng" data-value="0">경북 구미시 3공단2로 174</label>
+                            </div>
+
+                            <label class="list-contents-creat">0000-00-00</label>
+                            <div class="list-contents-times-date">
+                                <label class="list-contents-delete">0000-00-00</label>
+                                <label class="list-contents-time" data-value="0">0</label>
+                            </div>
+                            <div class="list-contents-tags dontNextScene">
+                                <div class="list-contents-tagList dontNextScene">
+
+                                    <div class="tagList-arrow dontNextScene">
+                                        <img class="dontNextScene" src="img/startPageIcons/arrowline 30x30.png">
+                                    </div>
+                                </div>
+                                <div class="tagList-more dontNextScene">
+                                    <label class="dontNextScene">...more</label>
+                                </div>
+                                <div class="tagList-arrow dontNextScene">
+                                    <img class="dontNextScene" src="img/startPageIcons/arrowline 30x30.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-project-learn">
+                        <div id="new-project-learn-img">
+                            <div id="learn-img-exit" class="click-btn-event"><img src="img/icons/cancel.png"></div>
+                            <div id="learn-img-right" class="click-btn-event"><img src="img/icons/rightnext.png"></div>
+                            <div id="learn-img-left" class="click-btn-event"><img src="img/icons/leftnext.png"></div>
+                        </div>
+                    </div>
+                    <div id="new-project-pop">
+                        <div id="new-project-pop-left">
+                            <div id="new-project-pop-name">
+                                <label>Name</label>
+                                <input id="new-project-pop-inputName" type="text" placeholder="name" autocomplete="off">
+                            </div>
+                            <div id="new-project-pop-image">
+                                <label>Upload thumbnail</label>
+                                <div id="new-project-pop-dragdropContext" class="dragdropContext">
+                                    If you do not upload an image, the map image
+you set will be displayed as the project image.
+                                </div>
+                                <!-- <input id="new-project-pop-inputImageURL" type="text" placeholder="past in a image URL"> -->
+                                <div id="new-project-pop-inputDragNDrop" class="dragDropDiv"
+                                    ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"
+                                    ondragleave="dragLeaveHandler(event);" ondragenter="dragEnterHandler(event);">
+                                    <!-- class="is-dragover" -->
+                                    <div id="dragOverimg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="76" height="57"
+                                            viewBox="0 0 76 57" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M74.9832 32.3333C74.9939 32.1101 74.9994 31.8855 74.9994 31.6596C74.9994 25.1304 70.4652 19.6603 64.3739 18.226C63.7708 11.3343 58.0821 5.93158 51.1535 5.93158C48.8575 5.93158 46.6978 6.52483 44.8141 7.56891C41.5729 3.56202 36.6162 1 31.0611 1C21.6361 1 13.9337 8.37498 13.4098 17.6689C6.41427 18.5373 1 24.5033 1 31.7338C1 31.9506 1.00487 32.1662 1.01449 32.3806C1.00487 32.5859 1 32.7924 1 33C1 40.1797 6.8203 46 14 46H62C69.1797 46 75 40.1797 75 33C75 32.7764 74.9944 32.5541 74.9832 32.3333Z"
+                                                fill="#3988E5" />
+                                            <path d="M38 56L38 30" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" />
+                                            <path
+                                                d="M33 34L37.2929 29.7071C37.6834 29.3166 38.3166 29.3166 38.7071 29.7071L43 34"
+                                                stroke="white" stroke-width="2" stroke-linecap="round" />
+                                        </svg><label>Drop files to upload</label>
+                                    </div>
+                                    <div id="new-project-pop-inputDragNDrop-img" class="dragdropChangedImg">
+                                        <img src="img/startPageIcons/image 159.png" alt="">
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="62" height="47" viewBox="0 0 62 47"
+                                        fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M25.3405 0C17.4415 0 10.9466 6.00963 10.1779 13.7067C4.39095 14.7454 0 19.8043 0 25.89C0 26.0662 0.00368428 26.2415 0.0109839 26.4159C0.00368512 26.5835 0 26.7518 0 26.921C0 33.2287 5.11338 38.3421 11.4211 38.3421H25.2862V36.7105H11.4211C6.01448 36.7105 1.63158 32.3276 1.63158 26.921C1.63158 26.7647 1.63524 26.6093 1.64247 26.4548L1.64422 26.4175L1.64254 26.3802C1.63526 26.2177 1.63158 26.0543 1.63158 25.89C1.63158 20.4078 5.73719 15.8833 11.0411 15.2254L11.7169 15.1416L11.7551 14.4616C12.1575 7.30857 18.0863 1.63158 25.3405 1.63158C29.6153 1.63158 33.4294 3.60188 35.9253 6.68702L36.3561 7.21953L36.9551 6.88738C38.3747 6.10025 40.0014 5.65317 41.7326 5.65317C46.9472 5.65317 51.2497 9.72291 51.7052 14.9403L51.7565 15.5281L52.3308 15.6634C56.939 16.7494 60.3682 20.8892 60.3682 25.8279C60.3682 26.0001 60.3641 26.1713 60.3558 26.3413L60.3539 26.3815L60.3559 26.4216C60.3642 26.587 60.3684 26.7535 60.3684 26.921C60.3684 32.3276 55.9855 36.7105 50.579 36.7105H36.7072V38.3421H50.579C56.8866 38.3421 62 33.2287 62 26.921C62 26.7398 61.9958 26.5594 61.9874 26.3801C61.9956 26.197 61.9998 26.0129 61.9998 25.8279C61.9998 20.3177 58.3095 15.6713 53.2663 14.222C52.4835 8.46944 47.6287 4.02159 41.7326 4.02159C39.9556 4.02159 38.2703 4.42672 36.7625 5.15102C33.9715 1.9932 29.8885 0 25.3405 0ZM31.8125 25.6241L34.4988 28.3104C34.8174 28.629 35.3339 28.629 35.6525 28.3104C35.9711 27.9918 35.9711 27.4753 35.6525 27.1567L32.1504 23.6546C31.5132 23.0174 30.4802 23.0174 29.843 23.6546L26.3409 27.1567C26.0223 27.4753 26.0223 27.9918 26.3409 28.3104C26.6595 28.629 27.176 28.629 27.4946 28.3104L30.1809 25.6241L30.1809 45.6809C30.1809 46.1315 30.5462 46.4967 30.9967 46.4967C31.4473 46.4967 31.8125 46.1315 31.8125 45.6809V25.6241Z"
+                                            fill="var(--popup-input-dragSVG--)" />
+                                    </svg>
+                                    <label id="inputDragNDrop-label">drag and drop</label>
+                                    <label id="inputDragNDrop-format">supports png, jpg, jpeg formats</label>
+                                    <div id="inputDragNDrop-findfile">
+                                        <!-- contents-top-btn-import-name import_click-btn-event -->
+                                        <label class="" for="inputDragNDrop-findfile-input">find file</label>
+                                        <input type="file" accept="image/*" onchange="  previewImage(event) "
+                                            id="inputDragNDrop-findfile-input"> </input>
+                                    </div>
+                                </div>
+                                <div id="inputDragNDrop-filediv" class="dragdropImg">
+                                    <label id="inputDragNDrop-filediv-imgname" class="dragdropImgName">smart
+                                        pole.png</label>
+                                    <div>
+
+                                        <label id="inputDragNDrop-filediv-cap" class="dragdropImgSize">12KB</label> <img
+                                            id="inputDragNDrop-filediv-cancel"
+                                            src="img/startPageIcons/cancel mini 20x20 circle.png">
+                                    </div>
+
+                                </div>
+                                <div id="new-project-pop-img-bytes" class="dragdropByte">
+                                    <img src="img/startPageIcons/warning_byte.png">
+                                    Up to 5 megabytes
+                                </div>
+                                
+                                
+                            </div>
+
+                        </div>
+                        <div id="new-popup-line">
+
+                        </div>
+                        <div>
+
+                            <div id="new-project-pop-map">
+                                <label>Place</label>
+                                <div id="project-pop-mapdiv">
+                                    <div id="project-pop-map"></div>
+                                </div>
+
+                                <div id="new-project-pop-map-style">
+                                    <div id="new-project-pop-map-div">
+                                        <div class="create-input-div"></div><label> map style </label>
+                                    </div>
+
+                                    <div id="new-project-pop-map-Styleradio">
+                                        <div>
+
+                                            <input type="radio" name="mapStyle" id="3d" value="3d" checked>
+                                            <label for="3d">3d</label>
+                                        </div>
+                                        <div>
+
+                                            <input type="radio" name="mapStyle" id="general" value="general">
+                                            <label for="general">general</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="mapStyle" id="satellite" value="satellite">
+                                            <label for="satellite">satellite</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="new-project-pop-adress">
+                                    <div id="new-project-pop-adress-tab">
+                                        <div class="create-input-div"></div>
+                                        <input class="map-adress" value="tab-adress" id="tab-adress"
+                                            name="map-adress-tab" type="radio" checked>
+                                        <input class="map-adress" value="tab-lnglat" id="tab-lnglat"
+                                            name="map-adress-tab" type="radio">
+                                        <div class="state-tabs">
+                                            <label class="tab" id="adress-tab" for="tab-adress">adress</label>
+                                            <label class="tab" id="lnglat-tab" for="tab-lnglat">latitude and
+                                                longitude</label>
+
+                                        </div>
+
+                                    </div>
+                                    <div id="adress-select-tab-GPS" class="adress-select-tab">
+                                        <div id="adress-select-tab-GPSadress" class="adress-select-tab-gps">
+                                            <input id="new-project-pop-adress-input" class="adressInput"
+                                                onkeypress="return geoGetAddressImportVer(event)" type="text"autocomplete="off"
+                                                placeholder="adress">
+                                            <div class="new-project-pop-adress-location">
+                                                <img onclick="marker_create()" src="img/startPageIcons/location.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="adress-select-tab-latlng" class="adress-select-tab">
+                                        <div id="adress-select-tab-latlng-lng" class="adress-select-tab-gps">
+                                            <input id="new-project-pop-adress-input-lng" class="adressInput"
+                                                onkeypress="return latlngInputCheck(event)" type="number"
+                                                placeholder="longitude">
+                                            <div class="new-project-pop-adress-location">
+                                                <img onclick="marker_create()" src="img/startPageIcons/location.png">
+                                            </div>
+                                        </div>
+                                        <div id="adress-select-tab-latlng-lat" class="adress-select-tab-gps">
+                                            <input id="new-project-pop-adress-input-lat" class="adressInput"
+                                                onkeypress="return latlngInputCheck(event)" type="number"
+                                                placeholder="latitude">
+                                        </div>
+                                    </div>
+                                    <div id="adress-select-warning">
+                                        <img src="img/startPageIcons/warning.png" alt="">
+                                        That address doesn't exist
+                                    </div>
+                                    <div id="new-project-pop-btn">
+                                        <div class="click-btn-event" id="new-project-pop-create">Create</div>
+                                        <div class="click-btn-event" id="new-project-pop-close">Close</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="delete-confirm-pop">
+                        <label id="delete-confirm-pop-label1">Are you sure you want to delete it?</label>
+                        <label id="delete-confirm-pop-label2">This action cannot be undone.</label>
+                        <div id="delete-confirm-pop-btn">
+                            <div id="delete-confirm-pop-btn-cancel"><label>Cancel</label></div>
+                            <div id="delete-confirm-pop-btn-delete" class="saveClickedEvent"><label>Delete</label></div>
+                        </div>
+                    </div>
+
+                    <div id="changeImg-pop">
+                        <label>Upload image</label>
+                        <!-- <input id="new-project-pop-inputImageURL" type="text" placeholder="past in a image URL"> -->
+                        <div id="changeImg-pop-inputDragNDrop" class="dragDropDiv" ondrop="dropHandler(event);"
+                            ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);"
+                            ondragenter="dragEnterHandler(event);">
+                            <!-- class="is-dragover" -->
+                            <div id="changeImg-dragOverimg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="76" height="57" viewBox="0 0 76 57"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M74.9832 32.3333C74.9939 32.1101 74.9994 31.8855 74.9994 31.6596C74.9994 25.1304 70.4652 19.6603 64.3739 18.226C63.7708 11.3343 58.0821 5.93158 51.1535 5.93158C48.8575 5.93158 46.6978 6.52483 44.8141 7.56891C41.5729 3.56202 36.6162 1 31.0611 1C21.6361 1 13.9337 8.37498 13.4098 17.6689C6.41427 18.5373 1 24.5033 1 31.7338C1 31.9506 1.00487 32.1662 1.01449 32.3806C1.00487 32.5859 1 32.7924 1 33C1 40.1797 6.8203 46 14 46H62C69.1797 46 75 40.1797 75 33C75 32.7764 74.9944 32.5541 74.9832 32.3333Z"
+                                        fill="#3988E5" />
+                                    <path d="M38 56L38 30" stroke="white" stroke-width="2" stroke-linecap="round" />
+                                    <path
+                                        d="M33 34L37.2929 29.7071C37.6834 29.3166 38.3166 29.3166 38.7071 29.7071L43 34"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" />
+                                </svg><label>Drop files to upload</label>
+                            </div>
+                            <div id="changeImg-pop-inputDragNDrop-img" class="dragdropChangedImg">
+                                <img src="img/startPageIcons/image 159.png" alt="">
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="62" height="47" viewBox="0 0 62 47"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M25.3405 0C17.4426 0 10.9484 6.00794 10.1782 13.7034C4.39112 14.742 0 19.801 0 25.8868C0 26.0635 0.00370723 26.2394 0.0110521 26.4144C0.00370806 26.5824 0 26.7513 0 26.921C0 33.2287 5.11338 38.3421 11.4211 38.3421H25.2862V36.7105H11.4211C6.01448 36.7105 1.63158 32.3276 1.63158 26.921C1.63158 26.7642 1.63526 26.6083 1.64254 26.4534L1.64429 26.416L1.64261 26.3785C1.63528 26.2156 1.63158 26.0517 1.63158 25.8868C1.63158 20.4046 5.73728 15.88 11.0412 15.2222L11.7169 15.1384L11.7553 14.4586C12.1592 7.30697 18.0874 1.63158 25.3405 1.63158C29.6153 1.63158 33.4294 3.60188 35.9253 6.68702L36.3561 7.21953L36.9551 6.88738C38.3747 6.10025 40.0014 5.65317 41.7326 5.65317C46.9472 5.65317 51.2497 9.72291 51.7052 14.9403L51.7565 15.5281L52.3308 15.6634C56.939 16.7494 60.3682 20.8892 60.3682 25.8279C60.3682 26.0001 60.3641 26.1713 60.3558 26.3413L60.3539 26.3815L60.3559 26.4216C60.3642 26.587 60.3684 26.7535 60.3684 26.921C60.3684 32.3276 55.9855 36.7105 50.579 36.7105H36.7072V38.3421H50.579C56.8866 38.3421 62 33.2287 62 26.921C62 26.7398 61.9958 26.5594 61.9874 26.3801C61.9956 26.197 61.9998 26.0129 61.9998 25.8279C61.9998 20.3177 58.3095 15.6713 53.2663 14.222C52.4835 8.46944 47.6287 4.02159 41.7326 4.02159C39.9556 4.02159 38.2703 4.42672 36.7625 5.15102C33.9715 1.9932 29.8885 0 25.3405 0ZM31.8125 25.628L34.4988 28.3143C34.8174 28.6329 35.3339 28.6329 35.6525 28.3143C35.9711 27.9957 35.9711 27.4792 35.6525 27.1606L32.1504 23.6585C31.5132 23.0213 30.4802 23.0213 29.843 23.6585L26.3409 27.1606C26.0223 27.4792 26.0223 27.9957 26.3409 28.3143C26.6595 28.6329 27.176 28.6329 27.4946 28.3143L30.1809 25.628L30.1809 45.6848C30.1809 46.1354 30.5462 46.5006 30.9967 46.5006C31.4473 46.5006 31.8125 46.1354 31.8125 45.6848V25.628Z"
+                                    fill="#E1E1E1" />
+                            </svg>
+                            <div id="changeImg-dragdropLabel">
+                                <label id="changeImg-inputDragNDrop-label">drag and drop</label>
+                                <label id="changeImg-inputDragNDrop-format">supports png, jpg, jpeg formats</label>
+                            </div>
+
+                            <div id="changeImg-inputDragNDrop-findfile">
+                                <!-- contents-top-btn-import-name import_click-btn-event -->
+                                <label class="" for="changeImg-inputDragNDrop-findfile-input">find file</label>
+                                <input type="file" accept="image/*" onchange="  previewImage(event) "
+                                    id="changeImg-inputDragNDrop-findfile-input"> </input>
+                            </div>
+                        </div>
+                        <div id="changeImg-inputDragNDrop-filediv" class="dragdropImg">
+                            <label id="changeImg-inputDragNDrop-filediv-imgname" class="dragdropImgName">smart
+                                pole.png</label>
+                            <div>
+
+                                <label id="changeImg-inputDragNDrop-filediv-cap" class="dragdropImgSize">12KB</label>
+                                <img id="changeImg-inputDragNDrop-filediv-cancel"
+                                    src="img/startPageIcons/cancel mini 20x20 circle.png">
+                            </div>
+
+                        </div>
+                        <div id="changeImg-new-project-pop-img-bytes" class="dragdropByte">
+                            <img src="img/startPageIcons/warning_byte.png">
+                            Up to 5 megabytes
+                        </div>
+
+                        <div id="changeImg-pop-div">
+                            <div id="changeImg-pop-btn">
+                                <div class="click-btn-event" id="changeImg-pop-Apply">Apply</div>
+                                <div class="click-btn-event" id="changeImg-pop-close">Close</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <template id="tagTemplate">
+                <div class="tagTye dontNextScene"><label class="dontNextScene">sensor</label></div>
+            </template>
+            <script>
+                // Map 생성
+                const center = [127.046720, 37.738357]; //GPS좌표
+                const map = (window.map = new maplibregl.Map({
+                    container: "project-pop-map",
+                    style: {
+                        "version": 8,
+                        "name": "Empty Style",
+                        "metadata": { "maputnik:renderer": "mbgljs" },
+                        "center": [126.8320138, 37.6582159],
+                        "zoom": 16,
+                        "sources": {
+                            "vworld-base": {
+                                "type": "raster",
+                                "tiles": ["https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png"]
+                            },
+                            "google-satellite": {
+                                "type": "raster",
+                                "tiles": [
+                                    "https://mts0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                                    "https://mts1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                                    "https://mts2.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                                    "https://mts3.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                                ],
+                                "tileSize": 256,
+                            },
+                            "Positron-dark-nolabels": {
+                                "type": "raster",
+                                "tiles": [
+                                    "https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                                    "https://b.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                                    "https://c.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                                    "https://d.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png"
+                                ]
+                            },
+                            "Positron-lite-nolabels": {
+                                "type": "raster",
+                                "tiles": [
+                                    "https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                                    "https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                                    "https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                                    "https://d.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png"
+                                ]
+                            },
+                            "tn_lkmh": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_lkmh",
+                            },
+                            "tn_river_bndry": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_river_bndry"
+                            },
+                            "tn_river_bt": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_river_bt"
+                            },
+                            "tn_fclty_zone_bndry": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_fclty_zone_bndry"
+                            },
+                            "tn_arrfc": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_arrfc"
+                            },
+                            "tn_ex_mainrd_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_mainrd_a"
+                            },
+                            "tn_ex_localrda_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_localrda_a"
+                            },
+                            "tn_ex_narda_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_narda_a"
+                            },
+                            "tn_ex_cityhwrda_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_cityhwrda_a"
+                            },
+                            "tn_ex_hwrda_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_hwrda_a"
+                            },
+                            "tn_ex_mainrdcenl_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_mainrdcenl_l"
+                            },
+                            "tn_ex_localrdcenl_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_localrdcenl_l"
+                            },
+                            "tn_ex_nardcenl_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_nardcenl_l"
+                            },
+                            "tn_ex_cityhwrdcenl_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_cityhwrdcenl_l"
+                            },
+                            "tn_ex_hwrdcenl_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_hwrdcenl_l"
+                            },
+                            "tn_rodway_bndry": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_rodway_bndry"
+                            },
+                            "tn_rodway_ctln": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_rodway_ctln"
+                            },
+                            "tn_lnpgr": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_lnpgr"
+                            },
+                            "tn_arpgr": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_arpgr"
+                            },
+                            "tn_ex_subwln_l": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_subwln_l"
+                            },
+                            "tn_ex_subwa_a": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_subwa_a"
+                            },
+                            "tn_ex_exitnumber_p": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_ex_exitnumber_p"
+                            },
+                            "tn_buld": {
+                                "type": "vector",
+                                "url": "https://s.gractor.com/tiles/tn_buld"
+                            },
+                            "facility": {
+                                "type": "geojson",
+                                "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-facility.json",
+                                "generateId": true
+                            },
+                            "space": {
+                                "type": "geojson",
+                                "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-space.json",
+                                "generateId": true
+                            },
+                            "space_wall": {
+                                "type": "geojson",
+                                "data": { "type": "FeatureCollection", "features": [] }
+                            },
+                            "device": {
+                                "type": "geojson",
+                                "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-device.json"
+                            },
+                            "terrainSource": {
+                                "type": "raster-dem",
+                                "url": "https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=DBapA0fS0QPloM374cKS"
+                            }
+                        },
+                        "sprite": "https://s.gractor.com/assets/sprites/osm-liberty/sprites",
+                        "glyphs": "https://s.gractor.com/assets/fonts/{fontstack}/{range}.pbf",
+                        "layers": [
+                            {
+                                "id": "background",
+                                "type": "background",
+                                "metadata": { "maputnik:comment": "배경색" },
+                                "maxzoom": 24,
+                                "layout": { "visibility": "visible" },
+                                "paint": { "background-color": " rgba(2, 3, 5, 1)" }
+                            },
+                            {
+                                "id": "Positron-dark",
+                                "type": "raster",
+                                "metadata": { "maputnik:comment": "Positron Dark" },
+                                "source": "Positron-dark-nolabels",
+                                "layout": { "visibility": "none" }
+                            },
+                            {
+                                "id": "Positron-lite",
+                                "type": "raster",
+                                "metadata": { "maputnik:comment": "Positron Lite" },
+                                "source": "Positron-lite-nolabels",
+                                "layout": { "visibility": "none" }
+                            },
+                            {
+                                "id": "FACILITY",
+                                "type": "fill-extrusion",
+                                "metadata": { "maputnik:comment": "시설" },
+                                "source": "facility",
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-extrusion-base": 0,
+                                    "fill-extrusion-color": [
+                                        "case",
+                                        ["boolean", ["feature-state", "hover"], false],
+                                        "rgba(61, 154, 185, 0.2)",
+                                        "rgba(204, 242, 255, 0.5)"
+                                    ],
+                                    "fill-extrusion-height": [
+                                        "case",
+                                        ["!=", 0, ["to-number", ["get", "height"]]],
+                                        ["get", "height"],
+                                        4
+                                    ],
+                                    "fill-extrusion-vertical-gradient": true
+                                }
+                            },
+                            {
+                                "id": "TN_EX_MAINRDCENL_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "선형주요도로" },
+                                "source": "tn_ex_mainrdcenl_l",
+                                "source-layer": "tn_ex_mainrdcenl_l",
+                                "minzoom": 10,
+                                "maxzoom": 14,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(70, 85, 114, 1)",
+                                    "line-width": [
+                                        "interpolate",
+                                        ["linear"],
+                                        ["zoom"],
+                                        10,
+                                        1.5,
+                                        11,
+                                        2,
+                                        12,
+                                        3,
+                                        13,
+                                        3,
+                                        14,
+                                        3
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "TN_LKMH",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "호수및저수지" },
+                                "source": "tn_lkmh",
+                                "source-layer": "tn_lkmh",
+                                "minzoom": 10,
+                                "maxzoom": 16,
+                                "layout": { "visibility": "visible" },
+                                "paint": { "fill-color": " rgba(91,136,197,0.8)" }
+                            },
+                            {
+                                "id": "TN_RIVER_BNDRY",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "하천" },
+                                "source": "tn_river_bndry",
+                                "source-layer": "tn_river_bndry",
+                                "minzoom": 7,
+                                "maxzoom": 19,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": [
+                                        "interpolate",
+                                        ["linear"],
+                                        ["zoom"],
+                                        7,
+                                        " rgba(91,136,197,0.8)",
+                                        19,
+                                        " rgba(91,136,197,0.8)"
+                                    ],
+                                    "fill-opacity": 1
+                                }
+                            },
+                            {
+                                "id": "TN_RIVER_BT",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "하천" },
+                                "source": "tn_river_bt",
+                                "source-layer": "tn_river_bt",
+                                "minzoom": 13,
+                                "maxzoom": 19,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": {
+                                        "stops": [
+                                            [6, " rgba(91,136,197,0.8)"],
+                                            [10, " rgba(91,136,197,0.8)"]
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "id": "TN_EX_MAINRD_A",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "면형주요도로" },
+                                "source": "tn_ex_mainrd_a",
+                                "source-layer": "tn_ex_mainrd_a",
+                                "minzoom": 15,
+                                "layout": { "visibility": "visible" },
+                                "paint": { "fill-color": "rgba(50, 54, 65 , 0.1) " }
+                            },
+                            {
+                                "id": "TN_EX_LOCALRDA_A",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "면형지방도" },
+                                "source": "tn_ex_localrda_a",
+                                "source-layer": "tn_ex_localrda_a",
+                                "minzoom": 15,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": "rgb(239,231,205)",
+                                    "fill-outline-color": "rgb(222,204,150)"
+                                }
+                            },
+                            {
+                                "id": "TN_EX_NARDA_A",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "면형국도" },
+                                "source": "tn_ex_narda_a",
+                                "source-layer": "tn_ex_narda_a",
+                                "minzoom": 15,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": "rgba(50, 54, 65 , 0.1) ",
+                                    "fill-outline-color": "rgb(205,186,142)"
+                                }
+                            },
+                            {
+                                "id": "TN_EX_HWRDA_A",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "면형고속도로" },
+                                "source": "tn_ex_hwrda_a",
+                                "source-layer": "tn_ex_hwrda_a",
+                                "minzoom": 14,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": "rgba(50, 54, 65 , 0.1) ",
+                                    "fill-outline-color": "rgba(37, 37, 39, 1)"
+                                }
+                            },
+                            {
+                                "id": "TN_EX_LOCALRDCENL_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "선형지방도" },
+                                "source": "tn_ex_localrdcenl_l",
+                                "source-layer": "tn_ex_localrdcenl_l",
+                                "minzoom": 8,
+                                "maxzoom": 14,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(12, 29, 52, 1)",
+                                    "line-width": ["interpolate", ["linear"], ["zoom"], 8, 3, 14, 4]
+                                }
+                            },
+                            {
+                                "id": "TN_EX_NARDCENL_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "선형국도" },
+                                "source": "tn_ex_nardcenl_l",
+                                "source-layer": "tn_ex_nardcenl_l",
+                                "minzoom": 8,
+                                "maxzoom": 14,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(30, 34, 50, 1)",
+                                    "line-width": ["interpolate", ["linear"], ["zoom"], 8, 3, 14, 4]
+                                }
+                            },
+                            {
+                                "id": "TN_EX_CITYHWRDCENL_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "선형도시고속도로" },
+                                "source": "tn_ex_cityhwrdcenl_l",
+                                "source-layer": "tn_ex_cityhwrdcenl_l",
+                                "minzoom": 8,
+                                "maxzoom": 13,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(139, 166, 189, 1)",
+                                    "line-width": ["interpolate", ["linear"], ["zoom"], 8, 4, 13, 5]
+                                }
+                            },
+                            {
+                                "id": "TN_EX_HWRDCENL_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "선형고속도로" },
+                                "source": "tn_ex_hwrdcenl_l",
+                                "source-layer": "tn_ex_hwrdcenl_l",
+                                "minzoom": 7,
+                                "maxzoom": 13,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(89, 102, 135, 1)",
+                                    "line-width": ["interpolate", ["linear"], ["zoom"], 7, 4, 13, 5]
+                                }
+                            },
+                            {
+                                "id": "TN_RODWAY_CTLN",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "면리간도로,선형일반도로" },
+                                "source": "tn_rodway_ctln",
+                                "source-layer": "tn_rodway_ctln",
+                                "minzoom": 13,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(50, 54, 65 , 0.9)",
+                                    "line-width": {
+                                        "property": "road_se",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["RDC010", 2],
+                                            ["RDC014", 5]
+                                        ],
+                                        "default": 1.38
+                                    }
+                                }
+                            },
+                            {
+                                "id": "TN_LNPGR",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "보행노선" },
+                                "source": "tn_lnpgr",
+                                "source-layer": "tn_lnpgr",
+                                "minzoom": 16,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": "rgba(100, 122, 125, 1)",
+                                    "line-width": [
+                                        "interpolate",
+                                        ["exponential", 1.5],
+                                        ["zoom"],
+                                        16,
+                                        1.2,
+                                        17,
+                                        3.2,
+                                        18,
+                                        6,
+                                        19,
+                                        8
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "TN_ARPGR",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "보행노면" },
+                                "source": "tn_arpgr",
+                                "source-layer": "tn_arpgr",
+                                "minzoom": 16,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": "rgba(50, 54, 65 , 0.1) ",
+                                    "fill-outline-color": "rgb(73,73,73)"
+                                }
+                            },
+                            {
+                                "id": "TN_EX_SUBWLN_L",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "지하철노선_L12-14" },
+                                "source": "tn_ex_subwln_l",
+                                "source-layer": "tn_ex_subwln_l",
+                                "minzoom": 12,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "line-color": {
+                                        "property": "name",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["서울1호선", "rgb(0,82,164)"],
+                                            ["서울2호선", "rgb(0,168,77)"],
+                                            ["서울3호선", "rgb(239,124,28)"],
+                                            ["서울4호선", "rgb(0,164,227)"],
+                                            ["서울5호선", "rgb(153,108,172)"],
+                                            ["서울6호선", "rgb(205,124,47)"],
+                                            ["서울7호선", "rgb(116,127,0)"],
+                                            ["서울8호선", "rgb(230,16,107)"],
+                                            ["서울9호선", "rgb(189,176,146)"],
+                                            ["경강선", "rgb(0,91,172)"],
+                                            ["경의중앙선", "rgb(119,196,163)"],
+                                            ["경춘선", "rgb(12,142,114)"],
+                                            ["공항철도", "rgb(0,144,210)"],
+                                            ["분당선", "rgb(250,190,0)"],
+                                            ["수인분당선", "rgb(250,190,0)"],
+                                            ["신분당선", "rgb(212,0,59)"],
+                                            ["에버라인", "rgb(92,181,49)"],
+                                            ["의정부경전철", "rgb(248,177,0)"],
+                                            ["인천공항자기부상철도", "rgb(255,205,18)"],
+                                            ["인천1호선", "rgb(151,187,223)"],
+                                            ["인천2호선", "rgb(243,152,0)"],
+                                            ["광주1호선", "rgb(0,144,136)"],
+                                            ["대구1호선", "rgb(217,63,92)"],
+                                            ["대구2호선", "rgb(0,170,128)"],
+                                            ["대구3호선", "rgb(255,177,0)"],
+                                            ["대전1호선", "rgb(0,116,72)"],
+                                            ["부산1호선", "rgb(240,106,0)"],
+                                            ["부산2호선", "rgb(129,191,72)"],
+                                            ["부산3호선", "rgb(187,140,0)"],
+                                            ["부산4호선", "rgb(33,125,203)"],
+                                            ["부산경전철", "rgb(134,82,161)"],
+                                            ["우이신설선", "rgb(176,206,24)"],
+                                            ["동해선", "rgb(0,61,165)"],
+                                            ["서해선", "rgb(129,169,20)"],
+                                            ["김포골드라인", "rgb(161,120,0)"],
+                                            ["신림선", "rgb(103,137,202)"]
+                                        ],
+                                        "default": {
+                                            "property": "sub_cd",
+                                            "type": "categorical",
+                                            "stops": [
+                                                ["RRC001", "rgb(0,0,0)"],
+                                                ["RRC002", "rgb(184,184,184)"]
+                                            ]
+                                        }
+                                    },
+                                    "line-width": {
+                                        "property": "sub_cd",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["RRC001", 2.5],
+                                            ["RRC002", 4.5]
+                                        ],
+                                        "default": 2
+                                    }
+                                }
+                            },
+                            {
+                                "id": "TN_RODWAY_BNDRY",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "면형일반도로" },
+                                "source": "tn_rodway_bndry",
+                                "source-layer": "tn_rodway_bndry",
+                                "minzoom": 15,
+                                "layout": { "visibility": "visible" },
+                                "paint": { "fill-color": "rgba(79, 87, 103, 1)" }
+                            },
+                            {
+                                "id": "TN_ARRFC",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "주차장구역/교통시설물" },
+                                "source": "tn_arrfc",
+                                "source-layer": "tn_arrfc",
+                                "minzoom": 14,
+                                "maxzoom": 19,
+                                "filter": ["all", ["has", "arrfckd_se"]],
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-color": {
+                                        "property": "arrfckd_se",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["PRF028", "rgba(88,97,116,0.9)"],
+                                            ["PRF009", "rgba(88,97,116,0.9)"],
+                                            ["PRF010", "rgba(88,97,116,0.9)"],
+                                            ["PRF011", "rgba(88,97,116,0.9)"],
+                                            ["PRF015", "rgba(88,97,116,0.9)"],
+                                            ["PRF012", "rgba(88,97,116,0.9)"],
+                                            ["PRF016", "rgba(88,97,116,0.9)"],
+                                            ["PRF013", "rgba(88,97,116,0.9)"]
+                                        ],
+                                        "default": "rgba(88,97,116,0.9)"
+                                    },
+                                    "fill-outline-color": "rgba(88,97,116,0.1)"
+                                }
+                            },
+                            {
+                                "id": "TN_FCLTY_ZONE_BNDRY",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "시설구역경계" },
+                                "source": "tn_fclty_zone_bndry",
+                                "source-layer": "tn_fclty_zone_bndry",
+                                "minzoom": 12,
+                                "filter": ["all", ["has", "fzonbn_se"]],
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "fill-color": [
+                                        "case",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA201", "FAA202", "FAA203", "FAA204"]]
+                                        ],
+                                        "rgb(220,216,212)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA301", "FAA311", "FAA313", "FAA314"]]
+                                        ],
+                                        "rgb(225,224,232)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA307", "FAA401", "FAA402"]]
+                                        ],
+                                        "rgb(190,210,181)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA309"]]],
+                                        "rgb(240,240,240)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA403"]]],
+                                        "rgb(180,196,155)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA404", "FAA405", "FAA508", "FAA509"]]
+                                        ],
+                                        "rgb(205,212,181)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA406", "FAA407"]]],
+                                        "rgb(201,214,183)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            [
+                                                "literal",
+                                                ["FAA010", "FAA107", "FAA205", "FAA501", "FAA502", "FAA504"]
+                                            ]
+                                        ],
+                                        "rgb(215,221,232)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            [
+                                                "literal",
+                                                [
+                                                    "FAA303",
+                                                    "FAA304",
+                                                    "FAA312",
+                                                    "FAA408",
+                                                    "FAA409",
+                                                    "FAA410",
+                                                    "FAA411",
+                                                    "FAA412",
+                                                    "FAA413",
+                                                    "FAA414"
+                                                ]
+                                            ]
+                                        ],
+                                        "rgb(220,230,228)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA701"]]],
+                                        "rgb(231,231,231)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA702"]]],
+                                        "rgb(255,255,255)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            [
+                                                "literal",
+                                                [
+                                                    "FAA001",
+                                                    "FAA002",
+                                                    "FAA003",
+                                                    "FAA004",
+                                                    "FAA005",
+                                                    "FAA006",
+                                                    "FAA007",
+                                                    "FAA008",
+                                                    "FAA009",
+                                                    "FAA011"
+                                                ]
+                                            ]
+                                        ],
+                                        "rgb(236,228,204)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            [
+                                                "literal",
+                                                ["FAA101", "FAA102", "FAA103", "FAA104", "FAA105", "FAA106"]
+                                            ]
+                                        ],
+                                        "rgb(238,236,211)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA108", "FAA305", "FAA306", "FAA308", "FAA310"]]
+                                        ],
+                                        "rgb(221,220,216)",
+                                        ["in", ["get", "fzonbn_se"], ["literal", ["FAA503"]]],
+                                        "rgb(228,222,228)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA505", "FAA506", "FAA507"]]
+                                        ],
+                                        "rgb(230,214,214)",
+                                        [
+                                            "in",
+                                            ["get", "fzonbn_se"],
+                                            ["literal", ["FAA302", "FAA601", "FAA602", "FAA603"]]
+                                        ],
+                                        "rgb(231,223,229)",
+                                        "rgb(220,216,212)"
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "TN_EX_SUBWA_A",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "지하철역사" },
+                                "source": "tn_ex_subwa_a",
+                                "source-layer": "tn_ex_subwa_a",
+                                "minzoom": 16,
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "fill-color": {
+                                        "property": "line_name",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["서울지하철1호선", "rgb(0,82,164)"],
+                                            ["서울지하철2호선", "rgb(0,168,77)"],
+                                            ["서울지하철3호선", "rgb(239,124,28)"],
+                                            ["서울지하철4호선", "rgb(0,164,227)"],
+                                            ["서울지하철5호선", "rgb(153,108,172)"],
+                                            ["서울지하철6호선", "rgb(205,124,47)"],
+                                            ["서울지하철7호선", "rgb(116,127,0)"],
+                                            ["서울지하철8호선", "rgb(230,16,107)"],
+                                            ["서울지하철9호선", "rgb(189,176,146)"],
+                                            ["경강선", "rgb(0,91,172)"],
+                                            ["경의중앙선", "rgb(119,196,163)"],
+                                            ["경춘선", "rgb(12,142,114)"],
+                                            ["공항철도", "rgb(0,144,210)"],
+                                            ["분당선", "rgb(250,190,0)"],
+                                            ["수인분당선", "rgb(250,190,0)"],
+                                            ["신분당선", "rgb(212,0,59)"],
+                                            ["에버라인", "rgb(92,181,49)"],
+                                            ["의정부경전철", "rgb(248,177,0)"],
+                                            ["인천공항자기부상철도", "rgb(255,205,18)"],
+                                            ["인천지하철1호선", "rgb(151,187,223)"],
+                                            ["인천지하철2호선", "rgb(243,152,0)"],
+                                            ["광주지하철1호선", "rgb(0,144,136)"],
+                                            ["대구지하철1호선", "rgb(217,63,92)"],
+                                            ["대구지하철2호선", "rgb(0,170,128)"],
+                                            ["대구지하철3호선", "rgb(255,177,0)"],
+                                            ["대전지하철1호선", "rgb(0,116,72)"],
+                                            ["부산지하철1호선", "rgb(240,106,0)"],
+                                            ["부산지하철2호선", "rgb(129,191,72)"],
+                                            ["부산지하철3호선", "rgb(187,140,0)"],
+                                            ["부산지하철4호선", "rgb(33,125,203)"],
+                                            ["부산경전철", "rgb(134,82,161)"],
+                                            ["우이신설선", "rgb(176,206,24)"],
+                                            ["동해선", "rgb(0,61,165)"],
+                                            ["서해선", "rgb(129,169,20)"],
+                                            ["김포골드라인", "rgb(161,120,0)"],
+                                            ["신림선", "rgb(103,137,202)"]
+                                        ]
+                                    },
+                                    "fill-opacity": 1
+                                }
+                            },
+                            {
+                                "id": "TN_BULD_3D",
+                                "type": "fill-extrusion",
+                                "metadata": { "maputnik:comment": "건물 (내부서버)" },
+                                "source": "tn_buld",
+                                "source-layer": "tn_buld",
+                                "minzoom": 13,
+                                "layout": { "visibility": "visible" },
+                                "paint": {
+                                    "fill-extrusion-color": {
+                                        "property": "bprp_se",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["BDU016", "rgb(36,51,82)"],
+                                            ["BDU007", "rgb(254,60,120)"],
+                                            ["BDU014", "rgb(78,241, 212)"],
+                                            ["BDU002", "rgb(36,51,82)"],
+                                            ["BDU001", "rgb(51, 92, 255)"]
+                                        ],
+                                        "default": "rgb(13,18,34)"
+                                    },
+                                    "fill-extrusion-height": [
+                                        "case",
+                                        ["has", "bflr_co"],
+                                        ["*", 5, ["get", "bflr_co"]],
+                                        5
+                                    ],
+                                    "fill-extrusion-opacity": 0.8
+                                }
+                            },
+                            {
+                                "id": "FLOOR",
+                                "type": "fill-extrusion",
+                                "metadata": { "maputnik:comment": "층" },
+                                "source": "space",
+                                "filter": ["all", ["==", "indoor", "level"]],
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "fill-extrusion-base": ["get", "render_min_height"],
+                                    "fill-extrusion-color": ["get", "color"],
+                                    "fill-extrusion-height": ["+", 3.8, ["get", "render_height"]],
+                                    "fill-extrusion-opacity": 1
+                                }
+                            },
+                            {
+                                "id": "SPACE",
+                                "type": "fill",
+                                "metadata": { "maputnik:comment": "공간" },
+                                "source": "space",
+                                "filter": ["all", ["has", "indoor"]],
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "fill-opacity": 1,
+                                    "fill-color": [
+                                        "case",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            [
+                                                "literal",
+                                                [
+                                                    "100",
+                                                    "101",
+                                                    "102",
+                                                    "103",
+                                                    "104",
+                                                    "105",
+                                                    "106",
+                                                    "107",
+                                                    "108",
+                                                    "109",
+                                                    "110",
+                                                    "111",
+                                                    "112",
+                                                    "113"
+                                                ]
+                                            ]
+                                        ],
+                                        "#B2D8FC",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            [
+                                                "literal",
+                                                [
+                                                    "200",
+                                                    "201",
+                                                    "202",
+                                                    "203",
+                                                    "204",
+                                                    "205",
+                                                    "206",
+                                                    "300",
+                                                    "301",
+                                                    "302",
+                                                    "303",
+                                                    "304",
+                                                    "305"
+                                                ]
+                                            ]
+                                        ],
+                                        "#C7EAD2",
+                                        ["in", ["get", "room"], ["literal", ["400", "401", "402"]]],
+                                        "#F2E6DE",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            [
+                                                "literal",
+                                                ["500", "501", "502", "503", "504", "505", "506", "507"]
+                                            ]
+                                        ],
+                                        "#FFDD66",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            [
+                                                "literal",
+                                                ["600", "601", "602", "603", "604", "605", "606", "607"]
+                                            ]
+                                        ],
+                                        "#D2E7B7",
+                                        ["in", ["get", "room"], ["literal", ["700", "701", "702", "703"]]],
+                                        "#C4C4F8",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            ["literal", ["800", "801", "802", "803", "804"]]
+                                        ],
+                                        "#F2DEFE",
+                                        [
+                                            "in",
+                                            ["get", "room"],
+                                            [
+                                                "literal",
+                                                ["900", "901", "902", "903", "904", "905", "906", "907"]
+                                            ]
+                                        ],
+                                        "#A0A9B1",
+                                        ["==", ["get", "indoor"], "level"],
+                                        "#C9CBCD",
+                                        ["==", ["get", "indoor"], "area"],
+                                        "#ffffff",
+                                        "#ffffff"
+                                    ],
+                                    "fill-outline-color": "#000000"
+                                }
+                            },
+                            {
+                                "id": "SPACE_WALL",
+                                "type": "fill-extrusion",
+                                "metadata": { "maputnik:comment": "공간 벽" },
+                                "source": "space_wall",
+                                "filter": ["all", ["!=", "indoor", "level"]],
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "fill-extrusion-base": 0,
+                                    "fill-extrusion-color": [
+                                        "case",
+                                        ["==", ["get", "indoor"], "door"],
+                                        "#1f1f1f",
+                                        "#f0f0f0"
+                                    ],
+                                    "fill-extrusion-height": [
+                                        "case",
+                                        ["==", ["get", "indoor"], "area"],
+                                        0,
+                                        1
+                                    ],
+                                    "fill-extrusion-opacity": 0.8
+                                }
+                            },
+                            {
+                                "id": "SPACE_LINE",
+                                "type": "line",
+                                "metadata": { "maputnik:comment": "공간 HIGHWAY" },
+                                "source": "space_wall",
+                                "filter": ["all", ["==", "indoor", "highway"]],
+                                "layout": { "visibility": "none" },
+                                "paint": {
+                                    "line-opacity": 1,
+                                    "line-dasharray": [0.2, 0.2],
+                                    "line-color": "#f8b29c",
+                                    "line-width": 20
+                                }
+                            },
+                            {
+                                "id": "SPACE_POI",
+                                "type": "symbol",
+                                "metadata": { "maputnik:comment": "공간 AMENITY" },
+                                "source": "space_wall",
+                                "minzoom": 15,
+                                "filter": ["all", ["==", "indoor", "amenity"]],
+                                "layout": {
+                                    "visibility": "none",
+                                    "icon-image": {
+                                        "property": "amenity",
+                                        "type": "categorical",
+                                        "stops": [
+                                            ["201", "toilet_15"],
+                                            ["202", "toilet_15"],
+                                            ["203", "toilet_15"],
+                                            ["204", "toilet_15"],
+                                            ["205", "drinking_water_15"],
+                                            ["206", "restaurant_15"],
+                                            ["301", "shelter_15"],
+                                            ["302", "pitch_15"],
+                                            ["401", "entrance_15"],
+                                            ["402", "entrance_15"]
+                                        ]
+                                    },
+                                    "icon-anchor": "bottom",
+                                    "icon-offset": [0, -5],
+                                    "icon-pitch-alignment": "map",
+                                    "text-pitch-alignment": "map",
+                                    "text-field": "{name}",
+                                    "text-font": ["Noto Sans KR Regular"],
+                                    "text-size": 12
+                                },
+                                "paint": {
+                                    "text-color": "#000",
+                                    "text-halo-color": "#fff",
+                                    "text-halo-width": 1
+                                }
+                            },
+                            {
+                                "id": "google",
+                                "type": "raster",
+                                "metadata": { "maputnik:comment": "구글위성" },
+                                "source": "google-satellite",
+                                "layout": { "visibility": "none" }
+                            },
+                            {
+                                "id": "vworld",
+                                "type": "raster",
+                                "metadata": { "maputnik:comment": "vWorld 기본" },
+                                "source": "vworld-base",
+                                "layout": { "visibility": "none" }
+                            }
+                        ],
+                        "id": "ojfjodnvz"
+                    },
+                    zoom: 18,
+                    center: center,
+                    pitch: 60,
+                    antialias: true
+                }));
+
+                const size = 400;
+
+                const pulsingDot = {
+                    width: size,
+                    height: size,
+                    data: new Uint8Array(size * size * 4),
+                    coordinates: [0, 0],
+                    onAdd() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = this.width;
+                        canvas.height = this.height;
+                        this.context = canvas.getContext('2d');
+                        this.contextCenter = canvas.getContext('2d');
+                    },
+                    setCoordinates(coords) {
+                        console.log(coords)
+                        this.render(); // 좌표를 변경할 때마다 도트를 다시 그립니다.
+                    },
+                    render() {
+                        const duration = 3000;
+                        const context = this.context;
+
+                        context.clearRect(0, 0, this.width, this.height);
+
+                        const numDots = 4; // 펄싱하는 도트의 수
+                        const dotRadius = 5; // 작은 원의 반지름
+                        const maxRadius = 80; // 가장 큰 원의 반지름
+                        const growthRate = 0.7; // 원의 반지름이 커지는 속도를 조절 (0 ~ 1 사이의 값)
+                        context.beginPath();
+                        context.arc(
+                            this.width / 2,
+                            this.height / 2,
+                            dotRadius,
+                            0,
+                            Math.PI * 2
+                        );
+                        context.fillStyle = 'rgba(0, 240, 255, 0.5)';
+                        context.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+                        context.lineWidth = 1;
+                        context.fill();
+                        context.stroke();
+
+                        for (let i = 0; i < numDots; i++) {
+                            const startTime = 1000 * i; // 각 원이 퍼지기 시작하는 시간을 조절
+
+                            let t = ((performance.now() - startTime) % duration) / duration;
+
+                            if (performance.now() - startTime < 0) {
+                                continue; // 이전 원이 퍼지기 전까지는 현재 원을 그리지 않음
+                            }
+
+                            const radius = dotRadius + (maxRadius - dotRadius) * Math.pow(t, growthRate);
+
+                            context.beginPath();
+                            context.arc(
+                                this.width / 2,
+                                this.height / 2,
+                                radius,
+                                0,
+                                Math.PI * 2
+                            );
+
+                            context.fillStyle = `rgba(0, 240, 255,${0.5 - t})`;
+                            context.strokeStyle = 'rgba(0, 240, 255, 0.3)';
+                            context.lineWidth = 2 * (1 - t);
+                            context.fill();
+                            context.stroke();
+                        }
+
+                        this.data = context.getImageData(
+                            0,
+                            0,
+                            this.width,
+                            this.height
+                        ).data;
+
+                        map.triggerRepaint();
+
+                        return true;
+                    }, setCoordinates(coords) {
+                        console.log(coords)
+                        this.coordinates = coords;
+                        this.render(); // 좌표를 변경할 때마다 도트를 다시 그립니다.
+                    }
+                };
+                map.on('idle', function () {
+                });
+                //     function print(contentsImg) {
+
+                //             map.setLayoutProperty('points', 'visibility', 'none');
+                //         function afterIdled( ) {
+
+                //              map.off('idle', afterIdled);
+                //              let img = map.getCanvas().toDataURL("image/png");
+
+                //              let modalImg = contentsImg;//document.getElementById("img01"); //contentsImg
+
+                //              modalImg.setAttribute('data-src',img);
+
+                //               setDPI(actualPixelRatio);
+                //              map.resize();
+                //              map.setLayoutProperty('points', 'visibility', 'visible');
+
+                //          }
+
+                //     actualPixelRatio = window.devicePixelRatio;
+
+                //     setDPI(300 / 96);
+
+                //     map.on('idle', afterIdled);
+                //     var m = map.resize();
+                // }
+                async function print(contentsImg) {
+
+                    map.setLayoutProperty('points', 'visibility', 'none');
+                    function afterIdled() {
+                        map.off('idle', afterIdled);
+                        let img = map.getCanvas().toDataURL("image/png");
+                        let modalImg = contentsImg;
+                        modalImg.setAttribute('data-src', img);
+                        setDPI(actualPixelRatio);
+
+                        // 새로운 Promise를 만들어서 map.resize()가 완료될 때까지 기다립니다.
+                        return new Promise(resolve => {
+                            map.resize();
+                            resolve();
+                        });
+
+                        map.setLayoutProperty('points', 'visibility', 'visible');
+                    }
+
+                    actualPixelRatio = window.devicePixelRatio;
+                    setDPI(300 / 96);
+
+                    await new Promise(resolve => {
+                        map.on('idle', () => resolve(afterIdled));
+                    });
+
+                    await afterIdled(); // map.resize()가 완료될 때까지 대기합니다.
+                    map.setLayoutProperty('points', 'visibility', 'visible');
+                }
+
+
+                function setDPI(dpi) {
+                    Object.defineProperty(window, "devicePixelRatio", {
+                        get: function () {
+                            return dpi;
+                        }
+                    });
+                }
+
+                map.on('load', () => {
+
+                    map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 1 });
+
+                    map.addSource('points', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': [
+                                {
+                                    'type': 'Feature',
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': center
+                                    }
+                                }
+                            ]
+                        }
+                    });
+                    map.addLayer({
+                        'id': 'points',
+                        'type': 'symbol',
+                        'source': 'points',
+                        'layout': {
+                            'icon-image': 'pulsing-dot'
+                        }
+                    });
+                });
+                let isDragging = false;
+                let startPosPx;
+                let startPos;
+                let mouseClickStart = [0, 0];
+
+                const markerEl = document.createElement('div');
+                markerEl.className = 'marker';
+                markerEl.style.width = '3.75rem';
+                markerEl.style.height = '3.75rem';
+                markerEl.style.backgroundImage = 'url(./img/icons/mapPin.png)'; // Initial image URL
+                markerEl.style.backgroundRepeat = "no-repeat";
+                markerEl.style.backgroundSize = "contain";
+
+                //null 로 해놓고 버튼 눌렀을 때 null일때만 생성 해서..
+
+                const marker = new maplibregl.Marker({
+                    element: markerEl,
+                    draggable: false
+                }).setLngLat(center) // Initial marker position
+                    .addTo(map);
+                $(".marker").css("display", "none")
+
+                function marker_create() {
+                    $(".marker").css("display", "flex")
+                    marker.setLngLat(map.getSource('points')._data.features[0].geometry.coordinates);
+                }
+
+                markerEl.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    map.dragPan.disable();
+
+                    // Get the marker's current coordinates
+                    console.log(marker);
+                    startPos = marker.getLngLat();
+
+
+
+                    // Get the mouse's current position
+                    startPosPx = map.project(startPos);
+                    mouseClickStart[0] = e.clientX;
+                    mouseClickStart[1] = e.clientY;
+
+                    const onMouseMove = (e) => {
+                        if (!isDragging) return;
+
+                        const newLngLat = [
+                            mouseClickStart[0] - e.clientX,
+                            mouseClickStart[1] - e.clientY
+                        ];
+                        const newLngLat_ = [-newLngLat[0] + startPosPx.x, -newLngLat[1] + startPosPx.y];
+                        marker.setLngLat(map.unproject(newLngLat_));
+                    };
+
+                    const onMouseUp = () => {
+                        if (!isDragging) return;
+                        changeCoordinates([marker.getLngLat().lng, marker.getLngLat().lat])
+                        //console.log(marker.getLngLat())
+
+                        geoGetAddress(marker.getLngLat().lng, marker.getLngLat().lat, function (e) {
+                            $("#new-project-pop-adress-input").val(e)
+                            $("#new-project-pop-adress-input-lng").val(marker.getLngLat().lng)
+                            $("#new-project-pop-adress-input-lat").val(marker.getLngLat().lat)
+                        })
+                        isDragging = false;
+                        map.dragPan.enable();
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+
+                    };
+
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,1652 @@
+ @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+ html,
+ body {
+     overflow: hidden;
+     color: #fff;
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+     font-family: "Noto Sans";
+     font-size: 1rem;
+     font-weight: 500;
+     font-style: normal;
+     line-height: normal;
+
+ }
+
+ :root {
+     font-size: 1.48VH;
+     --pause-color-btn-: #5C68BB;
+     --play-color-btn-: #313d8d;
+     --grid-color-btn-: #604DAC;
+     --play-color-btn-clicked: #111B5B;
+     --grid-color-btn-clicked: #301B81;
+
+     --br-model-view-btn: #1C1F3C;
+     --br-model-view-btn-click: #293174;
+     --checkbox-grid-color-: #323265;
+     --checkbox-grid-color-clicked: #4E4E9F;
+
+ }
+
+ .overlap-wrapper {
+     position: relative;
+     width: 100%;
+     height: 100%;
+
+     background: linear-gradient(180deg, #1C2949 0%, #030620 100%, #030620 100%);
+ }
+
+ .modelinfo-view-background-img {
+     z-index: 0;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background-repeat: no-repeat;
+     background-size: 90vw auto;
+     /* // background-size: cover; */
+     /* 배경 이미지를 컨테이너에 맞게 조절 (비율 유지) */
+     background-position: 0 50%;
+     /* transform: translateY(-50%); */
+     background-image: url(./img/view_icon/Group\ 9678.png);
+ }
+
+ .modelinfo-view-title-bottom-name {
+     display: flex;
+     justify-content: center;
+     text-align: center;
+     align-items: center;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 5.3125rem;
+     background: rgba(15, 20, 43, 0.70);
+
+     color: #FFF;
+     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.30);
+     font-size: 1.375rem;
+     font-weight: 600;
+
+     z-index: 10;
+ }
+
+ .modelinfo-view-title-bottom-name::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 5.3125rem;
+     background: inherit;
+     backdrop-filter: blur(2px);
+     z-index: -1;
+ }
+
+
+ .modelinfo-view-main * {
+     z-index: 8;
+ }
+
+ .view-model {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+
+
+     /* width: 45.75rem;
+      height: 39.9375rem;
+      top: 16.69rem;
+      left: 12.25rem; */
+ }
+
+ .view-model-control-btn {
+     position: absolute;
+     width: 7.5rem;
+     height: 7.5rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     left: 50%;
+     top: 50%;
+     transform: translateY(-50%) translateX(-50%);
+ }
+
+ .model-view-icon-exit-btn {
+     z-index: 11;
+     cursor: pointer;
+     position: absolute;
+     right: 2.63rem;
+     top: 1.12rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     width: 3rem;
+     height: 3rem;
+     border: none;
+     outline: none;
+ }
+
+ .model-view-icon-grid {
+     width: 3rem;
+     height: 3rem;
+     background-color: var(--grid-color-btn-);
+     border-radius: 50%;
+     cursor: pointer;
+
+     margin: 0;
+
+ }
+
+ .model-view-icon-reset {
+     width: 3rem;
+     height: 3rem;
+     background-color: var(--play-color-btn-);
+ }
+
+ .model-view-icon {
+     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+ }
+
+ .model-view-icon img {
+     width: 3rem;
+     height: 3rem;
+ }
+
+ .icon-group {
+     z-index: 8;
+     display: flex;
+     width: 13.1rem;
+     height: 3rem;
+     justify-content: space-between;
+     position: absolute;
+     left: 50%;
+     margin: 0;
+     bottom: 3.75rem;
+     transform: translateX(-50%);
+ }
+
+ .videoplay-group-icon-internal-device {
+     border-radius: 50%;
+ }
+
+ .videoplay-group-icon-internal-device input[type="checkbox"]:checked {
+     width: 3rem;
+     height: 3rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-image: url(./img/view_icon/pause.png);
+     background-size: contain;
+     background-color: var(--pause-color-btn-);
+     border-radius: 50%;
+ }
+
+ .videoplay-group-icon-internal-device input[type="checkbox"] {
+     width: 3rem;
+     height: 3rem;
+     appearance: none;
+     background-image: url(./img/view_icon/play.png);
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-color: var(--play-color-btn-);
+     margin: 0;
+     border-radius: 50%;
+     cursor: pointer;
+ }
+
+ .videoplay-group-icon-internal-device:active,
+ .model-view-icon-reset:active {
+     animation-name: ClickedBtnBackgroundAnimation-play;
+     animation-duration: 2s;
+ }
+
+ .model-view-icon-grid:active {
+     animation-name: ClickedBtnBackgroundAnimation-gird;
+     animation-duration: 2s;
+
+ }
+
+ @keyframes ClickedBtnBackgroundAnimation-play {
+     0% {
+         background-color: var(--play-color-btn-clicked);
+     }
+
+     100% {
+         background-color: var(--play-color-btn-clicked);
+     }
+ }
+
+ @keyframes ClickedBtnBackgroundAnimation-gird {
+     0% {
+         background-color: var(--grid-color-btn-clicked);
+     }
+
+     100% {
+         background-color: var(--grid-color-btn-clicked);
+     }
+ }
+
+ .modelinfo-view-background-topimg {
+     z-index: -1;
+     position: absolute;
+     width: 110.4375rem;
+     height: 4.5625rem;
+     background: #030918;
+     right: 0;
+     top: 0;
+     display: none;
+ }
+
+ .modelinfo-view-title-bottom-name-location {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-background-img {
+
+     z-index: 0;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background-repeat: no-repeat;
+     background-size: 90vw auto;
+     /* // background-size: cover; */
+     /* 배경 이미지를 컨테이너에 맞게 조절 (비율 유지) */
+     background-position: 0 50%;
+     /* transform: translateY(-50%); */
+     background-image: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-top {
+     background: transparent;
+     position: relative;
+     box-shadow: none;
+     width: 97.5%;
+     height: 4.5625rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0 1.88rem;
+     z-index: 10;
+     backdrop-filter: blur(6px);
+ }
+
+
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-bottom-name {
+     position: initial;
+     background: none;
+     width: auto;
+     height: auto;
+ }
+
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-bottom-name label {
+     margin-left: 0.94rem;
+     color: #E1E1E1;
+     text-shadow: 0px 0.5rem 0.2rem rgba(0, 0, 0, 0.30);
+     font-size: 1rem;
+     font-weight: 400;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-bottom-name::before {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-bottom-name-location {
+     display: flex;
+ }
+
+ .modelinfo-view-title-right-topAlarm {
+     display: none;
+     border-radius: 50%;
+ }
+
+ .modelinfo-view-title-right-topAlarm input[type="checkbox"] {
+     width: 2.5rem;
+     height: 2.5rem;
+     background-image: url(./img/bridgePage/alarm.png);
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     border-radius: 50%;
+     background-color: #1B2747;
+     margin: 0 0.94rem 0 0;
+     cursor: pointer;
+     /* 마우스 커서를 포인터로 변경 */
+     /* 그림자 효과 추가 */
+ }
+
+ .modelinfo-view-title-right-topAlarm input[type="checkbox"]:checked {
+     background-color: #FF7979;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-right-topAlarm {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-title-right {
+     z-index: 11;
+     display: flex;
+     width: auto;
+     height: 100%;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .modelinfo-view-title-right-topAlarm img {
+     width: 3rem;
+     height: 3rem;
+     background-color: #1B2747;
+     border-radius: 50%;
+ }
+
+ .top-line-modelinfo-view {
+     width: 0.125rem;
+     height: 3.40625rem;
+     background: rgba(94, 106, 140, 0.60);
+     margin: 0 1rem 1.16rem 0.5rem;
+ }
+
+ .top-time-modelinfo-view {
+     display: flex;
+     flex-direction: column;
+     margin-right: 1rem;
+ }
+
+ .top-time-modelinfo-view-date {
+     color: #BCBCBC;
+     font-size: 0.875rem;
+     font-weight: 400;
+ }
+
+ .top-time-modelinfo-view-time {
+     color: #FFF;
+     font-size: 1.1875rem;
+     font-weight: 500;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-exit-btn {
+     position: initial;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-memo {
+     top: 1rem;
+     right: 16.5rem;
+     margin: 0;
+     z-index: 15;
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo {
+     display: flex;
+     flex-direction: column;
+     text-align: right;
+     width: 26.3125rem;
+     margin-top: 0;
+     z-index: 15;
+     position: absolute;
+     top: 7.5rem;
+     right: 4rem;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-memo input[type="checkbox"] {
+     width: 2.5rem;
+     height: 2.5rem;
+     background-color: #1B2747;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-memo input[type="checkbox"]:checked {
+     background-color: #3D57AD;
+
+     filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.05));
+
+ }
+
+ #info-icon2 {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer #info-icon2 {
+     display: block;
+ }
+
+ .useCaseSeochoBridgeVer #info-icon {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo-list {
+
+     display: inline-flex;
+
+     width: 23.125rem;
+     height: auto;
+     min-height: 22.75rem;
+     max-height: 50.75rem;
+     border-radius: 0.5rem;
+     backdrop-filter: blur(15px);
+     margin-top: 0;
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo-list-background {
+     width: 23.125rem;
+     height: auto;
+     min-height: 22.75rem;
+     max-height: 50.75rem;
+     border-radius: 0.5rem;
+     border: 1.3px solid var(--dsb_equal-bg, #FFF);
+
+     background: rgba(255, 255, 255, 0.10);
+
+     box-shadow: 0px -2px 2px 0px rgba(80, 80, 80, 0.20) inset, 0px 5px 4px 0px rgba(0, 0, 0, 0.50);
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo-plus {
+     width: 2.25rem;
+     height: 2.25rem;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-right-memo-plus-origin {
+     display: none;
+ }
+
+ .model-view-right-memo-plus-bridge {
+     display: none;
+     width: 2.25rem;
+     height: 2.25rem;
+     border-radius: 50%;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-right-memo-plus-bridge {
+     display: block;
+     width: 2.25rem;
+     height: 2.25rem;
+     margin-right: 0.94rem;
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-mewmo-info-left span {
+     font-family: "Noto Sans";
+     font-size: 1rem;
+     font-weight: 400;
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo-list-info {
+     margin-top: 2.75rem;
+ }
+
+ .useCaseSeochoBridgeVer #new-memo-write {
+     border-radius: 0.1875rem;
+     border: 1.3px solid rgba(255, 255, 255, 0.50);
+
+     background: rgba(0, 0, 0, 0.20);
+
+     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.20);
+     backdrop-filter: blur(17.5px);
+     width: 15.75rem;
+     min-height: 2.5rem;
+ }
+
+ .useCaseSeochoBridgeVer .new-memo-div {
+     width: 19.75rem;
+     min-height: 5.6875rem;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-option-calender {
+     font-size: 0.625rem;
+     font-weight: 400;
+     margin-left: 1.31rem;
+ }
+
+ .useCaseSeochoBridgeVer #new-memo-open input[type="checkbox"] {
+
+     background-image: url(./img/bridgePage/arrowline\ 24x24_br.png);
+ }
+
+ .useCaseSeochoBridgeVer #new-memo-open input[type="checkbox"]:checked {
+     background-image: url(./img/view_icon/arrowlineup\ 24x24.png);
+ }
+
+ .useCaseSeochoBridgeVer #model-view-right-memo-list-append {
+     width: 19.75rem;
+ }
+
+ .grid-checkbox-btn {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-grid img {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-reset,
+ .useCaseSeochoBridgeVer .videoplay-group-icon-internal-device input[type="checkbox"] {
+     background-color: var(--br-model-view-btn);
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-reset:active {
+     animation-name: ClickedBtnBackgroundAnimation-play-br;
+     animation-duration: 2s;
+ }
+
+ @keyframes ClickedBtnBackgroundAnimation-play-br {
+     0% {
+         background-color: var(--br-model-view-btn-click);
+     }
+
+     100% {
+         background-color: var(--br-model-view-btn-click);
+     }
+ }
+
+ .useCaseSeochoBridgeVer .videoplay-group-icon-internal-device input[type="checkbox"]:checked {
+     background-color: var(--br-model-view-btn-click);
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-grid input[type="checkbox"] {
+     display: flex;
+     width: 3rem;
+     height: 3rem;
+     appearance: none;
+     background-image: url(./img/view_icon/grid\ 48x48.png);
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-color: var(--checkbox-grid-color-);
+     margin: 0;
+     border-radius: 50%;
+     cursor: pointer;
+ }
+
+ .useCaseSeochoBridgeVer .model-view-icon-grid input[type="checkbox"]:checked {
+     background-color: var(--checkbox-grid-color-clicked);
+ }
+
+ .modelinfo-view-top-tab {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-top-tab {
+     display: flex;
+     position: absolute;
+     top: 4.5625rem;
+     left: 50%;
+     transform: translateX(-50%);
+     z-index: 10;
+ }
+
+ .modelinfo-view-top-tab-radioBtns input[type="radio"] {
+     display: none;
+ }
+
+ .modelinfo-view-top-tab-radioBtns {
+     width: 36rem;
+     height: auto;
+     align-items: center;
+     justify-content: center;
+     display: flex;
+     flex-direction: row;
+ }
+
+
+ .modelinfo-view-top-tab-radioBtns label {
+     width: 12rem;
+     color: rgba(255, 255, 255, 0.60);
+     text-shadow: 0px 3px 4px #0C152D;
+     font-size: 1rem;
+     font-weight: 600;
+     width: 12rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding-top: 0.69rem;
+     padding-bottom: 0.75rem;
+     border-bottom: 0.1875rem solid rgba(255, 255, 255, 0);
+     cursor: pointer;
+ }
+
+
+ #Overview:checked+label,
+ #Device:checked+label,
+ #population_density:checked+label {
+     color: #fff;
+     text-shadow: 0px 3px 4px #0C152D;
+     font-size: 1rem;
+     font-weight: 600;
+     border-bottom: 0.1875rem solid #3988e5;
+
+
+ }
+
+ #Overview+label:hover,
+ #Device+label:hover,
+ #population_density+label:hover {
+     color: #fff;
+     border-bottom: 0.1875rem solid #3988e5;
+
+ }
+
+ .modelinfo-view-top-tab-view {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-top-tab-view {
+     display: flex;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+ }
+
+ .modelinfo-view-top-tab-overview {
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .modelinfo-view-top-tab-overview-left {
+     margin: 9.31rem 0 0 1.87rem;
+ }
+
+ .modelinfo-view-top-tab-overview-left-wether {
+     position: relative;
+     display: flex;
+     width: 19.36rem;
+     height: 6.42rem;
+     padding: 0.375rem 1.87rem 0.38888rem 1.87rem;
+     justify-content: space-between;
+     align-items: center;
+     border-radius: 0.5rem;
+     border: 1.8px solid rgba(122, 199, 255, 0.10);
+
+     background: rgba(255, 255, 255, 0.04);
+
+     backdrop-filter: blur(3.5px);
+ }
+
+ .modelinfo-view-top-tab-overview-left-wether-img {
+     width: 7.125rem;
+     height: 6.25rem;
+ }
+
+ .modelinfo-view-top-tab-overview-left-wether-data {
+     display: flex;
+     flex-direction: column;
+     width: 10.35806rem;
+ }
+
+ .wether-data-weather {
+     font-size: 0.8125rem;
+     font-weight: 400;
+     line-height: 1.25rem;
+     /* 153.846% */
+     letter-spacing: 0.01625rem;
+ }
+
+ .wether-data-temp {
+     font-family: "Noto Sans";
+     font-size: 1.99075rem;
+     font-style: normal;
+     font-weight: 600;
+     line-height: 2.3225rem;
+     /* 116.667% */
+ }
+
+ .wether-data-temp img {
+     width: 1.2rem;
+     height: 0.9rem;
+     margin-left: 0.42rem;
+ }
+
+ .wether-data-location img {
+     width: 0.64688rem;
+     height: 0.71875rem;
+ }
+
+ .wether-data-location {
+     margin-top: 0.5rem;
+     font-size: 0.72725rem;
+     font-weight: 400;
+     line-height: 120%;
+     /* 0.87275rem */
+ }
+
+ .modelinfo-view-top-tab-overview-left-widget {
+     margin-top: 2.12rem;
+     backdrop-filter: blur(10px);
+     position: relative;
+ }
+
+ .modelinfo-view-top-tab-overview-left-widget img {
+     width: 23.125rem;
+     height: 40.75rem;
+ }
+
+ .update-div {
+     position: absolute;
+     top: 1rem;
+     right: 1.25rem;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     width: 4.31rem;
+     height: 1.75rem;
+     z-index: 12;
+ }
+
+ .update-div-data {
+     margin-left: 0.25rem;
+     display: flex;
+     flex-direction: column;
+ }
+
+
+ .update-div-data label {
+     color: #EFEFEf;
+     font-size: 0.50069rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: 140%;
+     opacity: 0.3;
+ }
+
+ .update-div-data .update-div-data-date {
+     color: #EFEFEf;
+     font-size: 0.751rem;
+     font-weight: 400;
+     line-height: 140%;
+     opacity: 0.5;
+     /* 1.05144rem */
+ }
+
+ .modelinfo-view-top-tab-overview-right {
+     margin: 9.11rem 1.87rem 0 0;
+ }
+
+ .modelinfo-view-top-tab-overview-right-widget {
+     position: relative;
+     backdrop-filter: blur(10px);
+
+ }
+
+ .modelinfo-view-top-tab-overview-right-widget img {
+     width: 23.125rem;
+     height: 38.9375rem;
+ }
+
+ .modelinfo-view-top-tab-overview-right-widget-doc {
+     position: relative;
+     margin-top: 2rem;
+     backdrop-filter: blur(10px);
+ }
+
+ .modelinfo-view-top-tab-overview-right-widget-doc img {
+     width: 23.125rem;
+     height: 9.375rem;
+     cursor: pointer;
+ }
+
+ .update-div img {
+     width: 1.25169rem;
+     height: 1.25169rem;
+     cursor: pointer;
+ }
+
+ .modelinfo-view-top-tab-device,
+ .modelinfo-view-top-tab-population_density {
+     width: 100%;
+     display: none;
+     justify-content: space-between;
+     position: relative;
+ }
+
+ .modelinfo-view-top-tab-device-left,
+ .modelinfo-view-top-tab-population_density-people {
+     margin: 10.31rem 0 0 1.87rem;
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget {
+     z-index: 12;
+     position: relative;
+     display: flex;
+     width: 20.625rem;
+     height: 24.13rem;
+     padding: 0.625rem 1.25rem 2.5rem 1.25rem;
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 1.25rem;
+     border-radius: 0.50069rem;
+     border: 1.8px solid rgba(122, 199, 255, 0.10);
+     background: rgba(2, 10, 27, 0.70);
+     backdrop-filter: blur(10px);
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-name {
+     display: flex;
+     align-items: center;
+     width: 100%;
+     height: 3rem;
+     border-bottom: 1px solid #96BAFF;
+     padding: 0.62rem 0;
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-name img,
+ .modelinfo-view-top-tab-population_density-device img {
+     width: 1.5rem;
+     height: 1.5rem;
+     margin: 0.12rem 0;
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-name label,
+ .modelinfo-view-top-tab-population_density-device label {
+     color: #DAEDFF;
+     font-size: 1rem;
+     font-weight: 600;
+     line-height: 140%;
+     /* 1.4rem */
+     letter-spacing: -0.01563rem;
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-list {
+     display: flex;
+     flex-direction: column;
+     padding-right: 0.63rem;
+     margin-right: 0.31rem;
+     cursor: pointer;
+
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-list input[type="radio"] {
+     background-color: transparent;
+     width: 19.3rem;
+     height: 2.25rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     margin: 0;
+     margin-bottom: 0.6875rem;
+     cursor: pointer;
+ }
+
+ .modelinfo-view-top-tab-device-leftWidget-list input[type="radio"]:checked {
+     width: 19.3rem;
+     height: 2.25rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+ }
+
+ #device-leftWidget-sensor1 {
+     background-image: url(img/bridgePage/itemSensor/item_box.png);
+ }
+
+ #device-leftWidget-sensor1:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked.png);
+ }
+
+ .eventoccur #device-leftWidget-sensor1 {
+     background-image: url(img/bridgePage/item_box-0event.png);
+ }
+
+ .eventoccur #device-leftWidget-sensor1:checked {
+     background-image: url(img/bridgePage/item_box-0event-clicked.png);
+ }
+
+ #device-leftWidget-sensor2 {
+     background-image: url(img/bridgePage/itemSensor/item_box-1.png);
+ }
+
+ #device-leftWidget-sensor2:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-1.png);
+ }
+
+ #device-leftWidget-sensor3 {
+     background-image: url(img/bridgePage/itemSensor/item_box-2.png);
+ }
+
+ #device-leftWidget-sensor3:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-2.png);
+ }
+
+ #device-leftWidget-sensor4 {
+     background-image: url(img/bridgePage/itemSensor/item_box-3.png);
+ }
+
+ #device-leftWidget-sensor4:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-3.png);
+ }
+
+ #device-leftWidget-sensor5 {
+     background-image: url(img/bridgePage/itemSensor/item_box-4.png);
+ }
+
+ #device-leftWidget-sensor5:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-4.png);
+ }
+
+ #device-leftWidget-sensor6 {
+     background-image: url(img/bridgePage/itemSensor/item_box-5.png);
+ }
+
+ #device-leftWidget-sensor6:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-5.png);
+ }
+
+ #device-leftWidget-sensor7 {
+     background-image: url(img/bridgePage/itemSensor/item_box-6.png);
+ }
+
+ #device-leftWidget-sensor7:checked {
+     background-image: url(img/bridgePage/itemSensor/item_box_clicked-6.png);
+ }
+
+ .modelinfo-view-top-tab-device-right {
+     display: block;
+     position: relative;
+     margin: 9.31rem 1.87rem 0 0;
+     z-index: 11;
+ }
+
+
+ .modelinfo-view-top-tab-device-right img {
+     width: 23.125rem;
+     backdrop-filter: blur(10px);
+     height: 45.625rem;
+ }
+
+
+ .modelinfo-view-top-tab-device-right-graphBtn {
+     position: absolute;
+     right: 1.25rem;
+     top: 1.06rem;
+     width: 1.875rem;
+     height: 1.875rem;
+ }
+
+ .modelinfo-view-top-tab-device-right input[type="checkbox"] {
+     width: 1.875rem;
+     height: 1.875rem;
+     background-image: url(./img/bridgePage/graph\ data\ \ 48x48.png);
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     border-radius: 50%;
+     background-color: #1F305A;
+     margin: 0;
+     cursor: pointer;
+ }
+
+ .modelinfo-view-top-tab-device-right input[type="checkbox"]:checked {
+     width: 1.875rem;
+     height: 1.875rem;
+     background-image: url(./img/bridgePage/graph\ data\ \ 48x48.png);
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     border-radius: 50%;
+     background-color: #3988E5;
+     margin: 0;
+ }
+
+
+ .modelinfo-view-top-tab-device-center {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+     /* 
+     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+     z-index: 11;
+ }
+
+ .modelinfo-view-top-tab-device-center img {
+     width: 51.5rem;
+     height: 45.625rem;
+     backdrop-filter: blur(10px);
+ }
+
+ .modelinfo-view-top-tab-device-bottom {
+     position: absolute;
+     bottom: 0;
+     left: 50%;
+     width: 98%;
+     height: 18rem;
+     z-index: 10;
+
+     backdrop-filter: blur(7.5px);
+     animation: clickedupdownAnimationback 0.5s forwards;
+ }
+
+
+
+ .modelinfo-view-top-tab-device-bottom img {
+     width: 100%;
+     height: 17rem;
+     animation: revealFromLeft 2s linear;
+ }
+
+ .modelinfo-view-top-tab-device-bottom input[type="checkbox"] {
+     position: absolute;
+     bottom: 16.69rem;
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+     margin: 0;
+     padding: 0;
+     backdrop-filter: blur(2px);
+     width: 8.4375rem;
+     height: 2.3125rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-image: url(./img/bridgePage/Rectangle\ 2349_up.png);
+     background-size: contain;
+     background-color: transparent;
+ }
+
+ .modelinfo-view-top-tab-device-bottom input[type="checkbox"]:checked {
+     margin: 0;
+     padding: 0;
+     width: 8.4375rem;
+     height: 2.3125rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-image: url(./img/bridgePage/down.png);
+     background-size: contain;
+     background-color: transparent;
+ }
+
+ .modelinfo-view-top-tab-device-bottom.clickedupdown {
+     animation: clickedupdownAnimation 0.5s linear;
+     transform: translateX(-50%) translateY(100%);
+ }
+
+ @keyframes clickedupdownAnimation {
+     0% {
+         transform: translateX(-50%) translateY(0);
+     }
+
+     100% {
+         transform: translateX(-50%) translateY(100%);
+     }
+ }
+
+ @keyframes clickedupdownAnimationback {
+     0% {
+         transform: translateX(-50%) translateY(100%);
+     }
+
+     100% {
+         transform: translateX(-50%) translateY(0);
+     }
+ }
+
+ .modelinfo-view-eventpopup {
+     display: none;
+ }
+
+ .useCaseSeochoBridgeVer .modelinfo-view-eventpopup {
+     display: flex;
+ }
+
+ .modelinfo-view-eventpopup {
+     z-index: 20;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+     display: flex;
+     width: 23.6875rem;
+     height: 13.57024rem;
+     padding: 0.9375rem 0rem;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 0.375rem;
+     border: 1px solid var(--dsb_equal-bg, #FFF);
+     background: rgba(119, 7, 7, 0.75);
+     box-shadow: 0px 0px 50px 10px rgba(255, 0, 0, 0.30);
+ }
+
+ .modelinfo-view-eventpopup-content {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .modelinfo-view-eventpopup-content img {
+     width: 3.06245rem;
+     height: 2.75774rem;
+     margin-bottom: 0.62rem;
+ }
+
+ .modelinfo-view-eventpopup-title {
+     font-size: 1.375rem;
+     font-weight: 600;
+     line-height: 180%;
+     /* 2.475rem */
+
+     margin-bottom: 0.62rem;
+ }
+
+ .modelinfo-view-eventpopup-subtitle {
+     font-family: "Noto Sans";
+     margin-bottom: 0.31rem;
+     font-size: 0.9rem;
+     font-weight: 600;
+     line-height: 180%;
+     /* 1.8rem */
+ }
+
+ .modelinfo-view-eventpopup-time {
+     margin-bottom: 0.31rem;
+     font-size: 0.7525rem;
+     font-weight: 400;
+ }
+
+ .modelinfo-view-eventpopup-btn {
+     width: 19.9375rem;
+     height: 1.94rem;
+     display: flex;
+     padding: 0.9375rem 0rem 0.625rem 0rem;
+     justify-content: center;
+     align-items: center;
+     gap: 1.25rem;
+ }
+
+ .modelinfo-view-eventpopup-btn div {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: #0B1221;
+     font-size: 0.9375rem;
+     font-weight: 600;
+     line-height: 180%;
+     /* 1.6875rem */
+     width: 8.75rem;
+     height: 1.9375rem;
+ }
+
+ .modelinfo-view-eventpopup-btn-close {
+     border-radius: 0.125rem;
+     opacity: 0.4;
+     background: rgba(255, 255, 255, 0.90);
+ }
+
+ .modelinfo-view-eventpopup-btn-move {
+     border-radius: 0.125rem;
+     background: rgba(255, 255, 255, 0.90);
+ }
+
+ .modelinfo-view-top-tab-device-center-eventPanel {
+     width: 100%;
+     height: 100%;
+     position: relative;
+ }
+
+ .modelinfo-view-top-tab-device-center-eventPanel .update-div {
+     right: 4.0625rem;
+ }
+
+ .modelinfo-view-top-tab-device-center-eventPanel img {
+     width: 1.5625rem;
+     height: 1.5625rem;
+     margin-right: 0.25rem;
+     cursor: pointer;
+ }
+
+ .modelinfo-view-top-tab-device-center-eventPanel-closeBtn {
+     position: absolute;
+     top: 1.4375rem;
+     right: 1.25rem;
+     width: 1.5625rem;
+     height: 1.5625rem;
+ }
+
+ .population_density-cctv-div {
+     position: relative;
+     display: flex;
+     width: 20.625rem;
+     padding: 0.625rem 1.25rem 1.5625rem 1.25rem;
+     flex-direction: column;
+     border-radius: 0.5rem;
+     border: 1.8px solid rgba(122, 199, 255, 0.10);
+     background: rgba(2, 10, 27, 0.70);
+     backdrop-filter: blur(10px);
+     margin-bottom: 2rem;
+ }
+
+ .population_density-cctv-div-title {
+     display: flex;
+     padding: 0.625rem 0rem;
+     align-items: center;
+     align-self: stretch;
+     border-bottom: 1px solid #96BAFF;
+ }
+
+ .population_density-cctv-div-title img {
+     width: 1.5rem;
+     height: 1.5rem;
+ }
+
+ .population_density-cctv-div-title label {
+     color: #DAEDFF;
+     font-family: "Noto Sans";
+     font-size: 1rem;
+     font-style: normal;
+     font-weight: 600;
+     line-height: 140%;
+     /* 1.4rem */
+     letter-spacing: -0.01563rem;
+     margin-left: .25rem;
+ }
+
+ .population_density-cctv-view {
+     width: 20.625rem;
+     height: 9.625rem;
+     margin-top: 1.25rem;
+ }
+
+ .population_density-cctv-view-container {
+     /* padding-top: 56.25%; */
+ }
+
+ .population_density-cctv-view-container video {
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+
+ .population_density-cctv-view img {
+     width: 20.625rem;
+     height: 11.1875rem;
+ }
+
+ .modelinfo-view-top-tab-population_density-cctv {
+     position: absolute;
+     top: 0;
+     right: 0;
+
+     margin: 9.3125rem 1.88rem;
+ }
+
+ .AlarmDiv-position {
+     z-index: 15;
+     position: absolute;
+     width: auto;
+     height: auto;
+     top: 5.25rem;
+     right: 4.87rem;
+     display: none;
+ }
+
+ .AlarmDiv {
+     display: flex;
+     width: 23.6875rem;
+     height: auto;
+     flex-direction: column;
+     border-radius: 0.375rem;
+     border: 1.3px solid var(--dsb_equal-bg, #FFF);
+     background: rgba(255, 255, 255, 0.10);
+     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.50), 0px -2px 2px 0px rgba(80, 80, 80, 0.20);
+     backdrop-filter: blur(15px);
+ }
+
+ .AlarmDiv-title {
+     width: 22.6875rem;
+     height: 3.1875rem;
+     border-bottom: 0.5px solid #5369A2;
+     display: flex;
+     align-items: center;
+     padding: 0 0.5rem;
+ }
+
+ .AlarmDiv-title img {
+     width: 1.4375rem;
+     height: 1.25rem;
+     margin: 0.25rem 0.52rem
+ }
+
+ .AlarmDiv-title label {
+     color: #DAEDFF;
+     font-family: "Noto Sans";
+     font-size: 1.1875rem;
+     font-style: normal;
+     font-weight: 600;
+     line-height: normal;
+
+ }
+
+ .AlarmDiv-contents {
+     padding: 0.94rem;
+     color: #DFDFDF;
+
+     font-family: "Noto Sans";
+     font-size: 0.8125rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: normal;
+ }
+
+ .AlarmDiv-contents-index-time {
+     align-items: center;
+     text-align: center;
+     width: 3rem;
+     padding-left: 0.6rem;
+     height: 1.83rem;
+ }
+
+ .AlarmDiv-contents-index-info {
+     width: 14rem;
+ }
+
+ .AlarmDiv-contents-index {
+     display: flex;
+     justify-content: space-between;
+     border-bottom: 0.3px solid rgba(255, 255, 255, 0.25);
+ }
+
+ .AlarmDiv-contents-list {
+     display: flex;
+     flex-direction: column;
+ }
+
+ .AlarmDiv-contents-list-content {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+
+ .AlarmDiv-contents-list-content {
+     margin-top: 0.25rem;
+     min-height: 1.95171rem;
+     height: auto;
+     align-items: center;
+ }
+
+ .AlarmDiv-contents-list-content-time {
+     padding-left: 0.51rem;
+     width: 3.4rem;
+     color: var(--light-background_primary, #DAEDFF);
+     font-family: "Noto Sans";
+     font-size: 0.875rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: 140%;
+     align-items: center;
+     text-align: center;
+     /* 1.09375rem */
+ }
+
+ .AlarmDiv-contents-index-check {
+     width: 2rem;
+ }
+
+ .AlarmDiv-contents-list-content-context {
+     padding-left: 0.46rem;
+     width: 15.6rem;
+     margin: 0.48rem 0.2rem 0.48rem 0;
+ }
+
+ .AlarmDiv-check .AlarmDiv-contents-list-content-time {
+     color: #6D6D6D;
+     font-family: "Noto Sans";
+     font-size: 0.875rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: 140%;
+     /* 1.09375rem */
+ }
+
+ .AlarmDiv-red .AlarmDiv-contents-list-content-context {
+     color: #FFB2B2;
+ }
+
+ .AlarmDiv-check .AlarmDiv-contents-list-content-context {
+     color: #6D6D6D;
+     font-family: "Noto Sans";
+     font-size: 0.875rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: normal;
+     letter-spacing: -0.03125rem;
+ }
+
+ .AlarmDiv-contents-list-content input[type="checkbox"] {
+     width: 1rem;
+     margin: 0;
+     padding: 0;
+     height: auto;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-image: url(./img/bridgePage/check.png);
+     background-position: center;
+     /* 이미지를 가운데 정렬 */
+     background-size: contain;
+     background-color: transparent;
+     border-radius: 50%;
+ }
+
+ .AlarmDiv-contents-list-content input[type="checkbox"]:checked {
+     width: 1rem;
+     height: 1rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-image: url(./img/bridgePage/checked.png);
+     background-size: contain;
+     background-color: transparent;
+     border-radius: 50%;
+ }
+
+ .widget-clicked-view {
+     z-index: 10;
+ }
+
+
+ .modelinfo-view-top-tab-population_density-deviceWidget {
+     z-index: 10;
+     position: relative;
+     width: 23.125rem;
+     height: 15.875rem;
+     border-radius: 0.5rem;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .population_density-deviceWidget-img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 23.125rem;
+     height: 15.875rem;
+     z-index: -1;
+     border-radius: 0.5rem;
+     backdrop-filter: blur(10px);
+ }
+
+ .modelinfo-view-top-tab-population_density-device,
+ .population_density-peopleWidget-title {
+     display: flex;
+     align-items: center;
+     width: 20.625rem;
+     height: 3rem;
+     border-bottom: 1px solid #96BAFF;
+     margin: 0.62rem 1.25rem;
+ }
+
+ .population_density-device-list input[type="checkbox"] {
+     background-color: transparent;
+     width: 19.3rem;
+     height: 2.25rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+     margin: 0;
+     margin-bottom: 0.6875rem;
+     cursor: pointer;
+ }
+
+ .population_density-device-list input[type="checkbox"]:checked {
+     width: 19.3rem;
+     height: 2.25rem;
+     appearance: none;
+     background-repeat: no-repeat;
+     background-size: contain;
+ }
+
+ #population_density-device-part1 {
+     background-image: url(img/bridgePage/people/cctv1.png);
+ }
+
+ #population_density-device-part1:checked {
+     background-image: url(img/bridgePage/people/cctvlight1.png);
+ }
+
+ #population_density-device-part2 {
+     background-image: url(img/bridgePage/people/cctv2.png);
+ }
+
+ #population_density-device-part2:checked {
+     background-image: url(img/bridgePage/people/cctvlight2.png);
+ }
+
+ #population_density-device-part3 {
+     background-image: url(img/bridgePage/people/cctv3.png);
+ }
+
+ #population_density-device-part3:checked {
+     background-image: url(img/bridgePage/people/cctvlight3.png);
+ }
+
+ .population_density-device-list {
+     display: flex;
+     flex-direction: column;
+     padding-right: 0.63rem;
+     margin-left: 1.25rem;
+     margin-top: 0.5em;
+ }
+
+ .modelinfo-view-top-tab-population_density-peopleWidget {
+     position: relative;
+     margin-top: 2rem;
+     width: 23.125rem;
+     height: 29.125rem;
+     border-radius: 0.5rem;
+     border: 1.8px solid rgba(122, 199, 255, 0.10);
+     background: rgba(2, 10, 27, 0.70);
+     backdrop-filter: blur(10px);
+     display: flex;
+     flex-direction: column;
+ }
+
+ .population_density-peopleWidget-title img,
+ .population_density-peopleWidget-avg img,
+ .population_density-peopleWidget-sum img {
+     width: 1.5rem;
+     height: 1.5rem;
+ }
+
+ .population_density-peopleWidget-title label,
+ .population_density-peopleWidget-avg label,
+ .population_density-peopleWidget-sum label {
+     color: #DAEDFF;
+     font-size: 1rem;
+     font-weight: 600;
+     line-height: 140%;
+     /* 1.4rem */
+     letter-spacing: -0.01563rem;
+ }
+
+ .population_density-peopleWidget-sum,
+ .population_density-peopleWidget-avg {
+     margin: 0.625rem 1.25rem;
+     height: 3rem;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .population_density-peopleWidget-sum div,
+ .population_density-peopleWidget-avg div {
+     height: 3rem;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+
+ .peopleWidget-dateSet-date {
+     width: 8.375rem;
+     height: 2.25rem;
+     border-radius: 0.5rem;
+     border: 1.8px solid rgba(122, 199, 255, 0.10);
+     background: rgba(2, 10, 27, 0.15);
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+     align-items: center;
+     margin-right: 0.38rem;
+ }
+
+ .peopleWidget-dateSet-date img {
+     width: 2.25rem;
+     height: 2.25rem;
+ }
+
+ .peopleWidget-dateSet-date label {
+     font-size: 0.78663rem;
+     font-weight: 400;
+ }
+
+
+ .population_density-peopleWidget-dateSet {
+     display: flex;
+     flex-direction: row;
+     width: 20.625rem;
+     margin: 1.62rem 1.25rem 0.81rem 1.25rem;
+ }
+
+ .population_density-peopleWidget-dateSet-search img {
+     width: 2.25rem;
+     height: 2.25rem;
+     margin-left: 0.87rem;
+ }
+
+ .population_density-peopleWidget-chart {
+     margin-left: 1.25rem;
+     margin-bottom: 0.38rem;
+     width: 20.75rem;
+     height: 11.25rem;
+ }
+
+ .modelinfo-view-top-tab-population_density-bottom {
+     position: absolute;
+     bottom: 8.81rem;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 20rem;
+     padding: 0.375rem 1.5rem 0.375rem 1.4375rem;
+     justify-content: center;
+     display: flex;
+     flex-direction: row;
+     border-radius: 0.125rem;
+     background: rgba(6, 10, 37, 0.30);
+     backdrop-filter: blur(12.5px);
+ }
+
+ .modelinfo-view-top-tab-population_density-bottom img {
+     width: 1.25rem;
+     height: 1.25rem;
+     margin-right: 0.31rem;
+ }
+
+ .modelinfo-view-top-tab-population_density-bottom label {
+     font-size: 0.8125rem;
+     font-weight: 500;
+     line-height: 140%;
+     /* 1.1375rem */
+     letter-spacing: -0.01563rem;
+ }

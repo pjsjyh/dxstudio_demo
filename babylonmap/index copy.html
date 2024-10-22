@@ -1,0 +1,2538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <title>BABYLON Layer for MapBox</title>
+    <script src="https://unpkg.com/maplibre-gl@3.5.0/dist/maplibre-gl.js"></script>
+    <link rel="stylesheet" href="map.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://dt.gractor.com/babylon_bounding/index.html"></script>
+
+
+</head>
+
+<body>
+    <div id="map">
+        <div id="main-top-bar">
+            <div id="top-bar-logo">SRP</div>
+            <div id="top-bar-name">barcelona spain</div>
+        </div>
+        <div id="main-view">
+            <div id="view-bar">
+                <div class="editorModeIcon editorMode" id="view-bar-editor-icons">
+                        <input type="radio" name="editoricon" class="editorModeIcon editorMode editorModeIcons-icon" id="editor-icons-select" style="background-image: url('./img/icons/select 5.png')" checked>
+                        </input>
+                        <input type="radio" name="editoricon" class="editorModeIcon editorMode editorModeIcons-icon" id="editor-icons-scale" style="background-image: url('./img/icons/scale 5.png')">
+                        </input>
+                        <input type="radio" name="editoricon" class="editorModeIcon editorMode editorModeIcons-icon" id="editor-icons-rotation" style="background-image: url('./img/icons/rotation 5.png')">
+                        </dinputiv>
+                        <input type="radio" name="editoricon" class="editorModeIcon editorMode editorModeIcons-icon" id="editor-icons-move" style="background-image: url('./img/icons/move 5.png')">
+                        </input>
+                        <input type="checkbox" class="editorModeIcon editorMode editorModeIcons-icon" id="editor-icons-modeling" style="background-image: url('./img/icons/modeling 5.png')">
+                        </input>
+                        <div id="editor-icons-loadBTN">load</div>
+                        <div id="editor-icons-saveBTN">save</div>
+                </div>
+                <div id="view-bar-name">
+                    Viewer
+                </div>
+                <div id="view-bar-btn">
+                    <div id="view-bar-editorChange-btn">
+                        <input type="checkbox" id="view-bar-editorChange-btn-checkbox">
+                    </div>
+                    <div id="view-bar-help-btn">
+                        <label>?</label>
+                    </div>
+                </div>
+            </div>
+            <div id="editor-view-interaction">
+                <div id="main-view-side">
+                    <div class="editorMode" id="main-editor-side-view" style="width: 336px; height: 100%; ">
+                            <div id="main-editor-side-view-layer">
+                                <div id="main-editor-side-view-layer-name"> Layer</div>
+                                <div id="main-editor-side-view-layer-layer"> 
+                                    <div id="editor-side-view-layer-search">
+                                        <div id="editor-side-view-layer-searching">
+                                            <img src="./img/icons/search.png">
+                                            <input class="inputting" id="editor-side-view-layer-searching-input" class="input-box-css" type="text" placeholder="search">
+                                            <div id="editor-side-view-layer-searching-input-clear"  class="clearbtn"  > X</div>
+                                        </div>
+                                        <div id="editor-side-view-layer-icon">
+                                            <img src="./img/icons/group layer.png">
+                                        </div>
+                                    </div>
+                                    <div id="editor-side-view-layer-objects-lists">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="main-editor-side-view-property" class="inspectorclass " >
+                                <div id="main-editor-side-view-property-name" class="inspectorclass " >
+                                    Property
+                                </div>
+                                <div id="main-editor-view-property-property" class="inspectorclass " >
+                                    <!-- editormode에서 property비활성화 상태일 때 visible로 변경할 것 -->
+                                    <div id="main-editor-view-property-property-disable" class="inspectorclass " ></div>
+                                    <div id="editor-view-modelProperty-fix-name" class="editor-modelProperty-fix-view inspectorclass editor-modelProperty-fix-view-input">
+                                        <label class="inspectorclass ">Name</label> <input class="input-box-css inputting inspectorclass "  type="text"  id="editor-modelProperty-fix-name" >
+                                    </div>
+                                    <div id="editor-view-modelProperty-fix-type" class="editor-modelProperty-fix-view  inspectorclass   editor-modelProperty-fix-view-input">
+                                        <label class="inspectorclass ">Type</label>  <div class="input-box-css inspectorclass "  type="text"  id="editor-modelProperty-fix-type" ></div>
+                                        </div>
+                                    <div id="editor-view-modelProperty-fix-transform" class="editor-modelProperty-fix-view inspectorclass ">
+                                        <div id="editor-view-modelProperty-fix-transform-set" class="arrowupdown inspectorclass ">
+                                            <label  class="inspectorclass ">Transform</label> <input type="checkbox" id="editor-modelProperty-fix-transform-img"  class="inspectorclass ">
+                                            <!-- <img id="editor-modelProperty-fix-transform-img" src="./img/icons/arrow.png"> -->
+                                        </div>
+                                        <div id="editor-view-modelProperty-fix-transform-location" class="inspectorclass ">
+                                            <label  class="inspectorclass "style="display: flex; flex-direction: row; align-items: center; "><div  class="inspectorclass "style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div> location</label> <input class="input-box-css import-Property-toJson inputting inspectorclass "  type="text"  id="editor-modelProperty-fix-location-name" placeholder="address"onkeypress="return geoGetInspector(event)" > 
+                                    
+                                        </div>
+                                        <div id="editor-modelProperty-fix-transform-transform" class="inspectorclass ">
+                                            <div class="inspectorclass "  id="editor-modelProperty-fix-transform-transform-selectmode">
+                                            <select id="editor-modelProperty-fix-transform-transform-objectSetting">
+                                                <option value="1">one object</option>
+                                                <option value="2">multiple objects</option>
+                                            </select>
+                                            <div lass="inspectorclass " id="editor-modelProperty-fix-transform-transform-multiple">
+                                                
+                                                <div id="fix-transform-multiple-count" class="editor-modelProperty-fix-view-transform-multiple inspectorclass ">
+                                                    <label lass="inspectorclass " >Name</label> 
+                                                    <input type="text" id="editor-fix-transform-multiple-name" class="inputting inspectorclass " >
+                                                </div>
+                                                <div id="fix-transform-multiple-locationstart" class="editor-modelProperty-fix-view-transform-multiple inspectorclass">
+                                                    <label lass="inspectorclass " >location - start</label> 
+                                                    <input type="text" id="editor-fix-transform-multiple-locationstart"  class="inputting inspectorclass">
+                                                </div>
+                                                <div id="fix-transform-multiple-locationend" class="editor-modelProperty-fix-view-transform-multiple inspectorclass ">
+                                                    <label class="inspectorclass ">location - end</label> 
+                                                    <input type="text" id="editor-fix-transform-multiple-locationend" class="inputting inspectorclass " >
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                            
+                                            <div id="position" class="objectInfoContents inspectorclass inspectorclass">
+                                                <div class="ObjectInfo_Input inspectorclass ">
+                                                    <label class="inspectorclass transform-label-input-display">
+                                                        x
+                                                        <input type="number" id="position_Value_x" class="inspectorclass input-box-css ObjectInfo_Input_value inputting" />
+                                                    </label>
+
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        y
+                                                        <input type="number" id="position_Value_y" class="inspectorclass input-box-css ObjectInfo_Input_value inputting" />
+                                                    </label>
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        z
+                                                        <input type="number" id="position_Value_z" class="inspectorclass input-box-css ObjectInfo_Input_value inputting" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div id="rotation" class=" inspectorclass objectInfoContents">
+                                                <div class="objectInfoContents-name" class="inspectorclass ">
+
+                                                <label class="inspectorclass "style="display: flex; flex-direction: row; align-items: center; "><div  class="inspectorclass " style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>
+                                                   rotation
+                                                </label>
+                                                </div>
+                                                <div class="inspectorclass ObjectInfo_Input">
+
+                                                    <label class="inspectorclass transform-label-input-display">
+                                                        x
+                                                        <input type="number" id="rotation_Value_x" class="inspectorclass input-box-css ObjectInfo_Input_value inputting" />
+                                                    </label>
+
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        y
+                                                        <input type="number" id="rotation_Value_y" class="inspectorclass input-box-css inputting ObjectInfo_Input_value" />
+                                                    </label>
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        z
+                                                        <input type="number" id="rotation_Value_z" class="inspectorclass input-box-css  inputting ObjectInfo_Input_value" />
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <div id="scale" class="inspectorclass objectInfoContents">
+                                                <div class="objectInfoContents-name" class="inspectorclass ">
+
+                                                <label class="inspectorclass "style="display: flex; flex-direction: row; align-items: center; "><div  class="inspectorclass "style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>
+                                                   scale
+                                                </label>
+                                                </div>
+                                                <div class="inspectorclass ObjectInfo_Input">
+                                                    <label class="inspectorclass transform-label-input-display">
+                                                        x
+                                                        <input type="number" id="scale_Value_x" class="inspectorclass input-box-css inputting ObjectInfo_Input_value" />
+                                                    </label>
+
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        y
+                                                        <input type="number" id="scale_Value_y" class="inspectorclass input-box-css inputting ObjectInfo_Input_value" />
+                                                    </label>
+                                                    <label class="inspectorclass transform-label-input-display between-side-transform-input">
+                                                        z
+                                                        <input type="number" id="scale_Value_z" class="inspectorclass input-box-css  inputting ObjectInfo_Input_value" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="editor-view-modelProperty-fix-explanation" class="editor-modelProperty-fix-view inspectorclass editor-modelProperty-fix-view-col">
+                                        <div id="editor-view-modelProperty-fix-explanation-view" class="arrowupdown inspectorclass ">
+                                            <label  class="inspectorclass ">Explanation</label> 
+                                            <input type="checkbox"  class="inspectorclass " id="editor-modelProperty-fix-explanation-img" >
+                                        </div>
+                                        <textarea  class="inputting inspectorclass "  id="editor-view-modelProperty-fix-explanation-input"></textarea>
+                                    </div>
+                                    
+                                    <div id="editor-view-modelProperty-fix-JsonEditor" class="editor-modelProperty-view editor-modelProperty-fix-view-col inspectorclass ">
+                                        <div id="editor-view-modelProperty-fix-JsonEditor-view" class="arrowupdown inspectorclass ">
+                                            <label class="inspectorclass ">JSON Editor</label> 
+                                            <input type="checkbox"  class="inspectorclass " id="editor-modelProperty-fix-JsonEditor-img" >
+                                        </div>
+                                        <textarea class="inputting inspectorclass " id="editor-view-modelProperty-fix-JsonEditor-input"></textarea>
+                                    </div>
+                                    
+                                    <div id="editor-view-modelProperty-fix-marker" class="editor-modelProperty-fix-view inspectorclass  editor-modelProperty-fix-view-col">
+                                        <div id="editor-view-modelProperty-fix-marker-view" class="arrowupdown inspectorclass ">
+                                            <label class="inspectorclass ">Marker</label> 
+                                            <input type="checkbox"  class="inspectorclass " id="editor-modelProperty-fix-marker-img" >
+                                        </div>
+                                        <textarea class="inputting inspectorclass "  id="editor-view-modelProperty-fix-marker-input"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div id="main-veiw-side-mapbtn">
+                        
+                        <div id="main-view-side-btn-location" class="veiw-side-mapbtn">
+                            <img src="./img/icons/location.png">
+                        </div>
+                        <div id="main-view-side-btn-search" class="veiw-side-mapbtn">
+                            
+                            <div id="main-view-side-btn-search-img" >
+                            <input id="main-view-side-btn-search-img-checkbox" type="checkbox">
+
+                            </div>
+                            <input id="main-view-side-btn-search-input" class="input-box-css inputting"  onkeypress="return geoChangeCode(event)" type="text">
+                            
+                                <div id="side-btn-search-input-clear"   > X</div>
+                        </div>
+                        <div id="main-view-side-btn-plus" class="veiw-side-mapbtn">
+                            <img src="./img/icons/plus.png" >
+                        </div>
+                        <div id="main-view-side-btn-minus" class="veiw-side-mapbtn">
+                            <img src="./img/icons/minus.png" >
+                        </div>
+                        <div id="main-view-side-btn-compass" class="veiw-side-mapbtn">
+                            <img src="./img/icons/compass.png" >
+                        </div>
+                        <div id="main-view-side-btn-3D" class="veiw-side-mapbtn">
+                            <input type="checkbox" id="main-view-side-btn-3D-checkbox">
+                        </div>
+                    </div>
+
+                    <div id="main-view-modelingExplane">
+                        <div id="main-view-modelingExplane-view">
+                            <div id="modelingExplane-view-modeling">
+
+                            </div>
+                            <div id="modelingExplane-view-modelProperty">
+                                <div id="modelingExplane-view-modelProperty-name" class="modelProperty-view">
+                                    <label>Name</label> <div id="view-modelProperty-name">smart pole</div>
+                                </div>
+                                <div id="modelingExplane-view-modelProperty-type" class="modelProperty-view">
+                                    <label>Type</label> <div id="view-modelProperty-type">sensor</div>
+                                </div>
+                                <div id="modelingExplane-view-modelProperty-transform" class="modelProperty-view">
+                                    <label>Location</label> <img id="modelProperty-transform-img" src="./img/icons/arrow-1.png">
+                                    <div id="modelProperty-transform-transform">
+
+                                    </div>
+                                </div>
+                                <div id="modelingExplane-view-modelProperty-explanation" class="modelProperty-view">
+                                    
+                                </div>
+                                <div id="modelingExplane-view-modelProperty-JsonEditor" class="modelProperty-view">
+                                    
+                                </div>
+                                <div id="modelingExplane-view-modelProperty-marker" class="modelProperty-view">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="main-view-modelingExplane-view-exit">
+                            <img src="./img/icons/cancel.png" >
+                        </div>
+                    </div>
+                    <div id="main-new-obj-box">
+                        <div id="main-new-obj-box-category" class="main-new-obj-box-all">
+                            <div class="main-new-obj-box-categoryBox" >
+                                <img id="obj-box-categoryBox-all" class="obj-box-categoryBox" src="./img/icons/all.png" style="background-color: rgb(57, 136, 229);">
+                            </div>
+                            <div class="main-new-obj-box-categoryBox">
+                                <img id="obj-box-categoryBox-sensor" class="obj-box-categoryBox" src="./img/icons/sensor select.png">
+                            </div>
+                            <div class="main-new-obj-box-categoryBox">
+                                <img id="obj-box-categoryBox-bridge" class="obj-box-categoryBox" src="./img/icons/bridge.png">
+                            </div>
+                            <div class="main-new-obj-box-categoryBox">
+                                <img id="obj-box-categoryBox-traffic" class="obj-box-categoryBox" src="./img/icons/traffic.png">
+                            </div>
+                            <div class="main-new-obj-box-categoryBox">
+                                <img id="obj-box-categoryBox-building" class="obj-box-categoryBox" src="./img/icons/building.png">
+                            </div>
+                            <div class="main-new-obj-box-categoryBox">
+                                <img id="obj-box-categoryBox-plus" class="obj-box-categoryBox" src="./img/icons/plus.png">
+                            </div>
+                        </div>
+                        <div id="main-new-obj-box-Objlist" class="main-new-obj-box-all">
+                            <div id="new-obj-box-Objlist-search" class="box-Objlist">
+                                <img src="./img/icons/search.png" >
+                                <input id="obj-box-Objlist-searching" class="input-box-css inputting" type="text">
+                                <div id="obj-box-Objlist-searching-clear"  class="clearbtn"  > X</div>
+
+                            </div>
+                            <div id="new-obj-box-div" class="box-Objlist">
+                                 <label id="new-obj-box-label_category">ALL</label>(<label id="new-obj-box-label_num">7</label>)
+                            </div>
+                            <div id="new-obj-box-list">
+                                
+                            </div>
+                            
+                        </div>
+                        <div id="main-new-obj-box-import" class="main-new-obj-box-all">
+                            <div id="main-new-obj-box-import-disable">
+                                <div id="import-completed-animation">
+                                    <svg id="check-svg" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" >
+                                        <circle id="circle-import" cx="36" cy="36" r="23.5" stroke="#38DBFF" stroke-width="3" fill="none"/>
+                                        <path id="check-import" d="M27 35.5116L35.0433 44.5014C35.266 44.7504 35.6655 44.7151 35.8412 44.431L46 28" stroke="#38DBFF" stroke-width="3" stroke-linecap="round"fill="none" />
+                                    </svg>
+                                    <label>import completed</label>
+                                        <lottie-player src="./img/icons/checkCircleAnimation.json" background="transparent" style="width: 300px; height: 225px;" speed="1"  autoplay>
+    </lottie-player>
+                                    
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row-reverse;">
+                                <div id="new-obj-box-import-importbtn">import</div>
+                            </div>
+                            <div id="main-editor-side-view-property-property">
+                                
+                                    <div id="editor-view-modelProperty-name" class="editor-modelProperty-view">
+                                        <label>Name</label> <input type="text" id="editor-modelProperty-name"  placeholder="smart pole" class="import-Property-toJson inputting">
+                                    </div>
+                                    <div id="editor-view-modelProperty-type" class="editor-modelProperty-view">
+                                        <label>Type</label> <div id="editor-modelProperty-type">sensor</div>
+                                    </div>
+                                    <div id="editor-view-modelProperty-transform" class="editor-modelProperty-view">
+                                        <div id="editor-view-modelProperty-transform-set"   class="editor-modelProperty-view arrowupdown">
+                                        <label>Transform</label> 
+                                            <input type="checkbox" id="editor-modelProperty-transform-img" >
+                                        
+                                        </div>
+                                        <div id="editor-modelProperty-transform-transform">
+                                            <!-- <select id="editor-modelProperty-transform-transform-objectSetting">
+                                                <option value="1">one object</option>
+                                                <option value="2">multiple objects</option>
+                                            </select> -->
+                                            <div class="select" tabindex="1">
+                                                <input class="selectopt" name="test" type="radio" id="opt1" checked>
+                                                <label for="opt1" class="option" >one object</label>
+                                                <input class="selectopt" name="test" type="radio" id="opt2">
+                                                <label for="opt2" class="option" >multiple objects</label>
+                                                <img src="./img/icons/selcteArrow.png">
+                                            </div>
+                                            
+                                            
+                                            <div id="editor-modelProperty-transform-transform-multiple">
+                                                
+                                                <div id="transform-multiple-count" class="editor-modelProperty-view-transform-multiple ">
+                                                    <label style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>count</label> 
+                                                    <input type="text" id="editor-transform-multiple-name" class="import-Property-toJson inputting" >
+                                                </div>
+                                                <div id="transform-multiple-locationstart" class="editor-modelProperty-view-transform-multiple transform-multiple-location">
+                                                    <label style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>location - start</label> 
+                                                    <input type="text" id="editor-transform-multiple-locationstart" placeholder="address" class="import-Property-toJson inputting" >
+                                                    
+                                                    <div class="ObjectInfo_Input">
+                                                        <label class="inspectorclass multiple-location" >
+                                                        x
+                                                        <input type="number" id="position_Value_x-multiple-start" class="inspectorclass inputting ObjectInfo_import_value" style="margin-right: 11.5px; "/>
+                                                        </label>
+                                                        <label class="inspectorclass multiple-location">
+                                                        y
+                                                        <input type="number" id="position_Value_y-multiple-start" class="inspectorclass inputting ObjectInfo_import_value" style="margin-right: 11.5px;"/>
+                                                        </label>
+                                                        <label class="inspectorclass multiple-location">
+                                                        z
+                                                        <input type="number" id="position_Value_z-multiple-start" class="inspectorclass inputting ObjectInfo_import_value" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="transform-multiple-locationend" class="editor-modelProperty-view-transform-multiple transform-multiple-location">
+                                                    <label style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>location - end</label> 
+                                                    <input type="text" 
+                                                    class="inputting" id="editor-transform-multiple-locationend" placeholder="address">
+                                                    
+                                                    <div class="ObjectInfo_Input">
+                                                        <label class="inspectorclass multiple-location" >
+                                                        x
+                                                        <input type="number" id="position_Value_x-multiple-end" class="inspectorclass inputting ObjectInfo_import_value" style="margin-right: 11.5px;"/>
+                                                        </label>
+                                                        <label class="inspectorclass multiple-location">
+                                                        y
+                                                        <input type="number" id="position_Value_y-multiple-end" class="inspectorclass inputting ObjectInfo_import_value" style="margin-right: 11.5px;"/>
+                                                        </label>
+                                                        <label class="inspectorclass multiple-location">
+                                                        z
+                                                        <input type="number" id="position_Value_z-multiple-end" class="inspectorclass inputting ObjectInfo_import_value" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="position-import" class="objectInfoContents inspectorclass">
+                                                <label class="inspectorclass" style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>
+                                                    location
+                                                </label>
+                                                
+                                                    <input type="text" id="transform-import-address" placeholder="address" onkeypress="return geoGetValueImport(event)" class="import-Property-toJson inputting">
+                                                <div class="ObjectInfo_Input " style="margin-bottom: 20px;">
+
+                                                    <label class="inspectorclass import-transforms">
+                                                        x
+                                                        <input type="number" id="transform-import-position_Value_x" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px; "/>
+                                                    </label>
+
+                                                    <label class="inspectorclass import-transforms">
+                                                        y
+                                                        <input type="number" id="transform-import-position_Value_y" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px; "/>
+                                                    </label>
+                                                    <label class="inspectorclass import-transforms">
+                                                        z
+                                                        <input type="number" id="transform-import-position_Value_z" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div id="rotation-import" class=" inspectorclass objectInfoContents" style="margin-bottom: 20px;">
+                                                <label class="inspectorclass "style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>
+                                                    rotation
+                                                </label>
+                                                <div class="inspectorclass ObjectInfo_Input">
+
+                                                    <label class="inspectorclass import-transforms">
+                                                        x
+                                                        <input type="number" id="transform-import-rotation_Value_x" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px;"/>
+                                                    </label>
+
+                                                    <label class="inspectorclass import-transforms">
+                                                        y
+                                                        <input type="number" id="transform-import-rotation_Value_y" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px;"/>
+                                                    </label>
+                                                    <label class="inspectorclass import-transforms">
+                                                        z
+                                                        <input type="number" id="transform-import-rotation_Value_z" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" />
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <div id="scale-import" class="inspectorclass objectInfoContents">
+                                                <label class="inspectorclass"style="display: flex; flex-direction: row; align-items: center; "><div style="width: 4px; height: 4px; border-radius: 0.5px; background: #D9D9D9; margin-right: 8px;"></div>
+                                                    scale
+                                                </label>
+                                                <div class="inspectorclass ObjectInfo_Input">
+                                                    <label class="inspectorclass import-transforms">
+                                                        x
+                                                        <input type="number" id="transform-import-scale_Value_x" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px;"/>
+                                                    </label>
+
+                                                    <label class="inspectorclass import-transforms">
+                                                        y
+                                                        <input type="number" id="transform-import-scale_Value_y" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" style="margin-right: 11.5px;"/>
+                                                    </label>
+                                                    <label class="inspectorclass import-transforms">
+                                                        z
+                                                        <input type="number" id="transform-import-scale_Value_z" class="inspectorclass inputting ObjectInfo_import_value import-Property-toJson" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="import-modelProperty-view">
+                                        <div id="editor-view-modelProperty-explanation" class="editor-modelProperty-view arrowupdown" >
+                                            <label>Explanation</label> 
+                                            <input type="checkbox" id="editor-modelProperty-explanation-img" >
+                                        </div>
+                                        <textarea class="import-Property-toJson inputting" id="editor-modelProperty-explanation-input"></textarea>
+                                    </div>
+                                    
+                                    <div class="import-modelProperty-view">
+                                    <div id="editor-view-modelProperty-JsonEditor" class="editor-modelProperty-view arrowupdown">
+                                        <label>JSON Editor</label> 
+                                            <input type="checkbox" id="editor-modelProperty-JsonEditor-img" >
+                                    </div>
+                                    
+                                        <textarea class="inputting"  id="editor-modelProperty-JsonEditor-input" ></textarea>
+                                    </div>
+                                    <div class="import-modelProperty-view">
+                                    <div id="editor-view-modelProperty-marker" class="editor-modelProperty-view arrowupdown">
+                                        <label>Marker</label> 
+                                            <input type="checkbox" id="editor-modelProperty-marker-img" >
+                                    </div>
+                                        <textarea id="editor-modelProperty-marker-input" class="import-Property-toJson inputting" ></textarea>
+                                    </div>
+                                </div>
+
+                        </div>
+                        <div id="main-new-obj-box-exit" class="main-new-obj-box-all">
+                            <img src="./img/icons/cancel-1.png">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+        <!-- <div id="loading-view" style="background: #8a8a8a;">
+            <div class="loading-animation"></div>
+            <div id="loading_text" style="color: black;">SRD</div>
+        </div> -->
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <script src="./_js/importObjInfo.js"></script>
+    <script src="./_js/contentsReset.js"></script>
+    <script src="./_js/location.js"></script>
+    <script src="./_js/searchGEOcodeControl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl-dev.js"></script>
+    <script src="https://unpkg.com/babylonjs@5.42.2/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://unpkg.com/babylonjs-loaders@5.42.2/babylonjs.loaders.min.js"></script>
+    <script src=https://unpkg.com/maplibre-gl@3.2.1/dist/maplibre-gl.js></script>
+    <link href=https://unpkg.com/maplibre-gl@3.2.1/dist/maplibre-gl.css rel="stylesheet" />
+    <script src="https://unpkg.com/@esri/arcgis-rest-request@4.0.0/dist/bundled/request.umd.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-geocoding@4.0.0/dist/bundled/geocoding.umd.js"></script>
+
+    <script src="./_js/createobj.js"></script>
+    <script src="./_js/selectMesh.js"></script>
+    <script src="./_js/savescale.js"></script>
+    <script src="./_js/connectbtnevent.js"></script>
+    <script src="./_js/createobject.js"></script>
+    <script src="./_js/degreesToRadians.js"></script>
+    <script src="./_js/gizmoCheck.js"></script>
+    <script src="./_js/gizmooff.js"></script>
+    <script src="./_js/loadAsset_json.js"></script>
+    <script src="./_js/radiansToDegrees.js"></script>
+    <script src="./_js/rescale.js"></script>
+    <script src="./_js/saveDataToJson.js"></script>
+    <script src="./_js/setInspectorTransform.js"></script>
+    <script src="./_js/setObjectTransformToInspector.js"></script>
+    <script src="./_js/ToBabylonPos.js"></script>
+    <script src="./_js/toGPS.js"></script>
+    <script src="./_js/clickSmart.js"></script>
+    <script src="./_js/startmakelist.js"></script>
+    <script src="./_js/changebackgroundcolorobject.js"></script>
+    <script src="./_js/changebackgroundcolor.js"></script>
+    <script src="./_js/changename.js"></script>
+    <script src="./_js/dblclickcameramove.js"></script>
+    <script src="./_js/inspector_Set.js"></script>
+    <script src="./_js/gizmoBTN.js"></script>
+    <script src="./_js/setZoomInOut.js"></script>
+    <script src="./_js/loadmodel_info.js"></script>
+    <script src="./_js/closeimportcolor.js"></script>
+    <script src="./_js/searchinput.js"></script>
+    <script src="./_js/findmodel.js"></script>
+
+    <script src="./_js/pocket/pocketbase.js">
+    </script>
+    <script src="./_js/objectlisteye.js"></script>
+    <script>
+
+        const BABYLON = window.BABYLON;
+
+        mapboxgl.accessToken =
+            "pk.eyJ1IjoiZmFic2hhcnAiLCJhIjoiY2pkb2JmaHZ2MG5laTMycXV6MW9hbnR6biJ9.UMH3HUf54_y7l-2YpeE8oA";
+        let center = [127.046720, 37.738357]; //GPS좌표
+        let map = (window.map = new mapboxgl.Map({
+            container: "map",
+            style: {
+                "version": 8,
+                "name": "Empty Style",
+                "metadata": { "maputnik:renderer": "mbgljs" },
+                "center": [126.8320138, 37.6582159],
+                "zoom": 16,
+                "sources": {
+                    "vworld-base": {
+                        "type": "raster",
+                        "tiles": ["https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png"]
+                    },
+                    "google-satellite": {
+                        "type": "raster",
+                        "tiles": [
+                            "https://mts0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                            "https://mts1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                            "https://mts2.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                            "https://mts3.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                        ],
+                        "tileSize": 256,
+                        "attribution": "구글위성지도"
+                    },
+                    "Positron-dark-nolabels": {
+                        "type": "raster",
+                        "tiles": [
+                            "https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                            "https://b.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                            "https://c.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                            "https://d.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png"
+                        ]
+                    },
+                    "Positron-lite-nolabels": {
+                        "type": "raster",
+                        "tiles": [
+                            "https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                            "https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                            "https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                            "https://d.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png"
+                        ]
+                    },
+                    "tn_lkmh": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_lkmh",
+                        "attribution": "호수및저수지"
+                    },
+                    "tn_river_bndry": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_river_bndry"
+                    },
+                    "tn_river_bt": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_river_bt"
+                    },
+                    "tn_fclty_zone_bndry": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_fclty_zone_bndry"
+                    },
+                    "tn_arrfc": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_arrfc"
+                    },
+                    "tn_ex_mainrd_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_mainrd_a"
+                    },
+                    "tn_ex_localrda_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_localrda_a"
+                    },
+                    "tn_ex_narda_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_narda_a"
+                    },
+                    "tn_ex_cityhwrda_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_cityhwrda_a"
+                    },
+                    "tn_ex_hwrda_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_hwrda_a"
+                    },
+                    "tn_ex_mainrdcenl_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_mainrdcenl_l"
+                    },
+                    "tn_ex_localrdcenl_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_localrdcenl_l"
+                    },
+                    "tn_ex_nardcenl_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_nardcenl_l"
+                    },
+                    "tn_ex_cityhwrdcenl_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_cityhwrdcenl_l"
+                    },
+                    "tn_ex_hwrdcenl_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_hwrdcenl_l"
+                    },
+                    "tn_rodway_bndry": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_rodway_bndry"
+                    },
+                    "tn_rodway_ctln": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_rodway_ctln"
+                    },
+                    "tn_lnpgr": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_lnpgr"
+                    },
+                    "tn_arpgr": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_arpgr"
+                    },
+                    "tn_ex_subwln_l": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_subwln_l"
+                    },
+                    "tn_ex_subwa_a": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_subwa_a"
+                    },
+                    "tn_ex_exitnumber_p": {
+                        "type": "vector",
+                        "url": "https://s.gractor.com/tiles/tn_ex_exitnumber_p"
+                    },
+                    "tn_buld": { "type": "vector", "url": "https://s.gractor.com/tiles/tn_buld" },
+                    "facility": {
+                        "type": "geojson",
+                        "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-facility.json",
+                        "generateId": true
+                    },
+                    "space": {
+                        "type": "geojson",
+                        "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-space.json",
+                        "generateId": true
+                    },
+                    "space_wall": {
+                        "type": "geojson",
+                        "data": { "type": "FeatureCollection", "features": [] }
+                    },
+                    "device": {
+                        "type": "geojson",
+                        "data": "https://s.gractor.com/assets/json/2xEifocB_mN-8u5EYMBs-device.json"
+                    },
+                    "terrainSource": {
+                        "type": "raster-dem",
+                        "url": "https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=DBapA0fS0QPloM374cKS"
+                    }
+                },
+                "sprite": "https://s.gractor.com/assets/sprites/osm-liberty/sprites",
+                "glyphs": "https://s.gractor.com/assets/fonts/{fontstack}/{range}.pbf",
+                "layers": [
+                    {
+                        "id": "background",
+                        "type": "background",
+                        "metadata": { "maputnik:comment": "배경색" },
+                        "layout": { "visibility": "visible" },
+                        "paint": { "background-color": "rgba(12, 12, 12, 1)" }
+                    },
+                    {
+                        "id": "google",
+                        "type": "raster",
+                        "metadata": { "maputnik:comment": "구글위성" },
+                        "source": "google-satellite",
+                        "layout": { "visibility": "none" }
+                    },
+                    {
+                        "id": "Positron-dark",
+                        "type": "raster",
+                        "metadata": { "maputnik:comment": "Positron Dark" },
+                        "source": "Positron-dark-nolabels",
+                        "layout": { "visibility": "visible" }
+                    },
+                    {
+                        "id": "Positron-lite",
+                        "type": "raster",
+                        "metadata": { "maputnik:comment": "Positron Lite" },
+                        "source": "Positron-lite-nolabels",
+                        "layout": { "visibility": "visible" }
+                    },
+                    {
+                        "id": "TN_FCLTY_ZONE_BNDRY",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "시설구역경계" },
+                        "source": "tn_fclty_zone_bndry",
+                        "source-layer": "tn_fclty_zone_bndry",
+                        "minzoom": 12,
+                        "filter": ["all", ["has", "fzonbn_se"]],
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": [
+                                "case",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA201", "FAA202", "FAA203", "FAA204"]]
+                                ],
+                                "rgb(220,216,212)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA301", "FAA311", "FAA313", "FAA314"]]
+                                ],
+                                "rgb(225,224,232)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA307", "FAA401", "FAA402"]]
+                                ],
+                                "rgb(190,210,181)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA309"]]],
+                                "rgb(240,240,240)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA403"]]],
+                                "rgb(180,196,155)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA404", "FAA405", "FAA508", "FAA509"]]
+                                ],
+                                "rgb(205,212,181)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA406", "FAA407"]]],
+                                "rgb(201,214,183)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    [
+                                        "literal",
+                                        ["FAA010", "FAA107", "FAA205", "FAA501", "FAA502", "FAA504"]
+                                    ]
+                                ],
+                                "rgb(215,221,232)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    [
+                                        "literal",
+                                        [
+                                            "FAA303",
+                                            "FAA304",
+                                            "FAA312",
+                                            "FAA408",
+                                            "FAA409",
+                                            "FAA410",
+                                            "FAA411",
+                                            "FAA412",
+                                            "FAA413",
+                                            "FAA414"
+                                        ]
+                                    ]
+                                ],
+                                "rgb(220,230,228)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA701"]]],
+                                "rgb(231,231,231)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA702"]]],
+                                "rgb(255,255,255)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    [
+                                        "literal",
+                                        [
+                                            "FAA001",
+                                            "FAA002",
+                                            "FAA003",
+                                            "FAA004",
+                                            "FAA005",
+                                            "FAA006",
+                                            "FAA007",
+                                            "FAA008",
+                                            "FAA009",
+                                            "FAA011"
+                                        ]
+                                    ]
+                                ],
+                                "rgb(236,228,204)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    [
+                                        "literal",
+                                        ["FAA101", "FAA102", "FAA103", "FAA104", "FAA105", "FAA106"]
+                                    ]
+                                ],
+                                "rgb(238,236,211)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA108", "FAA305", "FAA306", "FAA308", "FAA310"]]
+                                ],
+                                "rgb(221,220,216)",
+                                ["in", ["get", "fzonbn_se"], ["literal", ["FAA503"]]],
+                                "rgb(228,222,228)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA505", "FAA506", "FAA507"]]
+                                ],
+                                "rgb(230,214,214)",
+                                [
+                                    "in",
+                                    ["get", "fzonbn_se"],
+                                    ["literal", ["FAA302", "FAA601", "FAA602", "FAA603"]]
+                                ],
+                                "rgb(231,223,229)",
+                                "rgb(220,216,212)"
+                            ],
+                            "fill-opacity": 0.5
+                        }
+                    },
+                    {
+                        "id": "TN_ARRFC",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "주차장구역/교통시설물" },
+                        "source": "tn_arrfc",
+                        "source-layer": "tn_arrfc",
+                        "minzoom": 14,
+                        "maxzoom": 19,
+                        "filter": ["all", ["has", "arrfckd_se"]],
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": {
+                                "property": "arrfckd_se",
+                                "type": "categorical",
+                                "stops": [
+                                    ["PRF028", "rgb(234,216,212)"],
+                                    ["PRF009", "rgb(225,225,225)"],
+                                    ["PRF010", "rgb(225,225,225)"],
+                                    ["PRF011", "rgb(225,225,225)"],
+                                    ["PRF015", "rgb(226,226,226)"],
+                                    ["PRF012", "rgb(234,234,234)"],
+                                    ["PRF016", "rgb(234,234,234)"],
+                                    ["PRF013", "rgb(234,234,234)"]
+                                ],
+                                "default": "rgb(234,230,208)"
+                            },
+                            "fill-outline-color": "rgb(225,225,225)"
+                        }
+                    },
+                    {
+                        "id": "TN_LKMH",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "호수및저수지" },
+                        "source": "tn_lkmh",
+                        "source-layer": "tn_lkmh",
+                        "minzoom": 10,
+                        "maxzoom": 16,
+                        "layout": { "visibility": "visible" },
+                        "paint": { "fill-color": "rgb(176,211,228)" }
+                    },
+                    {
+                        "id": "TN_RIVER_BNDRY",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "하천" },
+                        "source": "tn_river_bndry",
+                        "source-layer": "tn_river_bndry",
+                        "minzoom": 7,
+                        "maxzoom": 19,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": [
+                                "interpolate",
+                                ["linear"],
+                                ["zoom"],
+                                7,
+                                "rgb(176,211,228)",
+                                19,
+                                "rgb(198,221,177)"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "TN_RIVER_BT",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "하천" },
+                        "source": "tn_river_bt",
+                        "source-layer": "tn_river_bt",
+                        "minzoom": 13,
+                        "maxzoom": 19,
+                        "layout": { "visibility": "visible" },
+                        "paint": { "fill-color": "rgb(176,211,228)" }
+                    },
+                    {
+                        "id": "TN_EX_MAINRD_A",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "면형주요도로" },
+                        "source": "tn_ex_mainrd_a",
+                        "source-layer": "tn_ex_mainrd_a",
+                        "minzoom": 15,
+                        "layout": { "visibility": "visible" },
+                        "paint": { "fill-color": "rgba(255,255,255,1)" }
+                    },
+                    {
+                        "id": "TN_EX_LOCALRDA_A",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "면형지방도" },
+                        "source": "tn_ex_localrda_a",
+                        "source-layer": "tn_ex_localrda_a",
+                        "minzoom": 15,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": "rgb(239,231,205)",
+                            "fill-outline-color": "rgb(222,204,150)"
+                        }
+                    },
+                    {
+                        "id": "TN_EX_HWRDA_A",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "면형고속도로" },
+                        "source": "tn_ex_hwrda_a",
+                        "source-layer": "tn_ex_hwrda_a",
+                        "minzoom": 14,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": "rgb(241,212,129)",
+                            "fill-outline-color": "rgb(210,184,110)"
+                        }
+                    },
+                    {
+                        "id": "TN_EX_MAINRDCENL_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "선형주요도로" },
+                        "source": "tn_ex_mainrdcenl_l",
+                        "source-layer": "tn_ex_mainrdcenl_l",
+                        "minzoom": 10,
+                        "maxzoom": 14,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(240,235,216)",
+                            "line-width": [
+                                "interpolate",
+                                ["linear"],
+                                ["zoom"],
+                                10,
+                                1.5,
+                                11,
+                                2,
+                                12,
+                                3,
+                                13,
+                                3,
+                                14,
+                                3
+                            ]
+                        }
+                    },
+                    {
+                        "id": "TN_EX_LOCALRDCENL_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "선형지방도" },
+                        "source": "tn_ex_localrdcenl_l",
+                        "source-layer": "tn_ex_localrdcenl_l",
+                        "minzoom": 8,
+                        "maxzoom": 14,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(239,231,205)",
+                            "line-width": ["interpolate", ["linear"], ["zoom"], 8, 3, 14, 4]
+                        }
+                    },
+                    {
+                        "id": "TN_EX_NARDCENL_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "선형국도" },
+                        "source": "tn_ex_nardcenl_l",
+                        "source-layer": "tn_ex_nardcenl_l",
+                        "minzoom": 8,
+                        "maxzoom": 14,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(239,224,179)",
+                            "line-width": ["interpolate", ["linear"], ["zoom"], 8, 3, 14, 4]
+                        }
+                    },
+                    {
+                        "id": "TN_EX_CITYHWRDCENL_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "선형도시고속도로" },
+                        "source": "tn_ex_cityhwrdcenl_l",
+                        "source-layer": "tn_ex_cityhwrdcenl_l",
+                        "minzoom": 8,
+                        "maxzoom": 13,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(235,210,133)",
+                            "line-width": ["interpolate", ["linear"], ["zoom"], 8, 4, 13, 5]
+                        }
+                    },
+                    {
+                        "id": "TN_EX_HWRDCENL_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "선형고속도로" },
+                        "source": "tn_ex_hwrdcenl_l",
+                        "source-layer": "tn_ex_hwrdcenl_l",
+                        "minzoom": 7,
+                        "maxzoom": 13,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(241,212,129)",
+                            "line-width": ["interpolate", ["linear"], ["zoom"], 7, 3, 13, 4]
+                        }
+                    },
+                    {
+                        "id": "TN_RODWAY_BNDRY",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "면형일반도로" },
+                        "source": "tn_rodway_bndry",
+                        "source-layer": "tn_rodway_bndry",
+                        "minzoom": 15,
+                        "layout": { "visibility": "visible" },
+                        "paint": { "fill-color": "rgba(255, 255, 255, 1)" }
+                    },
+                    {
+                        "id": "TN_RODWAY_CTLN",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "면리간도로,선형일반도로" },
+                        "source": "tn_rodway_ctln",
+                        "source-layer": "tn_rodway_ctln",
+                        "minzoom": 13,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgba(255,255,255,1)",
+                            "line-width": {
+                                "property": "road_se",
+                                "type": "categorical",
+                                "stops": [["RDC010", 2], ["RDC014", 5]],
+                                "default": 1.38
+                            },
+                            "line-opacity": 0.8
+                        }
+                    },
+                    {
+                        "id": "TN_LNPGR",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "보행노선" },
+                        "source": "tn_lnpgr",
+                        "source-layer": "tn_lnpgr",
+                        "minzoom": 16,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": "rgb(241,233,230)",
+                            "line-width": [
+                                "interpolate",
+                                ["exponential", 1.5],
+                                ["zoom"],
+                                16,
+                                1.2,
+                                17,
+                                3.2,
+                                18,
+                                6,
+                                19,
+                                8
+                            ],
+                            "line-opacity": 0.8
+                        }
+                    },
+                    {
+                        "id": "TN_ARPGR",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "보행노면" },
+                        "source": "tn_arpgr",
+                        "source-layer": "tn_arpgr",
+                        "minzoom": 16,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": "rgb(241,233,230)",
+                            "fill-outline-color": "rgb(227,222,210)"
+                        }
+                    },
+                    {
+                        "id": "TN_EX_NARDA_A",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "면형국도" },
+                        "source": "tn_ex_narda_a",
+                        "source-layer": "tn_ex_narda_a",
+                        "minzoom": 15,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": "rgb(239,224,179)",
+                            "fill-outline-color": "rgb(205,186,142)"
+                        }
+                    },
+                    // {//vWorld지도
+                    //     "id": "vworld",
+                    //     "type": "raster",
+                    //     "metadata": { "maputnik:comment": "vWorld 기본" },
+                    //     "source": "vworld-base",
+                    //     "layout": { "visibility": "visible" }
+                    // },
+                    {
+                        "id": "TN_EX_SUBWLN_L",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "지하철노선_L12-14" },
+                        "source": "tn_ex_subwln_l",
+                        "source-layer": "tn_ex_subwln_l",
+                        "minzoom": 12,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-color": {
+                                "property": "name",
+                                "type": "categorical",
+                                "stops": [
+                                    ["서울1호선", "rgb(0,82,164)"],
+                                    ["서울2호선", "rgb(0,168,77)"],
+                                    ["서울3호선", "rgb(239,124,28)"],
+                                    ["서울4호선", "rgb(0,164,227)"],
+                                    ["서울5호선", "rgb(153,108,172)"],
+                                    ["서울6호선", "rgb(205,124,47)"],
+                                    ["서울7호선", "rgb(116,127,0)"],
+                                    ["서울8호선", "rgb(230,16,107)"],
+                                    ["서울9호선", "rgb(189,176,146)"],
+                                    ["경강선", "rgb(0,91,172)"],
+                                    ["경의중앙선", "rgb(119,196,163)"],
+                                    ["경춘선", "rgb(12,142,114)"],
+                                    ["공항철도", "rgb(0,144,210)"],
+                                    ["분당선", "rgb(250,190,0)"],
+                                    ["수인분당선", "rgb(250,190,0)"],
+                                    ["신분당선", "rgb(212,0,59)"],
+                                    ["에버라인", "rgb(92,181,49)"],
+                                    ["의정부경전철", "rgb(248,177,0)"],
+                                    ["인천공항자기부상철도", "rgb(255,205,18)"],
+                                    ["인천1호선", "rgb(151,187,223)"],
+                                    ["인천2호선", "rgb(243,152,0)"],
+                                    ["광주1호선", "rgb(0,144,136)"],
+                                    ["대구1호선", "rgb(217,63,92)"],
+                                    ["대구2호선", "rgb(0,170,128)"],
+                                    ["대구3호선", "rgb(255,177,0)"],
+                                    ["대전1호선", "rgb(0,116,72)"],
+                                    ["부산1호선", "rgb(240,106,0)"],
+                                    ["부산2호선", "rgb(129,191,72)"],
+                                    ["부산3호선", "rgb(187,140,0)"],
+                                    ["부산4호선", "rgb(33,125,203)"],
+                                    ["부산경전철", "rgb(134,82,161)"],
+                                    ["우이신설선", "rgb(176,206,24)"],
+                                    ["동해선", "rgb(0,61,165)"],
+                                    ["서해선", "rgb(129,169,20)"],
+                                    ["김포골드라인", "rgb(161,120,0)"],
+                                    ["신림선", "rgb(103,137,202)"]
+                                ],
+                                "default": {
+                                    "property": "sub_cd",
+                                    "type": "categorical",
+                                    "stops": [["RRC001", "rgb(0,0,0)"], ["RRC002", "rgb(184,184,184)"]]
+                                }
+                            },
+                            "line-width": {
+                                "property": "sub_cd",
+                                "type": "categorical",
+                                "stops": [["RRC001", 4.5], ["RRC002", 6.5]],
+                                "default": 4
+                            }
+                        }
+                    },
+                    {
+                        "id": "TN_EX_SUBWA_A",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "지하철역사" },
+                        "source": "tn_ex_subwa_a",
+                        "source-layer": "tn_ex_subwa_a",
+                        "minzoom": 16,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-color": {
+                                "property": "line_name",
+                                "type": "categorical",
+                                "stops": [
+                                    ["서울지하철1호선", "rgb(0,82,164)"],
+                                    ["서울지하철2호선", "rgb(0,168,77)"],
+                                    ["서울지하철3호선", "rgb(239,124,28)"],
+                                    ["서울지하철4호선", "rgb(0,164,227)"],
+                                    ["서울지하철5호선", "rgb(153,108,172)"],
+                                    ["서울지하철6호선", "rgb(205,124,47)"],
+                                    ["서울지하철7호선", "rgb(116,127,0)"],
+                                    ["서울지하철8호선", "rgb(230,16,107)"],
+                                    ["서울지하철9호선", "rgb(189,176,146)"],
+                                    ["경강선", "rgb(0,91,172)"],
+                                    ["경의중앙선", "rgb(119,196,163)"],
+                                    ["경춘선", "rgb(12,142,114)"],
+                                    ["공항철도", "rgb(0,144,210)"],
+                                    ["분당선", "rgb(250,190,0)"],
+                                    ["수인분당선", "rgb(250,190,0)"],
+                                    ["신분당선", "rgb(212,0,59)"],
+                                    ["에버라인", "rgb(92,181,49)"],
+                                    ["의정부경전철", "rgb(248,177,0)"],
+                                    ["인천공항자기부상철도", "rgb(255,205,18)"],
+                                    ["인천지하철1호선", "rgb(151,187,223)"],
+                                    ["인천지하철2호선", "rgb(243,152,0)"],
+                                    ["광주지하철1호선", "rgb(0,144,136)"],
+                                    ["대구지하철1호선", "rgb(217,63,92)"],
+                                    ["대구지하철2호선", "rgb(0,170,128)"],
+                                    ["대구지하철3호선", "rgb(255,177,0)"],
+                                    ["대전지하철1호선", "rgb(0,116,72)"],
+                                    ["부산지하철1호선", "rgb(240,106,0)"],
+                                    ["부산지하철2호선", "rgb(129,191,72)"],
+                                    ["부산지하철3호선", "rgb(187,140,0)"],
+                                    ["부산지하철4호선", "rgb(33,125,203)"],
+                                    ["부산경전철", "rgb(134,82,161)"],
+                                    ["우이신설선", "rgb(176,206,24)"],
+                                    ["동해선", "rgb(0,61,165)"],
+                                    ["서해선", "rgb(129,169,20)"],
+                                    ["김포골드라인", "rgb(161,120,0)"],
+                                    ["신림선", "rgb(103,137,202)"]
+                                ]
+                            },
+                            "fill-opacity": 1
+                        }
+                    },
+                    {
+                        "id": "TN_BULD_3D",
+                        "type": "fill-extrusion",
+                        "metadata": { "maputnik:comment": "건물 (내부서버)" },
+                        "source": "tn_buld",
+                        "source-layer": "tn_buld",
+                        "minzoom": 13,
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-extrusion-color": {
+                                "property": "bprp_se",
+                                "type": "categorical",
+                                "stops": [
+                                    ["BDU010", "rgb(219,229,229)"],
+                                    ["BDU013", "rgb(219,229,229)"],
+                                    ["BDU016", "rgb(232,226,212)"],
+                                    ["BDU027", "rgb(232,226,212)"],
+                                    ["BDU007", "rgb(232,226,212)"],
+                                    ["BDU009", "rgb(226,209,219)"],
+                                    ["BDU014", "rgb(238,238,238)"],
+                                    ["BDU002", "rgb(214,197,189)"],
+                                    ["BDU001", "rgb(243,243,243)"]
+                                ],
+                                "default": "rgb(242,237,232)"
+                            },
+                            "fill-extrusion-height": [
+                                "case",
+                                ["has", "bflr_co"],
+                                ["*", 5, ["get", "bflr_co"]],
+                                5
+                            ],
+                            "fill-extrusion-opacity": 0.5
+                        }
+                    },
+                    {
+                        "id": "FACILITY",
+                        "type": "fill-extrusion",
+                        "metadata": { "maputnik:comment": "시설" },
+                        "source": "facility",
+                        "layout": { "visibility": "none" },
+                        "paint": {
+                            "fill-extrusion-base": 0,
+                            "fill-extrusion-color": [
+                                "case",
+                                ["boolean", ["feature-state", "hover"], false],
+                                "rgba(255, 0, 0, 1)",
+                                "rgba(255, 0, 0, 0.5)"
+                            ],
+                            "fill-extrusion-height": [
+                                "case",
+                                ["!=", 0, ["to-number", ["get", "height"]]],
+                                ["get", "height"],
+                                4
+                            ],
+                            "fill-extrusion-vertical-gradient": true
+                        }
+                    },
+                    {
+                        "id": "FLOOR",
+                        "type": "fill-extrusion",
+                        "metadata": { "maputnik:comment": "층" },
+                        "source": "space",
+                        "filter": ["all", ["==", "indoor", "level"]],
+                        "layout": { "visibility": "none" },
+                        "paint": {
+                            "fill-extrusion-base": ["get", "render_min_height"],
+                            "fill-extrusion-color": ["get", "color"],
+                            "fill-extrusion-height": ["+", 3.8, ["get", "render_height"]],
+                            "fill-extrusion-opacity": 1
+                        }
+                    },
+                    {
+                        "id": "SPACE",
+                        "type": "fill",
+                        "metadata": { "maputnik:comment": "공간" },
+                        "source": "space",
+                        "filter": ["all", ["has", "indoor"]],
+                        "layout": { "visibility": "none" },
+                        "paint": {
+                            "fill-opacity": 1,
+                            "fill-color": [
+                                "case",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    [
+                                        "literal",
+                                        [
+                                            "100",
+                                            "101",
+                                            "102",
+                                            "103",
+                                            "104",
+                                            "105",
+                                            "106",
+                                            "107",
+                                            "108",
+                                            "109",
+                                            "110",
+                                            "111",
+                                            "112",
+                                            "113"
+                                        ]
+                                    ]
+                                ],
+                                "#B2D8FC",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    [
+                                        "literal",
+                                        [
+                                            "200",
+                                            "201",
+                                            "202",
+                                            "203",
+                                            "204",
+                                            "205",
+                                            "206",
+                                            "300",
+                                            "301",
+                                            "302",
+                                            "303",
+                                            "304",
+                                            "305"
+                                        ]
+                                    ]
+                                ],
+                                "#C7EAD2",
+                                ["in", ["get", "room"], ["literal", ["400", "401", "402"]]],
+                                "#F2E6DE",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    [
+                                        "literal",
+                                        ["500", "501", "502", "503", "504", "505", "506", "507"]
+                                    ]
+                                ],
+                                "#FFDD66",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    [
+                                        "literal",
+                                        ["600", "601", "602", "603", "604", "605", "606", "607"]
+                                    ]
+                                ],
+                                "#D2E7B7",
+                                ["in", ["get", "room"], ["literal", ["700", "701", "702", "703"]]],
+                                "#C4C4F8",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    ["literal", ["800", "801", "802", "803", "804"]]
+                                ],
+                                "#F2DEFE",
+                                [
+                                    "in",
+                                    ["get", "room"],
+                                    [
+                                        "literal",
+                                        ["900", "901", "902", "903", "904", "905", "906", "907"]
+                                    ]
+                                ],
+                                "#A0A9B1",
+                                ["==", ["get", "indoor"], "level"],
+                                "#C9CBCD",
+                                ["==", ["get", "indoor"], "area"],
+                                "#ffffff",
+                                "#ffffff"
+                            ],
+                            "fill-outline-color": "#000000"
+                        }
+                    },
+                    {
+                        "id": "SPACE_WALL",
+                        "type": "fill-extrusion",
+                        "metadata": { "maputnik:comment": "공간 벽" },
+                        "source": "space_wall",
+                        "filter": ["all", ["!=", "indoor", "level"]],
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "fill-extrusion-base": 0,
+                            "fill-extrusion-color": [
+                                "case",
+                                ["==", ["get", "indoor"], "door"],
+                                "#1f1f1f",
+                                "#f0f0f0"
+                            ],
+                            "fill-extrusion-height": [
+                                "case",
+                                ["==", ["get", "indoor"], "area"],
+                                0,
+                                1
+                            ],
+                            "fill-extrusion-opacity": 0.8
+                        }
+                    },
+                    {
+                        "id": "SPACE_LINE",
+                        "type": "line",
+                        "metadata": { "maputnik:comment": "공간 HIGHWAY" },
+                        "source": "space_wall",
+                        "filter": ["all", ["==", "indoor", "highway"]],
+                        "layout": { "visibility": "visible" },
+                        "paint": {
+                            "line-opacity": 1,
+                            "line-dasharray": [0.2, 0.2],
+                            "line-color": "#f8b29c",
+                            "line-width": 20
+                        }
+                    },
+                    {
+                        "id": "SPACE_POI",
+                        "type": "symbol",
+                        "metadata": { "maputnik:comment": "공간 AMENITY" },
+                        "source": "space_wall",
+                        "minzoom": 15,
+                        "filter": ["all", ["==", "indoor", "amenity"]],
+                        "layout": {
+                            "visibility": "visible",
+                            "icon-image": {
+                                "property": "amenity",
+                                "type": "categorical",
+                                "stops": [
+                                    ["201", "toilet_15"],
+                                    ["202", "toilet_15"],
+                                    ["203", "toilet_15"],
+                                    ["204", "toilet_15"],
+                                    ["205", "drinking_water_15"],
+                                    ["206", "restaurant_15"],
+                                    ["301", "shelter_15"],
+                                    ["302", "pitch_15"],
+                                    ["401", "entrance_15"],
+                                    ["402", "entrance_15"]
+                                ]
+                            },
+                            "icon-anchor": "bottom",
+                            "icon-offset": [0, -5],
+                            "icon-pitch-alignment": "map",
+                            "text-pitch-alignment": "map",
+                            "text-field": "{name}",
+                            "text-font": ["Noto Sans KR Regular"],
+                            "text-size": 12
+                        },
+                        "paint": {
+                            "text-color": "#000",
+                            "text-halo-color": "#fff",
+                            "text-halo-width": 1
+                        }
+                    }
+                    ,{  //일반지도?
+                        "id": "vworld",
+                        "type": "raster",
+                        "metadata": { "maputnik:comment": "vWorld 기본" },
+                        "source": "vworld-base",
+                        "layout": { "visibility": "visible" }
+                    }
+                ],
+                "id": "ojfjodnvz"
+            },
+              zoom: 18,
+            center: center,
+            pitch: 60,
+            antialias: true
+        }));
+
+
+        
+        let maxZoom = 25
+        map.setMaxZoom(maxZoom)
+        // World matrix parameters
+        const worldOrigin = [127.046720, 37.738357];
+        const worldAltitude = 0;
+        const worldRotate = [Math.PI / 2, 0, 0];
+        const detach = 0;
+        // Maplibre.js default coordinate system (no rotations)
+        // +x east, -y north, +z up
+        //let worldRotate = [0, 0, 0];
+
+        // Babylon.js default coordinate system
+        // +x east, +y up, +z north
+
+        // Calculate mercator coordinates and scale
+        const worldOriginMercator = maplibregl.MercatorCoordinate.fromLngLat(
+            worldOrigin,
+            worldAltitude
+        );
+        const worldScale = worldOriginMercator.meterInMercatorCoordinateUnits();
+
+        // Calculate world matrix
+        const worldMatrix = BABYLON.Matrix.Compose(
+            new BABYLON.Vector3(worldScale, worldScale, worldScale),  //000000031589
+            BABYLON.Quaternion.FromEulerAngles(
+                worldRotate[0],
+                worldRotate[1],
+                worldRotate[2]
+            ),
+            new BABYLON.Vector3(
+                worldOriginMercator.x,
+                worldOriginMercator.y,
+                worldOriginMercator.z
+            )
+        );
+        ///drag event
+        let iseditormode = false;
+        let nowclickbtn = 0, click_categoryBox = "all", changecolor_categoryBox="all";
+        let isclickhierarchy = false;
+        let isclickobject = false;
+        let clickhierarchyinfo;
+        let isscale = false;
+        let arr = [];
+        let modelObj = [];
+        let selectedMesh = { allmesh_: null, model_: null, scalex_: 0, scaley_: 0, scalez_: 0, originx_: 0, originy_: 0, originz_: 0, zoomlevel_: 0, divId: "" ,
+      type: "",
+      explane: "",
+      JSONEditor: "",
+      marker: 0,};
+        let gizmoManager;   //gizmo전역
+        let zoomLevel_ = 10; //줌 레벨에 따른 기즈모 적용 변수
+        let ismouseclick = false;
+        //const canvas = map.getCanvasContainer();
+        let gizmoclickcheck = false; //gizmo클릭체크
+        let startpointx, startpointy;
+        let bearingData, pitchData;
+        let clientwidth, clientheight;
+        let testnum = 0;
+        let container = document.getElementById("map");
+        let inputmousenum = 0;
+        let prepointx, prepointy;
+        let cursoron = false;
+        let _modelArrToJson = {};
+        let savename, doubleclickcheck = false, clickdiv;
+        let selectsomething = false;
+        let clickedgizmo = false;
+        let objectlist2;
+        let exitbtnclick=0;
+        let dragfirst="";
+        let groupnum = 0;
+        let recentgroup, parentmesh =[];
+        const objectlist = {
+            1: { name: "Aciist", type: "sensor", num: 0, zoom: 21 },
+            2: { name: "BREAKER", type: "smart", num: 0, zoom: 25 },
+            3: { name: "BREAKER-BIG02", type: "smart", num: 0, zoom: 20 },
+            4: { name: "S-POLE_emssion", type: "smart", num: 0, zoom: 23 },
+            5: { name: "sensor1", type: "bridge", num: 0, zoom: 20 },
+            6: { name: "kiosk", type: "smart", num: 0, zoom: 25 },
+            7: { name: "centralpoint-bridge", type: "smart", num: 0, zoom: 25 }
+        }
+        let clickobjinfo={name:null, type:null}
+        let selectedMeshListName;
+        let inputState = false;
+        // configuration of the custom layer for a 3D model per the CustomLayerInterface
+        const customLayer = {
+            id: "3d-model",
+            type: "custom",
+            renderingMode: "3d",
+            onAdd(map, gl) {
+                this.engine = new BABYLON.Engine(
+                    gl,
+                    true,
+                    {
+                        useHighPrecisionMatrix: true // Important to prevent jitter at mercator scale
+                    },
+                    true
+                );
+                this.scene = new BABYLON.Scene(this.engine);
+                this.scene.autoClear = false;
+                this.scene.autoClearDepthAndStencil = false; //
+                this.scene.detachControl();
+                this.scene.beforeRender = () => {
+                    this.engine.wipeCaches(true);
+                };
+
+                // create simple camera (will have its project matrix manually calculated)
+                this.camera = new BABYLON.Camera(
+                    "Camera",
+                    new BABYLON.Vector3(0, 0, 0),
+                    this.scene
+                );
+                // create simple light
+                const light = new BABYLON.HemisphericLight(
+                    "light1",
+                    new BABYLON.Vector3(0, 1, 0),
+                    this.scene
+                );
+                light.intensity = 1;
+                const light1 = new BABYLON.DirectionalLight(
+                    "light2",
+                    new BABYLON.Vector3(-1, -2, 1),
+                    this.scene
+                );
+                light1.intensity = 1.5;
+
+                clientwidth = this.engine.getRenderWidth();
+                clientheight = this.engine.getRenderHeight();
+
+
+                let hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://dt.gractor.com/babylon_img/Texture2.dds", this.scene);
+                let currentSkybox = this.scene.createDefaultSkybox(hdrTexture, true, 100000);
+var gl = new BABYLON.GlowLayer('glow', this.scene, { mainTextureFixedSize: 1024, blurKernelSize: 64, mainTextureSamples: 4 });
+  gl.intensity = 1;
+  BABYLON.SceneLoader.LoadAssetContainerAsync(
+    " https://dt.gractor.com/demoModeling/",
+    "test1" + ".glb",
+    this.scene
+  ).then((c) => {
+    c.addAllToScene();
+    
+});
+    
+                //this.scene.environmentTexture = hdrTexture; //터치가 안되는 오류clearinput 발생
+                //createobject("Aciist");
+                // Variables for Mesh Selection
+                selectionLayer = new BABYLON.HighlightLayer("selectionLayer", this.scene);
+
+                document.getElementById("obj-box-Objlist-searching").oninput = function () { searchinput() };
+                document.getElementById("obj-box-Objlist-searching").addEventListener("blur", () => { cursoron = false; });
+                document.getElementById("obj-box-Objlist-searching-clear").onclick = function () { clearinput("obj-box-Objlist-searching") };
+
+                document.getElementById("main-view-side-btn-search-input").oninput = function () {  
+                    document.getElementById("side-btn-search-input-clear").style.display="block" };
+                document.getElementById("side-btn-search-input-clear").onclick=function(){
+                    document.getElementById("main-view-side-btn-search-input").value=""
+                    document.getElementById("side-btn-search-input-clear").style.display="none"
+                }
+                
+                document.getElementById("editor-side-view-layer-searching-input").oninput = function () {  
+                    document.getElementById("editor-side-view-layer-searching-input-clear").style.display="block" };
+                document.getElementById("editor-side-view-layer-searching-input-clear").onclick=function(){
+                    document.getElementById("editor-side-view-layer-searching-input").value=""
+                    document.getElementById("editor-side-view-layer-searching-input-clear").style.display="none"
+                }
+
+                document.getElementById("editor-side-view-layer-searching-input").oninput = function () { searchinputlayer() };
+                document.getElementById("editor-side-view-layer-searching-input-clear").onclick = function () { clearinput("editor-side-view-layer-searching-input") };
+                
+
+                document.getElementById("main-new-obj-box-exit").onclick = function () {
+                    if(exitbtnclick==2){
+                        let clostab = document.getElementById("main-new-obj-box-import");
+                        clostab.style.display = "none";
+                        document.getElementById('main-new-obj-box-import-disable').style.visibility="hidden";
+
+                        importReset();
+                    }
+                    else if(exitbtnclick==1){
+
+                        let clostab = document.getElementById("main-new-obj-box");
+                        clostab.style.display = "none";
+                        document.getElementById("main-new-obj-box-exit").style.visibility = "hidden";
+                        document.getElementById("editor-icons-modeling").checked = false;
+                        document.getElementById("editor-icons-modeling").style.backgroundColor = 'var(--btn-color)';
+                    }
+                    closeimportcolor();
+                    exitbtnclick-=1;
+                    // let openbtn = document.getElementById("hierarchyopen"); openbtn.style.display="inline-block"; openbtn.style.position= "absolute";
+                    // console.log("clostab", clostab)
+                };
+
+                document.getElementById("obj-box-categoryBox-all").onclick = function () {click_categoryBox="all"; searchinput(); };
+                document.getElementById("obj-box-categoryBox-sensor").onclick = function () { click_categoryBox = "sensor"; searchinput(); };
+
+                document.getElementById("obj-box-categoryBox-bridge").onclick = function () { click_categoryBox = "bridge"; searchinput(); };
+                document.getElementById("obj-box-categoryBox-traffic").onclick = function () { click_categoryBox = "traffic"; searchinput(); };
+                document.getElementById("obj-box-categoryBox-building").onclick = function () { click_categoryBox = "building"; searchinput(); };
+                document.getElementById("obj-box-categoryBox-plus").onclick = function () {  };
+
+                document.getElementById("editor-icons-modeling").onclick = function () { document.getElementById("main-new-obj-box").style.visibility };
+                document.getElementById("view-bar-editorChange-btn").onclick = function () { gizmooff() };
+                document.getElementById("editor-icons-saveBTN").onclick = function () { saveDataToJson() };
+                document.getElementById("editor-icons-loadBTN").onclick = function () { serverJsontoModelData("third"); };
+                document.getElementById("editor-icons-modeling").addEventListener('change',function(){
+                    if(this.checked){
+                        document.getElementById("main-new-obj-box").style.display = "flex";
+                        document.getElementById("main-new-obj-box-category").style.visibility = "visible";
+                        document.getElementById("main-new-obj-box-Objlist").style.visibility = "visible";
+                        document.getElementById("main-new-obj-box-exit").style.visibility = "visible"; 
+                        //document.getElementById("main-new-obj-box-import").style.display = "none";
+                        exitbtnclick+=1;
+                        
+                        this.style.backgroundColor= 'var(--select-background-color)';
+                    }
+                    else{
+                        const parentDiv = document.getElementById('main-new-obj-box');
+                        const childDivs = parentDiv.querySelectorAll('.main-new-obj-box-all');
+                        childDivs.forEach(child=>{
+                            child.style.visibility = "hidden";
+                        })
+                         document.getElementById("main-new-obj-box").style.visibility = "hidden";
+                        document.getElementById("main-new-obj-box-import").style.display = "none";
+                        this.style.backgroundColor = 'var(--btn-color)';
+                        exitbtnclick-=1;
+                         closeimportcolor();
+                    }
+                })
+                let vworldBoolen = false;
+                $('#view-bar-help-btn').click(function(e){
+                        vworldBoolen=!vworldBoolen
+                    if(vworldBoolen){
+                        map.setLayoutProperty('vworld', 'visibility', 'none');
+                    }
+                else{
+                        map.setLayoutProperty('vworld', 'visibility', 'visible');
+                }
+
+                })
+                document.getElementById("view-bar-editorChange-btn-checkbox").addEventListener('change', function () {
+                        if(this.checked){
+                            console.log("checked")
+                        }
+                        else{
+                            const parentDiv = document.getElementById('main-new-obj-box');
+                            const childDivs = parentDiv.querySelectorAll('.main-new-obj-box-all');
+                            childDivs.forEach(child => {
+                                child.style.visibility = "hidden";
+                            })
+                            document.getElementById("main-new-obj-box").style.visibility = "hidden";
+                            document.getElementById("main-new-obj-box-import").style.display = "none";
+                            closeimportcolor();
+                        }
+                    document.getElementById("main-new-obj-box").style.display = this.checked ? 'none' : 'none';
+                    document.getElementById("editor-icons-modeling").checked = false;
+                    document.getElementById("editor-icons-modeling").style.backgroundColor = 'var(--btn-color)';
+                });
+                document.getElementById("new-obj-box-import-importbtn").onclick = function(){
+                    importOBJ();
+                    }
+                
+                document.getElementById("main-view-side-btn-search-img").addEventListener('click', e => {
+                    if(document.getElementById("main-view-side-btn-search-img-checkbox").checked==false){
+                        document.getElementById("main-view-side-btn-search-input").style.visibility = "hidden";
+                        document.getElementById("side-btn-search-input-clear").style.visibility= "hidden";
+                    }else{
+                        document.getElementById("main-view-side-btn-search-input").style.visibility = "visible";
+                        document.getElementById("side-btn-search-input-clear").style.visibility= "visible";
+                    }
+                });
+
+                document.getElementById("editor-side-view-layer-icon").onclick=function(){
+                    customLayer.addobjectlist('Group'+groupnum, 'group', false)
+                    let par = new BABYLON.Mesh("Group" + groupnum, this.scene)
+                    let obj = {
+                        allmesh_: par,
+                        model_: par,
+                        scalex_: 1,
+                        scaley_: 1,
+                        scalez_: 1,
+                        divId: "Group" + groupnum,
+                        zoomlevel_: 1,
+                        type: "Group",
+                        explane: "",
+                        JSONEditor: "",
+                        marker: 0,
+                    };
+                    modelObj.push(obj);
+                    console.log(document.getElementById("Group" + groupnum))
+                    document.getElementById("Group" + groupnum).className +=' group-div';
+                    //parentmesh.push(par);
+                    groupnum+=1;
+                };
+
+                
+                let editoricon =  document.getElementsByName("editoricon");
+                editoricon.forEach((icon)=>{
+                    if(icon.checked){
+                        console.log("!!")
+                    }
+                })
+
+                
+
+                let utilLayer = new BABYLON.UtilityLayerRenderer(this.scene);
+                gizmoManager = new BABYLON.GizmoManager(this.scene, 1, utilLayer);
+                gizmoManager.attachableMeshes = [];
+
+                const cameraAltitude = 4000;
+                let container;
+
+                let objlen = Object.keys(objectlist).length;
+                //포켓베이스
+                // objectlist2 = loadmodel_info();
+                // document.addEventListener("DOMContentLoaded", function () {
+                //     loadmodel_info().then((v) => {
+                //         console.log("Main function completed.");
+                //         objectlist2 = v;
+                //         for (let key in objectlist2) {
+                //             startmakelist(objectlist2[key]);
+                //         }
+                //         //connectbtnevent();
+                //         connectimport();
+                //     }).catch((error) => {
+                //         console.error("Error in main function:", error);
+                //     });
+                // });
+
+                for (let key in objectlist) {
+                    startmakelist(objectlist[key]);
+                }
+                //connectbtnevent();
+                connectimport();
+                customLayer.addobjectlist('Group' + groupnum, 'group', false)
+                let par = new BABYLON.Mesh("Group" + groupnum, this.scene)
+                  let obj = {
+                    allmesh_: par,
+                    model_: par,
+                    scalex_: 1,
+                    scaley_: 1,
+                    scalez_: 1,
+                    divId: "Group" + groupnum,
+                    zoomlevel_: 1,
+                    type: "Group",
+                    explane: "",
+                    JSONEditor: "",
+                    marker: 0,
+                };
+                modelObj.push(obj);
+                groupnum += 1;
+                recentgroup="Group0";
+                changebackgroundcolorobject("Group0");
+
+
+                let countlabel = document.getElementById("new-obj-box-label_num");
+                countlabel.innerText = objlen;
+                
+
+
+
+                gizmoManager.positionGizmoEnabled = true;
+                gizmoManager.rotationGizmoEnabled = true;
+                gizmoManager.scaleGizmoEnabled = true;
+
+                gizmoManager.gizmos.positionGizmo.updateScale = false;
+                gizmoManager.gizmos.scaleGizmo.updateScale = false;
+                gizmoManager.gizmos.rotationGizmo.updateScale = false;
+                gizmoManager.gizmos.scaleGizmo.uniformScaleGizmo.updateScale = false;  // scale중심점
+
+                customLayer.allgizmofalse();
+                gizmoManager.gizmos.scaleGizmo.sensitivity = 0.1;
+
+                //로컬 글로벌
+                gizmoManager.gizmos.positionGizmo.updateGizmoRotationToMatchAttachedMesh = false;
+                gizmoManager.gizmos.scaleGizmo.updateGizmoRotationToMatchAttachedMesh = false;
+                gizmoManager.gizmos.rotationGizmo.updateGizmoRotationToMatchAttachedMesh = false;
+
+
+
+
+                /**
+                 * json이름 넣어서 사용
+                 */
+
+                document.onkeydown = (e) => {
+                    if (cursoron == false && (e.key == 'w' || e.key == 'e' || e.key == 'r' || e.key == 'q' || e.key == ' ' || e.key == 'Delete')) {
+                        // Switch gizmo type
+                        customLayer.allgizmofalse();
+
+                        gizmoManager.gizmos.positionGizmo.updateGizmoPositionToMatchAttachedMesh = false;
+                        gizmoManager.gizmos.scaleGizmo.updateGizmoScaleToMatchAttachedMesh = false;
+                        gizmoManager.gizmos.rotationGizmo.updateGizmoRotationToMatchAttachedMesh = false;
+                        gizmoManager.boundingBoxGizmoEnabled = false;
+                        if (iseditormode && cursoron == false) {
+                            if (e.key == 'w') {
+                                gizmoManager.positionGizmoEnabled = true;
+                                gizmoManager.gizmos.positionGizmo.updateGizmoPositionToMatchAttachedMesh = true;
+                                document.getElementById("editor-icons-move").checked = true;
+                            }
+                            if (e.key == 'e') {
+                                gizmoManager.rotationGizmoEnabled = true;
+                                gizmoManager.gizmos.rotationGizmo.updateGizmoRotationToMatchAttachedMesh = false;
+                                document.getElementById("editor-icons-rotation").checked = true;
+                            }
+                            if (e.key == 'r') {
+                                gizmoManager.scaleGizmoEnabled = true;
+                                gizmoManager.gizmos.scaleGizmo.updateGizmoRotationToMatchAttachedMesh = true;
+                                document.getElementById("editor-icons-scale").checked = true;
+                            }
+                            if (e.key == 'q') {
+                                //gizmoManager.boundingBoxGizmoEnabled = true;
+                                document.getElementById("editor-icons-select").checked = true;
+                            }
+                            if (e.key == 'Delete') {
+                                if(!inputState){ 
+                                    customLayer.deleteobjectlist(selectedMesh);
+                                    selectsomething = false;
+                                    selectedMesh.model_.dispose();
+                                }
+                            }
+
+                        }
+                    }
+                };
+                document.onclick = (e) => {
+                    customLayer.checkclick(e.target);
+
+                }
+
+                //실시간(이벤트 작동시) 객체에 값 수정 [인스펙터]
+                let elements = document.getElementsByClassName("ObjectInfo_Input_value");
+                for (let i = 0; i < elements.length; i++) {
+                    elements[i].addEventListener("input", function () {
+                        // 이벤트가 발생할 때 수행할 동작을 여기에 작성
+                        setObjectTransformToInspector();
+                        set_inspector_JSON();
+
+                    });
+                }
+
+                gizmoCheck();
+                this.scene.onPointerObservable.add(function (evt) {
+                    if (evt.type == 8) {
+                        zoomLevel_ = (maxZoom - map.getZoom() + 1) * (maxZoom - map.getZoom() + 1) * 5
+                        console.log(map.getZoom())
+
+                        gizmoManager.gizmos.scaleGizmo.scaleRatio = zoomLevel_;
+                        gizmoManager.gizmos.rotationGizmo.scaleRatio = zoomLevel_;
+                        gizmoManager.gizmos.positionGizmo.scaleRatio = zoomLevel_;
+                    }
+                    if (clickedgizmo) {
+                        if (!isscale) {
+                            rescale();
+                        }
+
+                        setInspectorTransform();
+
+                    }
+                    if (evt.event.button === 0) {
+                        offset = container;
+                        if (evt.pickInfo.hit && evt.pickInfo.pickedMesh) {
+                            customLayer.deselectMesh();
+                            gizmoManager.attachToMesh(evt.pickInfo.pickedMesh);
+                            selectMesh(evt.pickInfo.pickedMesh);
+                            setInspectorTransform();
+                            markerListReset();
+                        }
+
+                    }
+                });
+
+
+                this.scene.onPointerDown = (evt) => {
+                    const pickInfo = this.scene.pick(this.scene.pointerX, this.scene.pointerY, (mesh) => mesh != null);
+                    const worldPointer = pickInfo.pickedPoint;
+                    if (pickInfo.pickedPoint != null) {
+                        let gpspost = toGPS([worldPointer.x, worldPointer.z]);
+                        bearingData = map.getBearing();
+                        pitchData = map.getPitch();
+                        startpointx = evt.clientX;
+                        startpointy = evt.clientY;
+                        ismouseclick = true;
+                        inputmousenum = evt.inputIndex;
+                        prepointx = clientwidth - evt.clientX;
+                        prepointy = evt.clientY;
+
+                    }
+
+                }
+
+                this.scene.onPointerMove = (evt) => {
+                    const pickInfo = this.scene.pick(this.scene.pointerX, this.scene.pointerY, (mesh) => mesh != null);
+                    //console.log(inputmousenum)
+                    //console.log(pickInfo)
+                    if (ismouseclick && pickInfo.pickedPoint != null && inputmousenum == 2) {
+                        const worldPointer = pickInfo.pickedPoint;
+                        let gpspost = toGPS([worldPointer.x, worldPointer.z]);
+
+                        let bearingDiff = (-map.getBearing());
+                        let nowpointx = clientwidth - evt.clientX;
+                        let nowpointy = evt.clientY;
+
+                        let changex = nowpointx - prepointx;
+                        let changey = nowpointy - prepointy;
+
+
+                        let newvector = new BABYLON.Vector3(changex, changey, 0);
+                        let directionvector = new BABYLON.Vector3(changex, changey, 0);
+
+                        let quaternion = new BABYLON.Quaternion.RotationAxis(new BABYLON.Vector3(0, 0, 1), (bearingDiff * Math.PI) / 180);
+                        let rotationMatrix = new BABYLON.Matrix();
+                        quaternion.toRotationMatrix(rotationMatrix);
+                        let rotatedDirectionVector = new BABYLON.Vector3.TransformCoordinates(directionvector, rotationMatrix);
+                        prepointx = nowpointx;
+                        prepointy = nowpointy;
+                        let center = map.getCenter();
+                        zoomLevel_ = (maxZoom - map.getZoom() + 1) * (maxZoom - map.getZoom() + 1) * 5
+                        let newCenter3 = [(center.lng + rotatedDirectionVector.x * 0.000000007*(zoomLevel_*2)), (center.lat + rotatedDirectionVector.y * 0.000000007*(zoomLevel_*2))];
+
+                        map.setCenter(newCenter3);
+
+
+
+                    }
+                    else if (ismouseclick && pickInfo.pickedPoint != null && inputmousenum == 4) {
+
+                        let nowpointx = clientwidth - evt.clientX;
+                        let nowpointy = evt.clientY;
+
+                        let changex = nowpointx - prepointx;
+                        let changey = nowpointy - prepointy;
+
+                        map.setBearing(bearingData - (changex / 2))
+                        map.setPitch(pitchData - changey / 2)
+                    }
+                }
+                this.scene.onPointerUp = (evt) => {
+                    ismouseclick = false;
+                    inputmousenum = 0;
+                }
+
+                this.map = map;
+
+                this.map.on('click', e => {
+                    const pixelCoords = e.point;
+                    // Babylon.js의 Raycasting 기능을 사용하여 클릭된 매쉬를 찾음
+                    const pickInfo = this
+                        .scene
+                        .pick(pixelCoords.x, pixelCoords.y)
+                    //console.info('  🚀  pickInfo:', pickInfo)
+
+                })
+
+                this.map.on('mousedown', e => {
+                    const pixelCoords = e.point;
+                    // Babylon.js의 Raycasting 기능을 사용하여 클릭된 매쉬를 찾음
+                    const pickInfo = this
+                        .scene
+                        .pick(pixelCoords.x, pixelCoords.y)
+                })
+
+
+
+
+            },
+            render(gl, matrix) {
+                const cameraMatrix = BABYLON.Matrix.FromArray(matrix);
+
+                // world-view-projection matrix
+                const wvpMatrix = worldMatrix.multiply(cameraMatrix);
+
+                this.camera.freezeProjectionMatrix(wvpMatrix);
+
+                //  let newCamera = new BABYLON.ArcRotateCamera("newCamera", 0, // alpha
+                //     0, // beta
+                //     10, // radius
+                //     new BABYLON.Vector3(0, 0, 0), this.scene);
+                // this.scene.enableDepthRenderer();
+                // this.scene.activeCamera = newCamera;
+                // let pipeline = new BABYLON.DefaultRenderingPipeline("default", true, this.scene);
+                // pipeline.getDepthRenderer().useOnlyInActiveCamera = false; 
+
+                // // 새로 조절한 카메라로 렌더링
+                // this.scene.render();
+
+
+
+                this.scene.render(false);
+                this.map.triggerRepaint();
+            },
+            changeeditor() {
+                iseditormode = !iseditormode;
+                if (iseditormode) {
+                    this
+                        .scene
+                        .attachControl();
+                    
+                    document.getElementById("view-bar-name").innerHTML ="Editor"
+                    document.getElementById("view-bar-editor-icons").style.visibility = "visible";
+                    document.getElementById("main-editor-side-view").style.display = "flex";
+                    //markerListReset();
+                }
+                else {
+                    this
+                        .scene
+                        .detachControl();
+                    document.getElementById("view-bar-name").innerHTML ="Viewer"
+                    document.getElementById("view-bar-editor-icons").style.visibility = "hidden";
+                    document.getElementById("main-editor-side-view").style.display = "none";
+                    let checkedRadio = document.querySelector('#view-bar-editor-icons input[name="editoricon"]:checked');
+                    checkedRadio.style.backgroundColor= "var(--btn-color)";
+                }
+            },
+            addobjectlist(objname, objtype,isunder) {
+                let objtable;
+                console.log(isunder)
+                if (objtype == "group") {
+                    recentgroup = objname;
+                    objtable = document.getElementById("editor-side-view-layer-objects-lists");
+                   
+                }
+                else if(isunder){
+                    let nowclickhierarchy = document.getElementById(clickhierarchyinfo);
+                    objtable = nowclickhierarchy;
+
+                }
+                else{
+                    let nowclickhierarchy = document.getElementById(recentgroup);
+                    objtable = nowclickhierarchy;
+                     let m = findmodel(recentgroup);
+                     let c = findmodel(objname);
+                     c.model_.parent = m.model_;
+                    console.log(recentgroup)
+                }
+                let masterdiv = document.createElement('div');
+                let parentdiv = document.createElement('div');
+                let newdiv = document.createElement('div');
+                let tabbtn = document.createElement('input');
+                let newbtn = document.createElement('input');
+                let newtext = document.createTextNode(objname);
+                parentdiv.onclick = changebackgroundcolor;
+
+
+
+                
+                let dragzone = document.getElementById("main-editor-side-view-layer-layer");
+                let draglist = document.getElementById("editor-side-view-layer-objects-lists");
+                masterdiv.draggable="true"
+                //masterdiv.style.backgroundColor = "var(--selectBox-model-name)";
+                masterdiv.addEventListener('dragstart',function(ev){
+                    ev.dataTransfer.effectAllowed = 'move';
+                    
+                    if(dragfirst==""){
+                        ev.dataTransfer.setData('text', this.id);
+                        dragfirst=this.id;
+                        changebackgroundcolorobject(this.id);
+                    }
+                    
+                })
+                  dragzone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+                  dragzone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    let data = e.dataTransfer.getData("text");
+                    if(data!=""){
+                        let finddiv = document.getElementById(data);
+                        
+                        
+                        console.log(finddiv.parentNode)
+                        if(finddiv.parentNode.className=="masterdiv icon-clicked"){
+                            let findm;
+                            findm = findmodel(data);
+                            if(findm.model_.parent!=null){
+                                findm.model_.parent=null;
+                            }
+                        }
+                        draglist.append(finddiv)
+                        finddiv.style.marginLeft = "0px";
+                        dragfirst = ""
+                    }
+                    e.dataTransfer.setData('text', "");
+                });
+                masterdiv.addEventListener("dragover", function (e) {
+                     e.preventDefault();
+                })
+                masterdiv.addEventListener("drop", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let data = e.dataTransfer.getData("text");
+                    let finddiv = document.getElementById(data);
+                    console.log(this, data)
+                    if(data!=''&& data != this.id){
+                        this.append(finddiv)
+                        finddiv.style.marginLeft = "15px";
+
+                        let parentm, childm;
+                        parentm=findmodel(this.id);
+                        childm=findmodel(data);
+                        if(parentm!=null&&childm!=null){
+                            childm.model_.parent = parentm.model_;
+                        }
+                       
+                        //childm.position = childm.getAbsolutePosition().subtract(parentm.getAbsolutePosition());
+                        
+                        //childm.model_._position = new BABYLON.Vector3(0, 0, 0);
+                    }
+                    dragfirst = "";
+                   console.log("drop")
+                   let status = document.getElementById(this.id+"tab");
+                   if(status.checked){
+                    finddiv.style.display="none"
+                   }
+
+                })
+                newdiv.oncontextmenu = changename;
+               
+                
+                newdiv.appendChild(newtext);
+
+                newdiv.id = objname;
+                newdiv.style.width = "100%";
+
+                newbtn.type = "checkbox";
+                newbtn.style.marginRight = "3px";
+                newbtn.class = "objlisteye icon-clicked";
+                newbtn.id = objname;
+                newbtn.onclick = objectlisteye;
+                newbtn.style.width = "24px";
+                newbtn.style.height = "24px";
+
+                newbtn.style.appearance = "none"; // 기본 스타일 제거
+                newbtn.style.backgroundImage = "url('./img/icons/mini eye.png')";
+                newbtn.style.backgroundRepeat = "no-repeat";
+                newbtn.style.backgroundSize = "contain";
+                
+                newbtn.addEventListener('change', function () {
+                    if (newbtn.checked) {
+                        newbtn.style.backgroundImage = "url('./img/icons/mini eye close.png')";
+                        newbtn.style.backgroundRepeat = "no-repeat";
+                        newbtn.style.backgroundSize = "contain";
+                    } else {
+                        newbtn.style.backgroundImage = "url('./img/icons/mini eye.png')";
+                        newbtn.style.backgroundRepeat = "no-repeat";
+                        newbtn.style.backgroundSize = "contain";
+                    }
+                });
+               
+
+                tabbtn.type="checkbox";
+                tabbtn.style.marginLeft="7px";
+                tabbtn.style.marginRight = "16px";
+                tabbtn.className="objlisttab";
+                tabbtn.id = objname+"tab";
+
+                tabbtn.style.appearance = "none"; // 기본 스타일 제거
+                tabbtn.style.backgroundImage = "url('./img/icons/arrow-1.png')";
+                tabbtn.style.backgroundRepeat = "no-repeat";
+                tabbtn.style.backgroundSize = "contain";
+                 if (objtype != 'group') {
+                    newdiv.ondblclick = dblclickcameramove;
+                    newdiv.className = "objlist";
+                    tabbtn.style.width = "10px";
+                    tabbtn.style.height = "7px";
+                }
+                else {
+                    newdiv.className = "grouplist";
+                    tabbtn.style.width = "15px";
+                    tabbtn.style.height = "11px";
+                }
+                tabbtn.addEventListener('change', function () {
+                    if (tabbtn.checked) {
+                        tabbtn.style.backgroundImage = "url('./img/icons/arrow-right.png')";
+                        tabbtn.style.backgroundRepeat = "no-repeat";
+                        tabbtn.style.backgroundSize = "contain";
+                        let next = this.parentElement.nextSibling;
+                        while(next!=null){
+                            next.style.display="none";
+                            next = next.nextSibling;
+                        }
+                    } else {
+                        
+                        tabbtn.style.backgroundImage = "url('./img/icons/arrow-1.png')";
+                        tabbtn.style.backgroundRepeat = "no-repeat";
+                        tabbtn.style.backgroundSize = "contain";
+                        let next = this.parentElement.nextSibling;
+                        while (next != null) {
+                            next.style.display = "block";
+                            next = next.nextSibling;
+                        }
+                    }
+                });
+
+
+
+                parentdiv.style.display = "flex";
+
+                masterdiv.className = "masterdiv icon-clicked";
+                masterdiv.id = objname;
+                parentdiv.id = objname;
+                parentdiv.className = "parentdiv";
+                if (objtype != "group") {
+                    masterdiv.style.marginLeft = "15px";
+                }
+                let icondiv = document.createElement('div');
+                let icondiv_img = document.createElement('img')
+                let iconnameURL = "./img/icons/" + objtype + ".png";
+
+                let img = new Image();
+                img.src = iconnameURL;
+
+                img.onload = function () { 
+                };
+
+                img.onerror = function () {
+                    iconnameURL = "./img/icons/" + "sensor" + ".png"
+                    icondiv_img.src = iconnameURL;
+                };
+              
+                icondiv_img.src = iconnameURL;
+
+                
+                icondiv.className = "icon-Sensor icon-clicked" 
+                icondiv.style.marginRight="7.6px";
+                icondiv_img.style.width = "20px";
+                icondiv_img.style.height = "20px";
+                icondiv.append(icondiv_img)
+
+                let lockdiv = document.createElement('input');
+                lockdiv.type = "checkbox";
+                lockdiv.className = "lock-icon icon-clicked";
+                lockdiv.style.width = "24px";
+                lockdiv.style.height = "24px";
+                lockdiv.onclick = objectListLock;
+
+                lockdiv.style.appearance = "none"; // 기본 스타일 제거
+                lockdiv.style.backgroundImage = "url('./img/icons/mini unlock.png')";
+                lockdiv.style.backgroundRepeat = "no-repeat";
+                lockdiv.style.backgroundSize = "contain";
+                lockdiv.addEventListener('change', function () {
+                    if (lockdiv.checked) {
+                        lockdiv.style.backgroundImage = "url('./img/icons/mini lock.png')";
+                        lockdiv.style.backgroundRepeat = "no-repeat";
+                        lockdiv.style.backgroundSize = "contain";
+                    } else {
+                        lockdiv.style.backgroundImage = "url('./img/icons/mini unlock.png')";
+                        lockdiv.style.backgroundRepeat = "no-repeat";
+                        lockdiv.style.backgroundSize = "contain";
+                    }
+                });
+                parentdiv.append(tabbtn);
+                parentdiv.append(icondiv);
+                parentdiv.append(newdiv);
+                parentdiv.append(newbtn);
+                parentdiv.append(lockdiv);
+                masterdiv.append(parentdiv);
+                objtable.appendChild(masterdiv);
+                
+                isunder = false;
+                if(objtype=="group"){
+                    changebackgroundcolorobject(objname);
+                }
+                else{
+                     let status = document.getElementById(objtable.id + "tab");
+                    if (status.checked) {
+                        masterdiv.style.display = "none"
+                    }
+                }
+            },
+            deleteobjectlist(deleteobj) {
+                let getobj = (document.getElementById(deleteobj.model_.name));
+                console.log(getobj)
+                if (getobj.childElementCount != 1) {
+                    for (let i = 0; i < modelObj.length; i++) {
+                        //if (modelObj[i].model_.name == e.id) {}
+                    }
+                }
+                // let getobj_id = getobj.id;
+                // if (clickhierarchyinfo == getobj_id) {
+                //     clickhierarchyinfo = 0;
+                // }
+                clickhierarchyinfo = 0;
+                isclickhierarchy = false;
+                getobj.remove();
+            },
+            checkclick(e) {
+                if (doubleclickcheck && e.id != "input") {
+                    clickdiv.innerText = savename;
+                    //clickdiv.id = savename;
+
+                    doubleclickcheck = false;
+                }
+                if (!gizmoclickcheck) {
+                    let isin = false;
+                    const inspectorlist = e.classList;
+                    for (let j = 0; j < inspectorlist.length; j++) {
+                        if (inspectorlist[j] == "inspectorclass") {
+                            isin = true;
+                        }
+                    }
+                    if (e.className != "objlist" && isclickhierarchy && !isclickobject && !isin && e.className != "obj-box-categoryBox" && e.id != "model_viewer" && e.id != "obj-box-Objlist-searching-clear"&& e.className!="editorModeIcon editorMode editorModeIcons-icon" && e.className!="icon-clicked"&&e.id!="new-obj-box-import-importbtn"&&e.className!="grouplist") { //클릭 해제
+                        let clicklist = document.getElementById(clickhierarchyinfo).firstElementChild;
+                        clicklist.style.backgroundColor = 'var(--transparent-default)';
+                        isclickhierarchy = false;
+                        customLayer.allgizmofalse();
+                        customLayer.deselectMesh();
+                        document.getElementById("main-editor-side-view-property-property").style.visibility = "visible";
+                        selectsomething = false;
+                        propertyReset();
+                    }
+                    else if (e.className == "objlist") {
+                        for (let i = 0; i < modelObj.length; i++) {
+                            if (modelObj[i].model_.name == e.innerText) {
+                                document.getElementById("main-editor-side-view-property-property").style.visibility = "visible";
+                                islistselect = modelObj[i].model_;
+                                // document.getElementById("main-editor-view-property-property-disable").style.visibility="visible";
+                                customLayer.deselectMesh();
+                                customLayer.allgizmofalse();
+                                gizmoManager.positionGizmoEnabled = true;
+                                gizmoManager.gizmos.positionGizmo.updateGizmoPositionToMatchAttachedMesh = true;
+
+                                selectedMesh = modelObj[i];   //객체 자체를삽입.. ㅎ
+                                //console.log("1486",selectedMesh)
+                                customLayer.addoutline();
+                                setInspectorTransform()
+                                markerListReset();
+                                selectsomething = true;
+                            }
+                        }
+                    }
+                    
+
+                }
+                else {
+                    gizmoclickcheck = false;
+                }
+                if(e.className=="grouplist"){
+                    recentgroup=e.id;
+                }
+
+                isclickobject = false;
+
+            },
+            addoutline() {
+                selectionLayer.addMesh(selectedMesh.model_, new BABYLON.Color3(0,0.64,1));
+                let children = selectedMesh.model_.getChildMeshes();
+                gizmoManager.attachToMesh(selectedMesh.model_);
+                children.forEach(child => {
+                    selectionLayer.addMesh(child, new BABYLON.Color3(0,0.64,1));
+                });
+                selectionLayer.blurVerticalSize = 10;
+	            selectionLayer.blurHorizontalSize = 10;
+                selectionLayer.innerGlow = false;
+            },
+            deselectMesh() {
+                //console.log(selectedMesh.model_)
+                if (selectedMesh.model_) {
+                    //console.log(selectedMesh)
+                    let children = selectedMesh.model_.getChildMeshes();
+                    children.forEach(child => {
+                        selectionLayer.removeMesh(child);
+                    });
+                    selectsomething = false;
+                    selectionLayer.removeMesh(selectedMesh.model_);
+                    //selectedMesh = null;
+                }
+            },
+            allgizmofalse() {
+                gizmoManager.positionGizmoEnabled = false;
+                gizmoManager.rotationGizmoEnabled = false;
+                gizmoManager.scaleGizmoEnabled = false;
+                gizmoManager.boundingBoxGizmoEnabled = false;
+            },
+            
+            
+        };
+
+        map.on("style.load", () => {
+            map.addLayer(customLayer);
+
+        });
+        
+
+        
+    
+     
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="modelinfoview.css" />
+    <link rel="stylesheet" href="facilityCss.css" />
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylon.gridMaterial.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylon.gridMaterial.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+
+</head>
+
+<body>
+    <div id="modelinfo-view" style=" border:none; outline:none; display: flex;">
+        <!-- <object data="./file/044.구신흥경로당.pdf_2024_01_30_14_29_30_788.pdf" type="application/pdf" width="100%" height="600px">
+<p>파일 미리보기가 잘 안되신다면 아래 링크를 클릭하셔서 확인하세요. <a href="./file/044.구신흥경로당.pdf_2024_01_30_14_29_30_788.pdf"></a></p>
+</object> -->
+<!-- <embed src="./file/044.구신흥경로당.pdf_2024_01_30_14_29_30_788.pdf" width="500" height="375" type="application/pdf"> -->
+    <!-- <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=./file/044.구신흥경로당.pdf_2024_01_30_14_29_30_788.pdf" width="100%" height="600"> -->
+    <!-- <div style=" width:340px; height:340px;" id="player-container"></div> -->
+        <!-- <video controls width="640" height="360">
+        <source src="rtsp://gractor:gractor1234@192.168.0.57:8554/preview.m3u8" type="application/x-mpegURL">
+        Your browser does not support the video tag.
+    </video> -->
+        <!-- <div id="overlap-wrapper">
+            <div id="modelinfo-view-background"></div>
+            <div id="modelinfo-view-background-img"></div>
+            <div id="modelinfo-view-background-topimg"></div>
+             <div id="view-model">
+                            <canvas id="renderCanvas" touch-action="none"></canvas>
+                            <img id="view-model-control-btn" src="./img/icons/around360.png">
+                        </div>
+            <div id="modelinfo-view-firstpage">
+                <div id="model-view-leftside">
+
+                    <div id="modelinfo-view-model">
+                        <div id="modelinfo-view-title">
+                            <div id="modelinfo-view-title-top"><img src="./img/view_icon/titleinfo.png"></div>
+                            <div id="modelinfo-view-title-bottom">
+                                <div id="modelinfo-view-title-bottom-name">KAISHAN COMPRESSOR USA, LLC</div>
+
+                            </div>
+                        </div>
+                        000
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="icon-group-left">
+                        <div class="model-view-icon" id="model-view-icon-internal-device">
+                            <input type="checkbox" id="internal-device-checkbox"
+                                class="model-view-checkbox model-view-checkbox-click">
+                            <div class="model-view-icon-text" id="model-view-icon-text-internal-device">Internal
+                                device</div>
+                        </div>
+                        <div class="model-view-icon" id="model-view-icon-lock">
+                            <input type="checkbox" id="lock-checkbox"
+                                class="model-view-checkbox model-view-checkbox-click">
+                            <div class="model-view-icon-text" id="model-view-icon-text-lock">Device lock</div>
+                        </div>
+                        <div class="model-view-icon" id="model-view-icon-reset">
+                            <input type="checkbox" id="reset-checkbox" class="model-view-checkbox-click">
+                            <div class="model-view-icon-text" id="model-view-icon-text-reset">Reset</div>
+                        </div>
+                        <div class="model-view-icon" id="videoplay-group-icon-internal-device" style="display: none;">
+                            <input type="checkbox" id="videoplay-checkbox"
+                                class="videoplay-group-checkbox model-view-checkbox-click">
+                            <div class="model-view-icon-text" id="model-view-icon-text-play">Pause</div>
+                        </div>
+                        <div class="model-view-icon" id="videoplay-group-icon-lock" style="display: none;">
+                            <input type="checkbox" id="videostop-checkbox"
+                                class="videoplay-group-checkbox model-view-checkbox-click">
+                            <div class="model-view-icon-text" id="model-view-icon-text-stop">Stop</div>
+                        </div>
+                    </div>
+            <div id="model-view-icon-exit-btn"> </div>
+                       
+        </div> -->
+        <div class="overlap-wrapper useCaseSeochoBridgeVer">
+            <div class="modelinfo-view-background-img"></div>
+            <div class="modelinfo-view-title-top"> 
+                <div style="width: 12.63rem;"></div>
+                <div class="modelinfo-view-title-bottom-name">센트럴시티 보도육교
+                    <!-- <label class="modelinfo-view-title-bottom-name-location">서초구 반포동 118-14</label> -->
+                </div>
+            <div class="modelinfo-view-title-right">
+                <div class="modelinfo-view-title-right-topAlarm"> <input type="checkbox" > <div class="top-line-modelinfo-view"></div><div class="top-time-modelinfo-view"><label class="top-time-modelinfo-view-date">2024. 02. 01</label> <label class="top-time-modelinfo-view-time">10:00 pm</label></div></div>
+                <img class="model-view-icon-exit-btn" src="./img/view_icon/cancel_white.png">
+            </div>
+             
+            </div>
+            <div class="AlarmDiv-position">
+                <div class="AlarmDiv"></div>
+            </div>
+              <div class="memoDiv-position">
+                <div class="modelinfo-view-memo">
+                    <input type="checkbox" id="memo-checkbox" class="model-view-checkbox">
+                </div>
+                <div id="model-view-right-memo" style="display: none;">
+                  
+            
+                    <div id="model-view-right-memo-list">
+                        <div id="model-view-right-memo-delete">
+                            <div id="model-view-right-memo-delete-box">
+                                <span style="font-size: 1rem; font-weight: 600; 
+    margin-top: 3.56rem;">Are you sure you want to delete it?</span>
+                                <span style="font-size: 0.8125rem; font-weight: 400; margin-top: 0.31rem;">This action cannot be undone</span>
+                                <div id="model-view-right-memo-delete-btn">
+                                    <div class="delete-btn" id="delete-box-delete">Delete</div>
+                                    <div class="delete-btn" id="delete-box-cancel">Cancle</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="model-view-right-memo-list-background">
+                            <div id="model-view-right-mewmo-info">
+                                <div id="model-view-right-mewmo-info-left">
+                                    <img src="./img/view_icon/memo  48x48.png">
+                                    <span>Memo</span>
+                                </div>
+                               
+                                <img class="model-view-right-memo-plus model-view-right-memo-plus-origin" src="./img/view_icon/plus.png">
+                                <img class="model-view-right-memo-plus model-view-right-memo-plus-bridge" src="./img/bridgePage/plus_br.png">
+                            </div>
+                            <div id="model-view-right-memo-list-info">
+                                <img id="info-icon2" src="./img/bridgePage/memo  48x48_fill.png">
+                                <img id="info-icon" src="./img/view_icon/memo  48x48.png">
+            
+                                <span id="info-word">
+                                    There are no notes
+                                </span>
+                                <span id="info-word-under" style=" font-size: 1rem;">
+                                    Please add a note
+                                </span>
+                            </div>
+                            <div id="model-view-right-memo-list-append">
+                            </div>
+                          
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            <div class="modelinfo-view-eventpopup" style="display: none;">
+                <div class="modelinfo-view-eventpopup-content">
+                    <img src="img/bridgePage/Frame 9814.png">
+                    <label class="modelinfo-view-eventpopup-title" for="">위험 감지 알림</label>
+                    <label class="modelinfo-view-eventpopup-subtitle">측점 1 기울기/균열 센서에서 기울기 감지</label>
+                    <label class="modelinfo-view-eventpopup-time">발생 시각 - 22:00:00</label>
+                </div>
+                <div class="modelinfo-view-eventpopup-btn">
+                    <div class="modelinfo-view-eventpopup-btn-close">닫기</div>
+                    <div class="modelinfo-view-eventpopup-btn-move">바로 이동</div>
+                </div>
+            </div>
+            <div class="modelinfo-view-main">
+                <div class="view-model">
+                            <canvas id="renderCanvas" touch-action="none"></canvas>
+                            <img class="view-model-control-btn" src="./img/icons/around360.png">
+                        </div>
+                </div>
+               <div class="modelinfo-view-top-tab">
+                <div class="modelinfo-view-top-tab-radioBtns">
+                    <input type="radio" name="modelinfo-view-top-tabs" value="Overview" id="Overview" checked>
+                    <label id="overview-div" for="Overview">Overview</label>
+                    <input type="radio" name="modelinfo-view-top-tabs" value="Device" id="Device"> 
+                    <label id="Device-div"  for="Device">Device</label>
+                    <input type="radio" name="modelinfo-view-top-tabs" value="population_density" id="population_density">
+                    <label id="population_density-div"  for="population_density">population density</label>
+                </div>
+                
+               
+               </div> 
+               <div class="modelinfo-view-top-tab-view">
+                     <div class="modelinfo-view-top-tab-overview">
+                        <div class="modelinfo-view-top-tab-overview-left" >
+                            <div class="modelinfo-view-top-tab-overview-left-wether">
+                                <img class="modelinfo-view-top-tab-overview-left-wether-img" src="img/bridgePage/a-little-cloudy.png"> <div class="modelinfo-view-top-tab-overview-left-wether-data">
+                                    <label class="wether-data-weather">흐림</label>
+                                    <label class="wether-data-temp">21.9<img src="img/bridgePage/℃.png"></label>
+                                    <div class="wether-data-location">
+                                        <img src="img/bridgePage/mdi_location.png">
+                                        <label class="wether-data-location-label">서초구 반포동 118-14</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modelinfo-view-top-tab-overview-left-widget">
+                                <img src="img/bridgePage/widget_overview-rigtht2.png"> 
+                                <div class="update-div">
+                                    <img src="img/bridgePage/update2.png">
+                                    <div class="update-div-data">
+                                        <label >Last Update</label>
+                                        <label class="update-div-data-date">15:10:00</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="modelinfo-view-top-tab-overview-right" >
+
+                            <div class="modelinfo-view-top-tab-overview-right-widget">
+                                <img src="img/bridgePage/widget_overview_right1.png"> 
+                                <div class="update-div">
+                                    <img src="img/bridgePage/update2.png">
+                                    <div class="update-div-data">
+                                        <label >Last Update</label>
+                                        <label class="update-div-data-date">15:10:00</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modelinfo-view-top-tab-overview-right-widget-doc">
+                                <img src="img/bridgePage/widget_overview_doc.png">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="modelinfo-view-top-tab-device">
+                        <div class="modelinfo-view-top-tab-device-left">
+                            <div class="modelinfo-view-top-tab-device-leftWidget">
+                                <div class="modelinfo-view-top-tab-device-leftWidget-name">
+                                    <img src="img/bridgePage/Frame 10366.png"> 
+                                    <label>장치 현황</label>
+                                </div>
+                                <div class="modelinfo-view-top-tab-device-leftWidget-list">
+                                    <input type="radio" id="device-leftWidget-sensor1" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor2" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor3" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor4" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor5" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor6" name="device-leftWidget-sensors">
+                                    <input type="radio" id="device-leftWidget-sensor7" name="device-leftWidget-sensors">
+                                </div>
+                                <div class="update-div">
+                                    <img src="img/bridgePage/update2.png">
+                                    <div class="update-div-data">
+                                        <label >Last Update</label>
+                                        <label class="update-div-data-date">15:10:00</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modelinfo-view-top-tab-device-right" style="display: none;"> 
+                            <img src="./img/bridgePage/itemSensor/item_box_panel.png">  
+                            <input type="checkbox"  class="modelinfo-view-top-tab-device-right-graphBtn">
+                        </div>
+                        <div class="modelinfo-view-top-tab-device-bottom" style="display: none;">
+                            <img src="./img/bridgePage/Frame 47717.png">
+                        </div>
+                        <div class="modelinfo-view-top-tab-device-center" style="display: none;">
+                            <img src="./img/bridgePage/widget_graph.png">
+                            <div class="modelinfo-view-top-tab-device-center-eventPanel">
+                                <div class="update-div">
+                                    <img src="img/bridgePage/update2.png">
+                                    <div class="update-div-data">
+                                        <label >Last Update</label>
+                                        <label class="update-div-data-date">15:10:00</label>
+                                    </div>
+                                </div>
+                                <div class="modelinfo-view-top-tab-device-center-eventPanel-closeBtn">  
+                                    <img src="img/bridgePage/Frame 47683.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modelinfo-view-top-tab-population_density">
+                        <div class="modelinfo-view-top-tab-population_density-people">
+
+                        </div>
+                        <div class="modelinfo-view-top-tab-population_density-cctv">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="model-view-rightside">
+                    <div id="model-view-rightside-style">
+
+
+
+                        <div id="model-view-group-right">
+                            <div class="model-view-info">
+                                <div>
+                        
+                                </div>
+                                <div class="model-view-info-slider">
+                                    <input type="radio" id="model-slider-basic" class="model-view-info-slider-box" name="model-slider" checked>
+                                    <label for="model-slider-basic" class="model-view-info-slider-box-label">Basic
+                                        info</label>
+                                    <input type="radio" id="model-slider-data" class="model-view-info-slider-box" name="model-slider">
+                                    <label for="model-slider-data" class="model-view-info-slider-box-label">Data</label>
+                                    <input type="radio" id="model-slider-graph" class="model-view-info-slider-box" name="model-slider">
+                                    <label for="model-slider-graph" class="model-view-info-slider-box-label">Graph</label>
+                                </div>
+                                <div class="model-view-info-slider-underline"></div>
+                                <div class="model-view-info-option">
+                                    <div id="model-view-info-option-first">
+                                        <div class="model-view-option-calender-icon"></div>
+                                        <div class="model-view-option-calender"></div>
+                                        <input type="checkbox" class="model-view-option-expansion">
+                                    </div>
+                        
+                                </div>
+                                <div id="model-view-info-slider-group">
+                                    <div id="basic-info">
+                                        <div class="model-view-info-operating">
+                                            <div class="model-view-info-group" id="model-view-info-operating-group">
+                                                <div id="model-view-info-operating-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-operating-title" class="model-view-info-title">
+                                                    Operating status</div>
+                                            </div>
+                                            <div class="model-view-info-infogroup" id="model-view-info-operating-infogroup">
+                                                <div id="operating-version-group" class="list-group">
+                                                    <div class="info-text info-text-title" id="operating-version">
+                                                        Version
+                                                    </div>
+                                                    <div class="info-text" id="operating-version-info">
+                                                        KRSP 100
+                                                    </div>
+                                                </div>
+                                                <div class="info-line"></div>
+                                                <div id="operating-ID-group" class="operating-group list-group">
+                                                    <div class="info-text info-text-title" id="operating-ID">
+                                                        ID
+                                                    </div>
+                                                    <div class="info-text" id="operating-ID-info">
+                                                        krsp 100
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="model-view-info-information">
+                                            <div class="model-view-info-group" id="model-view-info-information-group">
+                                                <div id="model-view-info-information-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-information-title" class="model-view-info-title">Basic
+                                                    Information</div>
+                                            </div>
+                                            <div class="model-view-info-infogroup" id="model-view-info-information-infogroup">
+                                                <div id="information-modelname-group" class="information-group list-group">
+                                                    <div class="info-text info-text-title" id="information-modelname">
+                                                        Model name
+                                                    </div>
+                                                    <div class="info-text" id="information-modelname-info">
+                                                        KRSP100-100V
+                                                    </div>
+                                                </div>
+                                                <div class="info-line"></div>
+                                                <div id="information-location-group" class="information-group list-group">
+                                                    <div class="info-text info-text-title" id="information-location">
+                                                        Location
+                                                    </div>
+                                                    <div class="info-text" id="information-location-info">
+                                                        경북 구미시 3공단2로 174
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="model-view-info-circlechart">
+                                            <div class="model-view-info-group" id="model-view-info-circlechart-group">
+                                                <div id="model-view-info-circlechart-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-circlechart-title" class="model-view-info-title">Air
+                                                    flow & Power in</div>
+                                            </div>
+                                            <div id="model-view-info-circlechart-infogroup">
+                                                <div class="circlechart-infogroup" id="circlechart-airflow-infogroup">
+                                                    <div class="circlechart-btn">
+                        
+                                                    </div>
+                                                    <div class="circlechart-title">
+                                                        Air flow
+                                                    </div>
+                                                    <div class="circlechart-progress">
+                                                        <div class="circlechart-progress-box" role="progressbar" aria-valuenow="41.46"
+                                                            aria-valuemin="0" aria-valuemax="100" style="--value: 41">
+                                                            <div class="multiline-span">
+                                                                <span class="top-line">41.46</span>
+                                                                <span class="bottom-line">KW</span>
+                                                            </div>
+                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="circlechart-infogroup" id="circlechart-powerin-infogroup">
+                                                    <div class="circlechart-btn">
+                        
+                                                    </div>
+                                                    <div class="circlechart-title">
+                                                        Power in
+                                                    </div>
+                                                    <div class="circlechart-progress">
+                                                        <div class="circlechart-progress-box" role="progressbar" aria-valuenow="0"
+                                                            aria-valuemin="0" aria-valuemax="100" style="--value: 0">
+                                                            <div class="multiline-span">
+                                                                <span class="top-line">0.0</span>
+                                                                <span class="bottom-line">Cmf</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </div>
+                                    </div>
+                                    <div class="verticalline" style="margin-left: 3.62rem;"></div>
+                                    <div id="data" style="display: none;">
+                                        <div class="model-view-info-Filtartion_lubrication">
+                                            <div class="model-view-info-group" id="model-view-info-Filtartion_lubrication-group">
+                                                <div id="model-view-info-Filtartion_lubrication-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-Filtartion_lubrication-title" class="model-view-info-title">Air
+                                                    Filtartion and lubrication data</div>
+                                            </div>
+                                            <div id="model-view-info-Filtartion_lubrication-infogroup">
+                                                <div class="Filtartion_lubrication-infogroup" id="Filtartion_lubrication-acfm-infogroup">
+                        
+                                                    <div class="Filtartion_lubrication-title">
+                                                        ACFM
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-bar">
+                        
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-num">
+                                                        500
+                                                    </div>
+                                                </div>
+                                                <div class="Filtartion_lubrication-infogroup" id="Filtartion_lubrication-full-infogroup">
+                        
+                                                    <div class="Filtartion_lubrication-title">
+                                                        Full load pressure<br>
+                                                        (psig)
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-bar">
+                        
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-num">
+                                                        100
+                                                    </div>
+                                                </div>
+                                                <div class="Filtartion_lubrication-infogroup" id="Filtartion_lubrication-motor-infogroup">
+                        
+                                                    <div class="Filtartion_lubrication-title">
+                                                        Motor HP
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-bar">
+                        
+                                                    </div>
+                                                    <div class="Filtartion_lubrication-num">
+                                                        100
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </div>
+                                        <div class="model-view-info-Electrical_data">
+                                            <div class="model-view-info-group" id="model-view-info-Electrical_data-group">
+                                                <div id="model-view-info-Electrical_data-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-Electrical_data-title" class="model-view-info-title">
+                                                    Air
+                                                    Electrical data</div>
+                                            </div>
+                                            <div id="model-view-info-Electrical_data-infogroup">
+                                                <div class="model-view-info-infogroup" id="model-view-info-Electrical_data-infogroup">
+                                                    <div id="Electrical_data-rating-group" class="list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-rating">
+                                                            Electrical enclosure rating
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-rating-info">
+                                                            NEMA1
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-line"></div>
+                                                    <div id="Electrical_data-type-group" class="Electrical_data-group list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-type">
+                                                            Enclosure type
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-type-info">
+                                                            TEFC
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-line"></div>
+                                                    <div id="Electrical_data-class-group" class="Electrical_data-group list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-class">
+                                                            Insulation class
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-class-info">
+                                                            F
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-line"></div>
+                                                    <div id="Electrical_data-efficiency-group" class="Electrical_data-group list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-efficiency">
+                                                            Drive motor efficiency
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-efficiency-info">
+                                                            95.4%
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-line"></div>
+                                                    <div id="Electrical_data-service-group" class="Electrical_data-group list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-service">
+                                                            Service Factor
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-service-info">
+                                                            1.20
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-line"></div>
+                                                    <div id="Electrical_data-fan-group" class="Electrical_data-group list-group">
+                                                        <div class="info-text info-text-title-Electrical" id="Electrical_data-fan">
+                                                            Fan motor HP #1
+                                                        </div>
+                                                        <div class="info-text" id="Electrical_data-fan-info">
+                                                            5.5
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="verticalline" style="margin-left: 4.69rem;"></div>
+                                    <div id="graph" style="display: none;">
+                                        <div class="model-view-info-Specific_Efficiency">
+                                            <div class="model-view-info-group" id="model-view-info-Specific_Efficiency-group">
+                                                <div id="model-view-info-Specific_Efficiency-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-Specific_Efficiency-title" class="model-view-info-title">Air
+                                                    Specific Efficiency</div>
+                                            </div>
+                                            <div id="model-view-info-Specific_Efficiency-infogroup">
+                                                <div class="Specific_Efficiency-infogroup" id="Specific_Efficiency-graph-infogroup">
+                                                    <div id="Specific_Efficiency-graph-infogroup-line">
+                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </div>
+                                        <div class="model-view-info-airflow">
+                                            <div class="model-view-info-group" id="model-view-info-airflow-group">
+                                                <div id="model-view-info-airflow-icon" class="model-view-info-icon">
+                                                </div>
+                                                <div id="model-view-info-airflow-title" class="model-view-info-title">
+                                                    Air
+                                                    Air Flow, Pressure</div>
+                                            </div>
+                                            <div id="model-view-info-airflow-infogroup">
+                                                <div class="airflow-infogroup" id="airflow-graph-infogroup">
+                                                    <div id="airflow-graph-infogroup-line">
+                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+
+                        
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                    <div class="icon-group">
+                        <div class="model-view-icon model-view-icon-reset">
+                            <img src="img/view_icon/reset 48x48.png">
+                        </div>
+                        <div class="model-view-icon videoplay-group-icon-internal-device">
+                            <input type="checkbox" class="videoplay-checkbox-btn">
+                        </div>
+                        <div class="model-view-icon model-view-icon-grid ">
+                            <img src="img/view_icon/grid 48x48.png">
+                            <input type="checkbox" class="grid-checkbox-btn">
+                        </div>
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="babylontest.js">    </script>
+    <!-- touch-action="none" for best results from PEP -->
+    <template id="population_density-cctv-div-template">
+        <div class="population_density-cctv-div">
+                                <div class="population_density-cctv-div-title">
+                                    <img src="img/bridgePage/Frame 10366.png">
+                                    <label>CCTV :  </label>
+                                    <label class="population_density-cctv-div-title-position">계단 3 방면</label>
+                                </div>
+                                <div class="population_density-cctv-view">
+                                    <img src="./img/bridgePage/image 30.png">
+                                </div>
+                            </div>
+    </template>
+</body>
+<script>
+    // console.log("화면on")
+    // let clickcheck = false;
+    // let savedata;
+    // $("#model-view-icon-exit-btn").click(function (e) {
+
+    //     window.parent.postMessage('hide', '*');
+    // })
+
+
+    // window.addEventListener('message', function (event) {
+
+    //     console.log(event.data)
+    //     if (event.data.type === 'selectedMesh') {
+    //         savedata = event.data.data;
+    //     }
+    // });
+
+
+
+
+    // $(".model-view-checkbox-click").mouseover(function () {
+    //     let siblings = $(this).next("div");
+    //     siblings.css('display', 'flex');
+    // })
+    // $(".model-view-checkbox-click").mouseleave(function () {
+    //     let siblings = $(this).next("div");
+    //     siblings.css('display', 'none');
+    // })
+
+    // $('.model-view-checkbox').change(function () {
+    //     if ($(this).is(':checked')) {
+    //         let siblings = $(this).next("div");
+    //         siblings.css('display', 'flex');
+    //     } else {
+    //         let siblings = $(this).next("div");
+    //         siblings.css('display', 'none');
+    //     }
+    // });
+
+    // $("#reset-checkbox").mousedown(function () {
+    //     let myDiv = $(this).next("div");
+    //     myDiv.css('display', 'flex');
+
+    // })
+    // $("#reset-checkbox").mouseup(function () {
+    //     let myDiv = $(this).next("div");
+    //     myDiv.css('display', 'none');
+    // })
+    
+    // $(".model-view-info-slider-box[type='radio']").on("change", function () {
+    //         let selectedValue = this.id;
+    //         $("#basic-info").css("display", 'none');
+    //         $("#data").css("display", 'none');
+    //         $("#graph").css("display", 'none');
+    //         if (selectedValue === "model-slider-basic") {
+    //             $("#basic-info").css("display",'block');
+    //         } else if (selectedValue === "model-slider-data") {
+    //             $("#data").css("display", 'block');
+    //         } else if (selectedValue === "model-slider-graph") {
+    //             $("#graph").css("display", 'block');
+    //         }
+    //     });
+
+    // function getCurrentDate() {
+    //         let currentDate = new Date();
+    //         let year = currentDate.getFullYear();
+    //         let month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+    //         let day = currentDate.getDate();
+
+    //         // 날짜를 "YYYY년 MM월 DD일" 형식으로 반환
+    //         return year + ". " + month + ". " + day;
+    //     }
+    //  document.addEventListener("DOMContentLoaded", function () {
+    //         // 현재 날짜를 가져와서 HTML에 출력
+    //         document.querySelector(".model-view-option-calender").textContent = getCurrentDate();
+    //     });
+
+
+    // $(".model-view-option-expansion").click(function(){
+        
+    //      $(".verticalline").css("display", "block")
+    //     $("#modelinfo-view-secondpage").css("display","block");
+    //     $("#modelinfo-view-firstpage").css("display", "none");
+    //     $("#modelinfo-view-background-img").css("animation","moveImage 2s forwards");
+        
+    //     document.querySelector("#model-view-option-calender2").textContent = getCurrentDate();
+    //     document.querySelector("#model-view-option-calender3").textContent = getCurrentDate();
+    // })
+    // $(".model-view-option-expansion2").click(function(){
+        
+    //     $("#modelinfo-view-secondpage").css("display", "none");
+    //     $("#modelinfo-view-firstpage").css("display", "block");
+    //     $(".verticalline").css("display", "none")
+    //     $("#modelinfo-view-background-img").css("animation", "moveImageback 2s forwards");
+    // })
+        
+    // $("#view-model-control-btn").click(function () {
+    //     camera.attachControl(canvas)
+    //     $(this).css('display', 'none')
+    // })
+
+</script>
+
+</html>
